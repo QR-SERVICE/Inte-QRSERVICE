@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+
+    <style>
+        /* Estilos para la pantalla de carga */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000000;
+            z-index: 1000;
+        }
+    
+        /* Imagen de carga */
+        .loading-screen img {
+            width: 300px;
+            height: auto;
+            animation: pulse 2s infinite ease-in-out; /* Animación agregada */
+        }
+    
+        /* Ocultar el contenido principal cuando la pantalla de carga esté activa */
+        body.loading .container,
+        body.loading .image-container {
+            display: none;
+        }
+    
+        /* Ocultar la pantalla de carga después de que pase el tiempo */
+        body.loaded .loading-screen {
+            display: none;
+        }
+    
+        /* Animación para la imagen */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+    
+    <!-- Pantalla de carga -->
+    <div class="loading-screen">
+        <img src="ruta_de_tu_logo.png" alt="Cargando...">
+    </div>
+    
+</head>
+
+<body class="loading">
+
+    <!-- Pantalla de carga -->
+    <div class="loading-screen">
+        <img src="imagenes/Logosinbordes.png" alt="Pantalla de Carga">
+    </div>
+
+    <!-- Contenedor de la imagen principal del logo -->
+    <div class="image-container" style="text-align: center; margin-bottom: 20px;">
+    </div>
+
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form>
+                <h3>QR SERVICE</h3>
+                <h1>Crear Cuenta</h1>
+                <input type="text" placeholder="Nombre">
+                <input type="password" placeholder="Contraseña">
+                <button>Registrar</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form>
+                <h3>QR SERVICE</h3>
+                <h1>Inicia</h1>
+                <input type="email" placeholder="Correo">
+                <input type="password" placeholder="Contraseña">
+                <a href="#" id="forgot-password">Olvidaste tu contraseña?</a>
+                <button>Iniciar</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Bienvenido!</h1>
+                    <p>Inserta tus datos para Iniciar</p>
+                    <button class="hidden" id="login">Ingresar</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hola!</h1>
+                    <p>Registra tus datos para accesar al sistema</p>
+                    <button class="hidden" id="register">Registro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Para eliminar la pantalla de carga después de 10 segundos y mostrar el contenido principal
+        window.addEventListener("load", function () {
+            setTimeout(function () {
+                document.body.classList.remove("loading");
+                document.body.classList.add("loaded");
+            }, 5000); // 5000 ms = 5 segundos
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
