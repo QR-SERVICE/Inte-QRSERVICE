@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #554a4a;
+}
+
+header {
+        background-color: #c3892d;
+    color: #000000;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#comandas {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-height: none; /* Elimina el límite de altura */
+    display: flex;      
+    flex-wrap: wrap;
+    justify-content: space-between; /* Distribuye las comandas equitativamente */
+    align-items: stretch; /* Extiende las comandas en el eje vertical */
+    margin: 20px auto;
+    width: 90%; /* Ajusta el ancho del contenedor de comandas */
+}
+
+.comanda {
+    border: 1px solid #1d1c1c;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: calc(45% - 20px); /* Ajusta el ancho para tener 2 en fila si hay espacio */
+    box-sizing: border-box;
+    transition: transform 0.2s;
+}
+
+main {
+    padding: 20px;
+    display: flex;
+    justify-content: center; /* Centra el contenido principal */
+    align-items: flex-start; /* Evita que los elementos se apilen al centro */
+}
+
+
+.comanda:last-child {
+    border-bottom: none;
+}
+
+button {
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btnAtendida {
+    background-color: #4CAF50; 
+    color: white;
+}
+
+.btnEliminar {
+    background-color: #f44336; 
+    color: white;
+}
+
+
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #c3892d;
+    color: #fff;
+    width: 100%;
+    display: none; /* Ocultar inicialmente */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+body {
+    width: 100%;
+    
+}
+
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
