@@ -1,0 +1,24 @@
+{
+    "menu":{
+        "Platillo#1":"Tabla de quesos",
+        "Platillo#2":"Aceitunas",
+        "Platillo#3":"Paolo",
+        "Platillo#4":"Ensalada Francisca",
+        "Platillo#5":"Mejillones"
+    },
+
+    "descripcion":{
+        "Descripcion#1":"esta es la primer entrada",
+        "Descripcion#2":"esta es la segunda entrada",
+        "Descripcion#3":"esta es la tercera entrada",
+        "Descripcion#4":"esta es la cuarta entrada",
+        "Descripcion#5":"esta es la quinta entrada"
+    },
+    "precio":{
+        "precio#1":"400$",
+        "precio#2":"89$",
+        "precio#3":"200$",
+        "precio#4":"120$",
+        "precio#5":"300$"
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "header":{
+        "Table":"Mesa",
+        "drinks":"Bebidas",
+        "Appetizer":"Entradas",
+        "Entrees":"Platillos",
+        "Desserts":"Postres",
+        "Request waiter":"Solicitar mesero",
+        "account":"Pedir cuenta"
+    }
+}

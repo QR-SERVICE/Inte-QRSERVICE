@@ -1,0 +1,24 @@
+{
+    "menu":{
+        "Platillo#1":"Pasta Alfredo",
+        "Platillo#2":"Pita Julieta",
+        "Platillo#3":"Panini Gabriel",
+        "Platillo#4":"Pizza Pepperoni",
+        "Platillo#5":"Ensalada Esther"
+    },
+
+   "descripcion":{
+        "Descripcion#1":"este es el primer platillo",
+        "Descripcion#2":"este es el segunda platillo",
+        "Descripcion#3":"este es el tercera platillo",
+        "Descripcion#4":"este es el cuarta platillo",
+        "Descripcion#5":"este es el quinta platillo"
+    },
+    "precio":{
+        "precio#1":"250$",
+        "precio#2":"120$",
+        "precio#3":"120$",
+        "precio#4":"360$",
+        "precio#5":"75$"
+    }
+}
