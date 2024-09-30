@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+	--primary-color: #c3892d;
+	--background-color: #f9f5f0;
+	--dark-color: #000000;
+}
+
+html {
+	font-size: 62.5%;
+	font-family: 'Poppins', sans-serif;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/*             UTILIDADES             */
+.container {
+	max-width: 150rem;
+	margin: 0 auto;
+}
+
+.heading-1 {
+	text-align: center;
+	font-weight: 500;
+	font-size: 3rem;
+}
+
+/*               HEADER               */
+
+.header-logo {
+    align-items: center;
+}
+
+.container-logo {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.container-logo i {
+	font-size: 3rem;
+}
+
+.container-logo h1 a{
+	text-decoration: none;
+	color: #000;
+	font-size: 3rem;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+}
+
+/* Barra */
+.container-navbar {
+	background-color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.navbar-logo {
+	display: flex;
+	justify-content: space-between;
+	align-items: left;
+	padding: 1rem;
+}
+
+/* Cards */
+
+.container-cards {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 2rem;
+    margin: 0.5rem;
+}
+
+.card-pedidos {
+	height: 20rem;
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	justify-content: center;
+	border-radius: 2rem;
+	gap: 1rem;
+    background-color:#808080;
+    padding-left: 1.5rem;
+}
+
+/* Titulo card*/
+.card-pedidos h1 {
+	font-size: 2.5rem;
+	color: #fff;
+	position: relative;
+}
+
+.card-pedidos p {
+	font-size: 1.5rem;
+	color: #fff;
+	text-transform: capitalize;
+	position: relative;
+}
+
+.card-pedidos  span {
+	font-size: 1.5rem;
+	color: #fff;
+	cursor: pointer;
+}
+
+.card-pedidos  span:hover {
+	color: var(--primary-color);
+}
