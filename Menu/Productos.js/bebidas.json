@@ -1,0 +1,25 @@
+{
+    "menu":{
+        "Platillo#1":"Limonada natural",
+        "Platillo#2":"Limonada Mineral",
+        "Platillo#3":"Coca Cola",
+        "Platillo#4":"Sprite",
+        "Platillo#5":"Fresca"
+    },
+
+    "descripcion":{
+        "Descripcion#1":"esta es la primer bebida",
+        "Descripcion#2":"esta es la segunda bebida",
+        "Descripcion#3":"esta es la tercera bebida",
+        "Descripcion#4":"esta es la cuarta bebida",
+        "Descripcion#5":"esta es la quinta bebida"
+    },
+
+    "precio":{
+        "precio#1":"40$",
+        "precio#2":"40$",
+        "precio#3":"25$",
+        "precio#4":"25$",
+        "precio#5":"25$"
+    }
+}

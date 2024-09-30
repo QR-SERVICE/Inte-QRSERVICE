@@ -1,0 +1,192 @@
+html{
+    font-size: 16px;
+}
+
+
+
+body{
+ background-color:  whitesmoke;
+ background-image: url(unnamed.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+}
+
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+    font-family:sans-serif;
+}
+
+.opM{
+    list-style-type: none ;
+    display: flex;
+    gap: 1rem;
+}
+
+.opM li button{
+    color:wheat;  
+    text-decoration: none;
+    color:wheat;  
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    font-size: 2;
+    cursor: pointer;
+}
+
+.producto p a{
+    text-decoration: none;
+    color: wheat;
+}
+
+.precio{
+    display: flex;
+}
+.precio .Cantidad-boton{
+    padding: 0.1rem 0.4rem;
+    background-color: transparent;
+    color: wheat;
+    font-size: 1rem;
+}
+
+.mesa{
+    
+    max-width: 10rem;
+    padding: 1rem;
+    font-size: x-large;
+}
+
+header{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color:black;
+    color: wheat;
+}
+
+.Abrir-menu,.cerrar-menu{
+    display: none;
+}
+
+.menu{
+    background-color: rgba(0, 0, 0,.8);
+    padding: 2rem;
+    margin: 2rem;
+    align-items: center;
+    place-items: center;
+    color: wheat;
+   
+}
+
+.menu li{
+    text-decoration: none;
+    list-style-type: none;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 1rem;
+    display: inline-block;
+}
+.menu p{
+    padding: 1rem;
+}
+.menu li a{
+    text-decoration: none;
+    color: wheat;
+}
+.menu button{
+    border: none;
+    padding: 0.3rem;
+    margin: 0.2rem;
+    background-color: wheat;
+    cursor: pointer;
+    color:black;
+}
+
+.menu hr{
+    border-color: wheat;
+}
+
+.lang-button{
+    background-color: transparent;
+    color: wheat;
+    border: 0;
+    cursor: pointer;
+    padding: .2rem;
+}
+
+.opM hr{
+    border-color: wheat;
+}
+
+@media screen and (max-width:550px){
+
+    .opM hr{
+        border: none;               
+        border-left: 2px solid wheat; 
+        width: 100px;                   
+        height: 150px ;            
+        padding: 0;  
+        margin: 0 auto; 
+        transform: rotate(90deg);
+
+    }
+
+    .lang-button{
+        background-color: transparent;
+        color: wheat;
+        border: 0;
+        cursor: pointer;
+        padding:  .2rem;
+    }
+
+    .Abrir-menu,.cerrar-menu{
+        display: block;
+        font-size: 1.2rem;
+        background-color: transparent;
+        color: wheat;
+        cursor: pointer;
+        border: 0;
+    
+    }
+
+
+    .nav{
+        
+        position: absolute;
+        top: 0%;
+        right: 0;
+        bottom: 0%;
+        gap: 1rem;
+        background-color: rgb(1, 2, 3);
+        padding: 1rem;
+        box-shadow: 0 0 0 100vmax rgba(0, 0,0,.5);
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        opacity: 0;
+        visibility: hidden;
+        
+        
+    }
+
+    .nav.visible{
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .opM{
+        flex-direction: column;
+        align-items: end;
+    }
+    .opM li a{
+        color:wheat;  
+        text-decoration: none;
+    }
+    
+}

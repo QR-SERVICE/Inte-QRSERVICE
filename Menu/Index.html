@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRService</title>
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/Estilos_M.css" >
+<body>
+    <header>
+        <h1 data-seccion="header" data-valor="Table" class="mesa"> MESA 1 </h1>
+        <button class="Abrir-menu" id="abrir"><i class="bi bi-menu-up"></i></button>
+                <nav class="nav " id="nav">
+                    <button class="cerrar-menu" id="cerrar"><i class="bi bi-x-square"></i></i></button>
+                    <ul class="opM">
+                        <li>
+                            <button  data-seccion="header" data-valor="drinks" class="menu-boton" data-opcion="bebidas">Bebidas</button></li>
+                        <li>
+                            <button data-seccion="header" data-valor="Appetizer" class="menu-boton" data-opcion="entradas">Entradas</button></li>
+                        <li>
+                            <button  data-seccion="header" data-valor="Entrees" class="menu-boton" data-opcion="platillos">Platillos</button></li>
+                        <li>
+                            <button data-seccion="header" data-valor="Desserts" class="menu-boton" data-opcion="postres">postres</button></li>
+                        <li>
+                            <button data-seccion="header" data-valor="Request waiter" class="menu-boton"
+                            onclick="alert('¿Deseas mandar a llamar un mesero?');">Solicitar mesero</button></li>
+                        <li>
+                            <button data-seccion="header" data-valor="account" class="menu-boton"
+                            onclick="alert('¿Deseas tu cuenta?');">Pedir cuenta</button></li>
+                        <hr/>
+                        <div class="lenguages"> 
+                            <button class="lang-button" data-language="es">ESPAÑOL</button>
+                            <button class="lang-button" data-language="en">ENGLISH</button>
+                        </div>
+                    </ul>
+                </nav>
+    </header>
+
+    <div class="menu" id="menu"> 
+        <div class="producto" id="producto">
+            <ol>
+                <li><a href="#" data-section="menu" data-value="Platillo#1">Platillo#1</a></li>
+
+                <div class="precio">
+                <p data-section="precio" data-value="precio#1">precio</p>
+                <button class="Cantidad-boton" data-añadir="">
+                    <i class="bi bi-bag-check-fill"></i></button>
+                <button class="Cantidad-boton" data-restar="">
+                    <i class="bi bi-bag-dash"></i></button>
+                </div>
+
+                <p> <a href="#" data-section="descripcion" data-value="Descripcion#1" >este es un platillo</a></p>
+                <hr>
+
+                <li><a href="#" data-section="menu" data-value="Platillo#2">Platillo#2</a></li>
+
+                <div class="precio">
+                <p data-section="precio" data-value="precio#2">precio</p>
+                <button class="Cantidad-boton" data-añadir="">
+                <i class="bi bi-bag-check-fill"></i></button>
+                <button class="Cantidad-boton" data-restar="">
+                <i class="bi bi-bag-dash"></i></button>
+                </div>
+
+                <p> <a href="#"  data-section="descripcion"data-value="Descripcion#2">este es un platillo</a></p>
+                <hr>
+
+                <li><a href="#" data-section="menu" data-value="Platillo#3">Platillo#3</a></li>
+
+                <div class="precio">
+                <p data-section="precio" data-value="precio#3">precio</p>
+                <button class="Cantidad-boton" data-añadir="">
+                <i class="bi bi-bag-check-fill"></i></button>
+                <button class="Cantidad-boton" data-restar="">
+                <i class="bi bi-bag-dash"></i></button>
+                </div>
+
+                <p> <a href="#"  data-section="descripcion" data-value="Descripcion#3">este es un platillo</a></p>
+                <hr>
+
+                <li><a href="#" data-section="menu" data-value="Platillo#4">Platillo#4</a></li>
+
+                <div class="precio">
+                <p data-section="precio" data-value="precio#4">precio</p>
+                <button class="Cantidad-boton" data-añadir="">
+                <i class="bi bi-bag-check-fill"></i></button>
+                <button class="Cantidad-boton" data-restar="">
+                <i class="bi bi-bag-dash"></i></button>
+                </div>
+
+                <p> <a href="#"  data-section="descripcion"data-value="Descripcion#4">este es un platillo</a></p>
+                <hr>
+
+                <li><a href="#" data-section="menu" data-value="Platillo#5">Platillo#5</a></li>
+                
+                <div class="precio">
+                <p data-section="precio" data-value="precio#5">precio</p>
+                <button class="Cantidad-boton" data-añadir="">
+                <i class="bi bi-bag-check-fill"></i></button>
+                <button class="Cantidad-boton" data-restar="">
+                <i class="bi bi-bag-dash"></i></button>
+                </div>
+
+                <p> <a href="#" data-section="descripcion" data-value="Descripcion#5">este es un platillo</a></p>
+                <hr>
+
+            </ol>
+        </div>
+    </div>
+    
+    <script src="js/jMenu.js"></script>
+</body>
+</html>

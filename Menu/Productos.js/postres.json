@@ -1,0 +1,24 @@
+{
+    "menu":{
+        "Platillo#1":"Trufa",
+        "Platillo#2":"Margarita",
+        "Platillo#3":"chesseke",
+        "Platillo#4":"Pay de limon",
+        "Platillo#5":"Brownie"
+    },
+
+    "descripcion":{
+        "Descripcion#1":"este es el primer postre",
+        "Descripcion#2":"este es el segunda postre",
+        "Descripcion#3":"este es el tercera postre",
+        "Descripcion#4":"este es el cuarta postre",
+        "Descripcion#5":"este es el quinto postre"
+    },
+    "precio":{
+        "precio#1":"250$",
+        "precio#2":"230$",
+        "precio#3":"180$",
+        "precio#4":"220$",
+        "precio#5":"190$"
+    }
+}
