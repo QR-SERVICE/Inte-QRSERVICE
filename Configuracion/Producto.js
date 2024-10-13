@@ -27,17 +27,33 @@ Boton_agregar.addEventListener("click", () =>{
     const Texto = document.createElement("p");
     Texto.textContent = Texto_agregar.value;
 
-    /*Se agregan los prodcutos, al div, el cual va tener todos los productos*/
-    Men_pro.appendChild(boton_borrar);
-    Men_pro.appendChild(Texto);
-    Men_pro.appendChild(agreg_img);
-    Producto.appendChild(Men_pro);
-    
+    /*Se crea un boton el cual sirve para editar texto*/
+    const Edit_text = document.createElement("button");
+    Edit_text.textContent = "Editar-text";
+    Edit_text.classList.add("Boton-delete")
+
+    Edit_text.addEventListener("click", () =>{
+        if(Texto.contentEditable === "true"){
+            Texto.contentEditable = "false";
+            Edit_text.textContent = "Edit";
+        }else{
+            Texto.contentEditable = "true";
+            Edit_text.textContent = "Edit";
+        }
+    });
+
     boton_borrar.addEventListener("click", () =>{
         agreg_img.remove();
         agreg_txt.remove();
         boton_borrar.remove();
         Men_pro.remove();
     });
+
+    /*Se agregan los prodcutos, al div, el cual va tener todos los productos*/
+    Men_pro.appendChild(boton_borrar);
+    Men_pro.appendChild(Texto);
+    Men_pro.appendChild(agreg_img);
+    Men_pro.appendChild(Edit_text);
+    Producto.appendChild(Men_pro);
 
 });
