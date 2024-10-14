@@ -1,24 +1,32 @@
 {
-    "menu":{
-        "Platillo#1":"Pasta Alfredo",
-        "Platillo#2":"Pita Julieta",
-        "Platillo#3":"Panini Gabriel",
-        "Platillo#4":"Pizza Pepperoni",
-        "Platillo#5":"Ensalada Esther"
-    },
-
-   "descripcion":{
-        "Descripcion#1":"este es el primer platillo",
-        "Descripcion#2":"este es el segunda platillo",
-        "Descripcion#3":"este es el tercera platillo",
-        "Descripcion#4":"este es el cuarta platillo",
-        "Descripcion#5":"este es el quinta platillo"
-    },
-    "precio":{
-        "precio#1":"250$",
-        "precio#2":"120$",
-        "precio#3":"120$",
-        "precio#4":"360$",
-        "precio#5":"75$"
-    }
+    "producto#1":{
+        "nombre":"Pasta Alfredo",
+        "Descripcion":"esta es la primer platillos",
+        "precio":250.00,
+        "imagen":"hola"
+        },
+    "producto#2":{
+        "nombre":"Pita Julieta",
+        "Descripcion":"esta es la segunda platillos",
+        "precio":120.00,
+        "imagen":"hola"
+        },
+    "producto#3":{
+        "nombre":"Panini Gabriel",
+        "Descripcion":"esta es la tercer platillos",
+        "precio":120.00,
+        "imagen":"hola"
+        },
+    "producto#4":{
+        "nombre":"Pizza Pepperoni",
+        "Descripcion":"esta es la cuarta platillos",
+        "precio":360.00,
+        "imagen":"hola"
+            },
+    "producto#5":{
+        "nombre":"Ensalada Esther",
+        "Descripcion":"esta es la quinta platillos",
+        "precio":75.00,
+        "imagen":"hola"
+        }
 }

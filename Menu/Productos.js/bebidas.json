@@ -1,25 +1,32 @@
 {
-    "menu":{
-        "Platillo#1":"Limonada natural",
-        "Platillo#2":"Limonada Mineral",
-        "Platillo#3":"Coca Cola",
-        "Platillo#4":"Sprite",
-        "Platillo#5":"Fresca"
+    "producto#1":{
+        "nombre":"Limonada natural",
+        "Descripcion":"esta es la primer bebida",
+        "precio":40.00,
+        "imagen":"hola"
     },
-
-    "descripcion":{
-        "Descripcion#1":"esta es la primer bebida",
-        "Descripcion#2":"esta es la segunda bebida",
-        "Descripcion#3":"esta es la tercera bebida",
-        "Descripcion#4":"esta es la cuarta bebida",
-        "Descripcion#5":"esta es la quinta bebida"
+    "producto#2":{
+        "nombre":"Limonada Mineral",
+        "Descripcion":"esta es la segunda bebida",
+        "precio":40.00,
+        "imagen":"hola"
     },
-
-    "precio":{
-        "precio#1":"40$",
-        "precio#2":"40$",
-        "precio#3":"25$",
-        "precio#4":"25$",
-        "precio#5":"25$"
+    "producto#3":{
+        "nombre":"Coca Cola",
+        "Descripcion":"esta es la tercer bebida",
+        "precio":25.00,
+        "imagen":"hola"
+    },
+    "producto#4":{
+        "nombre":"Sprite",
+        "Descripcion":"esta es la cuarta bebida",
+        "precio":25.00,
+        "imagen":"hola"
+    },
+    "producto#5":{
+        "nombre":"Fresca",
+        "Descripcion":"esta es la quinta bebida",
+        "precio":25.00,
+        "imagen":"hola"
     }
 }

@@ -1,24 +1,32 @@
 {
-    "menu":{
-        "Platillo#1":"Tabla de quesos",
-        "Platillo#2":"Aceitunas",
-        "Platillo#3":"Paolo",
-        "Platillo#4":"Ensalada Francisca",
-        "Platillo#5":"Mejillones"
+    "producto#1":{
+        "nombre":"Tabla de quesos",
+        "Descripcion":"esta es la primer entrada",
+        "precio":400.00,
+        "imagen":"hola"
     },
-
-    "descripcion":{
-        "Descripcion#1":"esta es la primer entrada",
-        "Descripcion#2":"esta es la segunda entrada",
-        "Descripcion#3":"esta es la tercera entrada",
-        "Descripcion#4":"esta es la cuarta entrada",
-        "Descripcion#5":"esta es la quinta entrada"
+    "producto#2":{
+        "nombre":"Aceitunas",
+        "Descripcion":"esta es la segunda entrada",
+        "precio":89.00,
+        "imagen":"hola"
     },
-    "precio":{
-        "precio#1":"400$",
-        "precio#2":"89$",
-        "precio#3":"200$",
-        "precio#4":"120$",
-        "precio#5":"300$"
+    "producto#3":{
+        "nombre":"Paolo",
+        "Descripcion":"esta es la tercer entrada",
+        "precio":200.00,
+        "imagen":"hola"
+    },
+    "producto#4":{
+        "nombre":"Ensalada Francisca",
+        "Descripcion":"esta es la cuarta entrada",
+        "precio":120.00,
+        "imagen":"hola"
+    },
+    "producto#5":{
+        "nombre":"Mejillones",
+        "Descripcion":"esta es la quinta entrada",
+        "precio":300.00,
+        "imagen":"hola"
     }
 }

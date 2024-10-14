@@ -2,62 +2,34 @@ html{
     font-size: 16px;
 }
 
-
-
 body{
  background-color:  whitesmoke;
  background-image: url(unnamed.jpg);
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size:cover;
     background-attachment: fixed;
     color: white;
+    margin: 0; 
+    height: 100vh;
 }
-
 *{
     margin: 0%;
     padding: 0%;
     box-sizing: border-box;
     font-family:sans-serif;
 }
-
-.opM{
-    list-style-type: none ;
-    display: flex;
-    gap: 1rem;
-}
-
-.opM li button{
-    color:wheat;  
-    text-decoration: none;
-    color:wheat;  
-    text-decoration: none;
-    background-color: transparent;
-    border: none;
-    font-size: 2;
+li{
     cursor: pointer;
+    list-style-type: none;
 }
 
-.producto p a{
-    text-decoration: none;
-    color: wheat;
-}
-
-.precio{
-    display: flex;
-}
-.precio .Cantidad-boton{
-    padding: 0.1rem 0.4rem;
-    background-color: transparent;
-    color: wheat;
-    font-size: 1rem;
-}
-
+/*Zona de las opiones de categorias del menu*/
 .mesa{
-    
+
     max-width: 10rem;
     padding: 1rem;
-    font-size: x-large;
+    font-size: medium;
 }
 
 header{
@@ -67,49 +39,28 @@ header{
     padding: 1rem;
     background-color:black;
     color: wheat;
+    z-index: 2;
 }
 
-.Abrir-menu,.cerrar-menu{
+.Abrir-menu, .cerrar-menu{
     display: none;
 }
-
-.menu{
-    background-color: rgba(0, 0, 0,.8);
-    padding: 2rem;
-    margin: 2rem;
-    align-items: center;
-    place-items: center;
-    color: wheat;
-   
+.opM{
+    list-style-type: none ;
+    display: flex;
+    gap: 1rem;
 }
 
-.menu li{
+
+.opM li button{
+    color:wheat;  
     text-decoration: none;
-    list-style-type: none;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    padding: 1rem;
-    display: inline-block;
-}
-.menu p{
-    padding: 1rem;
-}
-.menu li a{
+    color:wheat;  
     text-decoration: none;
-    color: wheat;
-}
-.menu button{
-    border: none;
-    padding: 0.3rem;
-    margin: 0.2rem;
-    background-color: wheat;
+    background-color: transparent;
+    border:none;
+    font-size: 2;
     cursor: pointer;
-    color:black;
-}
-
-.menu hr{
-    border-color: wheat;
 }
 
 .lang-button{
@@ -120,9 +71,105 @@ header{
     padding: .2rem;
 }
 
+/*Zona de la orden*/
+.productos_orden{
+    display: flex;
+    flex-direction: column; 
+    align-items: baseline; 
+    max-width: 300px; 
+    padding: 1rem;
+}
+#bote-basura{
+    display: block;
+    padding: 0.1rem 0.4rem;
+    background-color:transparent;
+    color:wheat;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
+#bote-basura:active{
+    transform: scale(0.98);
+    background-color: white;
+}
+.carrito{
+    background-color: rgba(0, 0, 0,.8);
+    padding: 2rem;
+    margin: 0.5rem;
+    color: wheat;
+    font-size: 1rem;
+    display: none;;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.carrito.visible{
+    position: relative;
+    display: block;
+   opacity: 1;
+}
+.cerrar_carr{
+ background-color:rgba(0, 0, 0,.8) ;
+ font-size: 15px;
+ color:wheat;
+ border: none;
+ cursor: pointer;
+ position: absolute;
+top: 5%;
+right: 5%;
+
+}
+.carr{
+    font-size: 20px;
+}
+.datos-tabla{
+    padding: 1rem;
+    margin: 1rem;
+}
+.enviar-t{
+    margin: 1rem;
+    background-color: transparent;
+    color: wheat;
+    border: 2px solid wheat;
+    padding: 3px;
+    cursor: pointer;
+}
+.enviar-t:active{
+    background-color:white;
+    transform: scale(0.95);
+}
 .opM hr{
     border-color: wheat;
 }
+
+
+/*Zona de precio*/
+.precio{
+    display: flex;
+}
+.precio .S-boton{
+    border: 2px solid wheat;
+    display: block;
+    background-color:transparent;
+    color:wheat;
+    font-size: 1.4rem;
+    cursor: pointer;
+    border-radius: 12px;
+    width: 30px;
+    height: 30px;
+}
+
+
+/*Zona del menu*/
+.producto{
+    background-color: rgba(0, 0, 0,.8);
+    padding: 2rem;
+    margin: 0.5rem;
+    align-items: center;
+    place-items: center;
+    color: wheat;
+}
+
+/*Zona responsiva */
 
 @media screen and (max-width:550px){
 
@@ -171,6 +218,7 @@ header{
         align-items: end;
         opacity: 0;
         visibility: hidden;
+        z-index: 4;
         
         
     }
@@ -178,6 +226,7 @@ header{
     .nav.visible{
         opacity: 1;
         visibility: visible;
+        transition: opacity 0.5s ease;
     }
 
     .opM{

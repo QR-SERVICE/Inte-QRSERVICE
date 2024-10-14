@@ -1,24 +1,32 @@
 {
-    "menu":{
-        "Platillo#1":"Trufa",
-        "Platillo#2":"Margarita",
-        "Platillo#3":"chesseke",
-        "Platillo#4":"Pay de limon",
-        "Platillo#5":"Brownie"
+    "producto#1":{
+        "nombre":"Trufa",
+        "Descripcion":"esta es la primer entrada",
+        "precio":250.00,
+        "imagen":"hola"
     },
-
-    "descripcion":{
-        "Descripcion#1":"este es el primer postre",
-        "Descripcion#2":"este es el segunda postre",
-        "Descripcion#3":"este es el tercera postre",
-        "Descripcion#4":"este es el cuarta postre",
-        "Descripcion#5":"este es el quinto postre"
+    "producto#2":{
+        "nombre":"Margarita",
+        "Descripcion":"esta es la segunda entrada",
+        "precio":230.00,
+        "imagen":"hola"
     },
-    "precio":{
-        "precio#1":"250$",
-        "precio#2":"230$",
-        "precio#3":"180$",
-        "precio#4":"220$",
-        "precio#5":"190$"
+    "producto#3":{
+        "nombre":"chesseke",
+        "Descripcion":"esta es la tercer entrada",
+        "precio":180.00,
+        "imagen":"hola"
+    },
+    "producto#4":{
+        "nombre":"Pay de limon",
+        "Descripcion":"esta es la cuarta entrada",
+        "precio":220.00,
+        "imagen":"hola"
+    },
+    "producto#5":{
+        "nombre":"Brownie",
+        "Descripcion":"esta es la quinta entrada",
+        "precio":199.00,
+        "imagen":"hola"
     }
 }
