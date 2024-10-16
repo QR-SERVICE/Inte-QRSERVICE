@@ -73,7 +73,7 @@ header{
 
 /*Zona de la orden*/
 .productos_orden{
-    display: flex;
+    display: block;
     flex-direction: column; 
     align-items: baseline; 
     max-width: 300px; 
@@ -140,21 +140,20 @@ right: 5%;
 .opM hr{
     border-color: wheat;
 }
-
+.datos-producto{
+    margin: 1rem;
+    display: block;
+}
 
 /*Zona de precio*/
 .precio{
     display: flex;
 }
-.precio .S-boton{
-    border: 2px solid wheat;
+.S-boton{
     display: block;
     background-color:transparent;
     color:wheat;
-    font-size: 1.4rem;
     cursor: pointer;
-    border-radius: 12px;
-    width: 30px;
     height: 30px;
 }
 
@@ -167,6 +166,10 @@ right: 5%;
     align-items: center;
     place-items: center;
     color: wheat;
+    display: block;
+}
+.productos_menu{
+    padding: 1rem;
 }
 
 /*Zona responsiva */

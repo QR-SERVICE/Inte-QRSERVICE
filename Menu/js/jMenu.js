@@ -35,7 +35,7 @@ langButtons.forEach((button) =>{
     button.addEventListener("click", () =>{
         const texttochange = document.querySelectorAll("[data-seccion]");
         console.log(texttochange);
-        fetch(`../languages/${button.dataset.language}.json`)
+        fetch(`../Menu/languages/${button.dataset.language}.json`)
         .then(res => res.json())
         .then(data => {
             texttochange.forEach((el) => {
@@ -55,7 +55,7 @@ opcionButtons.forEach((button) =>{
     button.addEventListener("click",()=>{
         const texTochange = document.querySelectorAll("[data-section]");
         console.log(texTochange);
-        fetch(`../Productos.js/${button.dataset.categoria}.json`)
+        fetch(`../Menu/Productos.js/${button.dataset.categoria}.json`)
         .then(res => res.json())
         .then(data =>{
             texTochange.forEach((op) => {
