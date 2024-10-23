@@ -29,6 +29,25 @@ NoVer.addEventListener("click", () => {
         carrito.style.display = 'none'; 
     }, { once: true }); 
 });
+// Boton para mostrar las opciones de notificaciones
+
+const notificaciones = document.getElementById("notificaciones");
+const cerrar_notis = document.getElementById("cerrar-notis");
+const abrir_notis = document.getElementById("abrir-notis");
+
+abrir_notis.addEventListener("click", () => {
+    notificaciones.style.display = 'block'; 
+    notificaciones.style.zIndex = 1; 
+    setTimeout(() => {
+        notificaciones.classList.add("visible"); 
+    }, 10); 
+})
+
+cerrar_notis.addEventListener("click", () => {
+    notificaciones.classList.remove("visible");
+})
+
+
 // Boton de traduccion
 const langButtons = document.querySelectorAll("[data-language]");
 langButtons.forEach((button) =>{

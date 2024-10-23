@@ -8,10 +8,10 @@ body{
     background-position: center center;
     background-repeat: no-repeat;
     background-size:cover;
-    background-attachment: fixed;
+    background-attachment: absolute;
     color: white;
     margin: 0; 
-    height: 100vh;
+    height: 100%;
 }
 *{
     margin: 0%;
@@ -19,6 +19,7 @@ body{
     box-sizing: border-box;
     font-family:sans-serif;
 }
+
 li{
     cursor: pointer;
     list-style-type: none;
@@ -54,7 +55,6 @@ header{
 
 .opM li button{
     color:wheat;  
-    text-decoration: none;
     color:wheat;  
     text-decoration: none;
     background-color: transparent;
@@ -98,7 +98,7 @@ header{
     margin: 0.5rem;
     color: wheat;
     font-size: 1rem;
-    display: none;;
+    display: none;
     opacity: 0;
     transition: opacity 0.5s ease;
 }
@@ -172,8 +172,72 @@ right: 5%;
     padding: 1rem;
 }
 
-/*Zona responsiva */
+/*Zona del footer */
+footer{
+    display: flex;
+    width: 100%;
+    background-color: black;
+    height: 7rem;
+    justify-content: center;
+    align-items: center;
+}
 
+/*Zona de mensajes*/
+.abrir_notis{
+    border: none;
+    color: wheat;
+    border-radius: 5px;
+    background-color: wheat;
+    color: black;
+    z-index: 3;
+    font-size:2rem;
+    cursor: pointer;
+    position: fixed;
+    top: 80%;
+    left: 80%;
+    width: 3rem;
+}
+.notificaciones{
+    display: block;
+    height: 9rem;
+    width: 10rem;
+    background-color: black;
+    z-index: 2;
+    top: 20rem;
+    position: fixed;
+    left: 40%;
+    top: 40%;
+    display: none;
+    opacity: 0;
+}
+.call-mesero, .call-account{
+    margin: 1rem;
+    border: 2px solid wheat;
+    background-color: black;
+    color:wheat;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 10px;
+
+}
+.notificaciones.visible{
+    box-shadow: 0 0 0 100vmax rgba(0, 0,0,.7);
+    transition: opacity 0.5s ease;
+    opacity: 1;
+    display: block;
+}
+.cerrar-notis{
+    background-color:rgba(0, 0, 0,.8) ;
+    font-size: 15px;
+    color:wheat;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
+/*Zona responsiva */
 @media screen and (max-width:550px){
 
     .opM hr{
@@ -207,7 +271,6 @@ right: 5%;
 
 
     .nav{
-        
         position: absolute;
         top: 0%;
         right: 0;
@@ -221,7 +284,7 @@ right: 5%;
         align-items: end;
         opacity: 0;
         visibility: hidden;
-        z-index: 4;
+        z-index: 6;
         
         
     }
