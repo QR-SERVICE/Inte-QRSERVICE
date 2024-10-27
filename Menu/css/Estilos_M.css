@@ -3,12 +3,7 @@ html{
 }
 
 body{
- background-color:  whitesmoke;
- background-image: url(unnamed.jpg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size:cover;
-    background-attachment: absolute;
+    background-color:  rgb(255, 255, 255);
     color: white;
     margin: 0; 
     height: 100%;
@@ -25,9 +20,8 @@ li{
     list-style-type: none;
 }
 
-/*Zona de las opiones de categorias del menu*/
+/*Zona de las opciones de categorias del menu*/
 .mesa{
-
     max-width: 10rem;
     padding: 1rem;
     font-size: medium;
@@ -36,26 +30,104 @@ li{
 header{
     align-items: center;
     display: flex;
+    width: 100%;
     justify-content: space-between;
     padding: 1rem;
-    background-color:black;
-    color: wheat;
+    background-color:rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     z-index: 2;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid white;
+}
+
+.menu-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.menu-desplegable {
+    width: 1.5rem;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-desplegable div {
+    width: 100%;
+    height: 0.15rem;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.2s ease;
+}
+
+.sidebar {
+    margin-top: 4rem;
+    width: 0;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    padding: 2rem 0;
+    border-left: 1px solid white;
+    overflow-y: auto;
+    background-color: black;
+    transition: width 0.4s ease;
+    align-items: flex-end;
+}
+
+.sidebar.menu-toggle {
+    width: 18.75rem;
+    border-left: 1px solid white;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.9rem 0.7rem;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    color: white;
+    border-radius: 0.3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    
+}
+
+.sidebar a:hover {
+    background-color: rgb(20, 20, 20);
+}
+
+.menu-boton.a-selected {
+    border-bottom: 2px solid white;
+    color: rgb(230, 230, 230);
+    background-color: rgb(20, 20, 20);
+}
+
+.sidebar.a-toggle {
+    border-bottom: 2px solid white;
+    color: rgb(230, 230, 230);
+    background-color: rgb(20, 20, 20);
 }
 
 .Abrir-menu, .cerrar-menu{
     display: none;
 }
+
 .opM{
-    list-style-type: none ;
+    list-style-type: none;
     display: flex;
     gap: 1rem;
 }
 
 
 .opM li button{
-    color:wheat;  
-    color:wheat;  
+    color:rgb(255, 255, 255);  
     text-decoration: none;
     background-color: transparent;
     border:none;
@@ -65,7 +137,7 @@ header{
 
 .lang-button{
     background-color: transparent;
-    color: wheat;
+    color: rgb(255, 255, 255);
     border: 0;
     cursor: pointer;
     padding: .2rem;
@@ -83,7 +155,7 @@ header{
     display: block;
     padding: 0.1rem 0.4rem;
     background-color:transparent;
-    color:wheat;
+    color:rgb(255, 255, 255);
     font-size: 1rem;
     border: none;
     cursor: pointer;
@@ -92,35 +164,53 @@ header{
     transform: scale(0.98);
     background-color: white;
 }
-.carrito{
-    background-color: rgba(0, 0, 0,.8);
-    padding: 2rem;
-    margin: 0.5rem;
-    color: wheat;
+
+.carrito {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-size: 1rem;
     display: none;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: 0.1s ease;
 }
-.carrito.visible{
-    position: relative;
-    display: block;
-   opacity: 1;
-}
-.cerrar_carr{
- background-color:rgba(0, 0, 0,.8) ;
- font-size: 15px;
- color:wheat;
- border: none;
- cursor: pointer;
- position: absolute;
-top: 5%;
-right: 5%;
 
+.carrito.visible {
+    display: block; 
+    position: fixed;
+    opacity: 1; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid rgb(0, 0, 0);
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    transition: opacity 0.4s ease;
+    max-height: 70vh;
+    overflow-y: auto;
+    scrollbar-width: 8px;
+    scrollbar-color: rgb(0, 0, 0) rgb(255, 255, 255);
+    
 }
-.carr{
-    font-size: 20px;
+
+.cerrar_carr {
+    background-color: rgba(0, 0, 0, 0.8);
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    border: none;
+    cursor: pointer;
+    position: sticky;
+    top: 3%;
+    left: 90%;
 }
+
+.cuenta thead th {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+    padding: 1.5rem;
+}
+
 .datos-tabla{
     padding: 1rem;
     margin: 1rem;
@@ -128,8 +218,8 @@ right: 5%;
 .enviar-t{
     margin: 1rem;
     background-color: transparent;
-    color: wheat;
-    border: 2px solid wheat;
+    color: rgb(0, 0, 0);
+    border: 2px solid rgb(0, 0, 0);
     padding: 3px;
     cursor: pointer;
 }
@@ -138,8 +228,9 @@ right: 5%;
     transform: scale(0.95);
 }
 .opM hr{
-    border-color: wheat;
+    border-color: rgb(255, 255, 255);
 }
+
 .datos-producto{
     margin: 1rem;
     display: block;
@@ -152,24 +243,44 @@ right: 5%;
 .S-boton{
     display: block;
     background-color:transparent;
-    color:wheat;
+    color:rgb(0, 0, 0);
     cursor: pointer;
     height: 30px;
 }
 
-
 /*Zona del menu*/
 .producto{
-    background-color: rgba(0, 0, 0,.8);
-    padding: 2rem;
+    background-color: rgba(139, 95, 0, 0.8);
+    padding: 1.5rem;
     margin: 0.5rem;
     align-items: center;
     place-items: center;
-    color: wheat;
-    display: block;
+    color: rgb(0, 0, 0);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    border-radius: 1rem;
+    margin-top: 5.5rem;
+    justify-content: space-between;
 }
+
 .productos_menu{
     padding: 1rem;
+    margin: 1.5rem;
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    align-items: center;
+    place-items: center;
+}
+
+.nombreP {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 /*Zona del footer */
@@ -184,48 +295,58 @@ footer{
 
 /*Zona de mensajes*/
 .abrir_notis{
-    border: none;
-    color: wheat;
+    border: 3px solid black;
+    color: rgb(0, 0, 0);
     border-radius: 5px;
-    background-color: wheat;
+    background-color: rgb(255, 255, 255);
     color: black;
     z-index: 3;
-    font-size:2rem;
+    font-size: 3rem;
     cursor: pointer;
     position: fixed;
-    top: 80%;
-    left: 80%;
-    width: 3rem;
+    bottom: 1rem;
+    right: 1rem;
+    width: 5rem;
 }
+
 .notificaciones{
     display: block;
-    height: 9rem;
-    width: 10rem;
-    background-color: black;
+    height: 15rem;
+    width: 15rem;
+    background-color: rgb(0, 0, 0);
     z-index: 2;
     top: 20rem;
     position: fixed;
-    left: 40%;
-    top: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: none;
     opacity: 0;
+    border: 2px solid white;
+    border-radius: 1rem;
+    place-items: center;
 }
+
 .call-mesero, .call-account{
     margin: 1rem;
-    border: 2px solid wheat;
+    border: 2px solid rgb(0, 0, 0);
     background-color: black;
-    color:wheat;
+    color:rgb(255, 255, 255);
     padding: 0.5rem;
     cursor: pointer;
     border-radius: 10px;
 
+
 }
+
 .notificaciones.visible{
-    box-shadow: 0 0 0 100vmax rgba(0, 0,0,.7);
-    transition: opacity 0.5s ease;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .7);
     opacity: 1;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .cerrar-notis{
     background-color:rgba(0, 0, 0,.8) ;
     font-size: 15px;
@@ -238,8 +359,14 @@ footer{
 }
 
 /*Zona responsiva */
-@media screen and (max-width:550px){
 
+@media (max-width:934px){
+    .producto{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:650px){
     .opM hr{
         border: none;               
         border-left: 2px solid wheat; 
@@ -248,60 +375,28 @@ footer{
         padding: 0;  
         margin: 0 auto; 
         transform: rotate(90deg);
-
     }
 
     .lang-button{
         background-color: transparent;
-        color: wheat;
+        color: rgb(255, 255, 255);
         border: 0;
         cursor: pointer;
-        padding:  .2rem;
+        padding: .2rem;
     }
 
-    .Abrir-menu,.cerrar-menu{
+    .sidebar.menu-toggle {
+        width: 12rem;
+        border-left: 1px solid white;
+}
+    .producto{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (max-width:350px){
+    .productos_menu{
         display: block;
-        font-size: 1.2rem;
-        background-color: transparent;
-        color: wheat;
-        cursor: pointer;
-        border: 0;
-    
+        justify-content: center;
     }
-
-
-    .nav{
-        position: absolute;
-        top: 0%;
-        right: 0;
-        bottom: 0%;
-        gap: 1rem;
-        background-color: rgb(1, 2, 3);
-        padding: 1rem;
-        box-shadow: 0 0 0 100vmax rgba(0, 0,0,.5);
-        display: flex;
-        flex-direction: column;
-        align-items: end;
-        opacity: 0;
-        visibility: hidden;
-        z-index: 6;
-        
-        
-    }
-
-    .nav.visible{
-        opacity: 1;
-        visibility: visible;
-        transition: opacity 0.5s ease;
-    }
-
-    .opM{
-        flex-direction: column;
-        align-items: end;
-    }
-    .opM li a{
-        color:wheat;  
-        text-decoration: none;
-    }
-    
 }

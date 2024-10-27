@@ -1,3 +1,21 @@
+// Boton para abrir la sidebar
+const menu = document.getElementById('menu-desplegable');
+const sidebar = document.getElementById('sidebar');
+
+menu.addEventListener('click', () => {
+    sidebar.classList.toggle('menu-toggle');
+})
+
+// cambiar estado de seleccionado en el menu
+const menuButtons = document.querySelectorAll('.menu-boton');
+
+    menuButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+            menuButtons.forEach(btn => btn.classList.remove('a-selected'));
+            button.classList.add('a-selected');
+        });
+    });
+
 // Boton para abrir y cerrar las opciones del menu en modo responsivo
 const nav = document.querySelector("#nav");
 const abrir = document.querySelector("#abrir");
@@ -10,6 +28,7 @@ abrir.addEventListener("click", () => {
 cerrar.addEventListener("click", () => {
     nav.classList.remove("visible");
 })
+
 // Boton para mostrar lo que llevan de orden 
 const carrito = document.getElementById("carrito");
 const ver = document.getElementById("carr")
@@ -153,5 +172,33 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     } else {
         console.error("Error al guardar los datos");
+    }
+});
+
+// cerrar si se hace click fuera de notificaciones
+const notificacionesM = document.querySelector('#notificaciones');
+
+notificacionesM.addEventListener("click", cerrarNotificacion);
+
+function cerrarNotificacion() {
+    notificacionesM.classList.toggle("visible");
+}
+
+document.addEventListener('click', (event) => {
+    const target = event.target;
+    const menuNotificacion = target === notificacionesM || notificacionesM.contains(target);
+
+    if (!menuNotificacion) {
+        notificacionesM.classList.remove("visible");
+    }
+});
+
+// cerrar si se hace click fuera de la barra de menu
+document.addEventListener('click', (event) => {
+    const ClickDentroSidebar = sidebar.contains(event.target);
+    const ClickDentroMenu = menu.contains(event.target);
+
+    if (!ClickDentroSidebar && !ClickDentroMenu) {
+        sidebar.classList.remove('menu-toggle');
     }
 });
