@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const server = express();
-const PORT = 3500; // Cambia el puerto según sea necesario
+const PORT = 3500; //El puerto en el cual se esta ejecutando 
 
 // Configuración de directorios estáticos
 server.use(express.static(path.join(__dirname, 'Public')));
