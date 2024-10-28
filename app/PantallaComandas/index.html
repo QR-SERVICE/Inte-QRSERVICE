@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla de Comandas</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Pantalla de Comandas</h1>
+        <nav>
+            <ul>
+                <li><a href="#" id="btnHistorial">Historial. de Comandas</a></li>
+                <li><a href="#" id="btnConfig">Configuraciones</a></li>
+                <li><a href="#" id="btnxd">La netflix no se que mas poner</a></li>
+                <li><a href="#" id="btnSalir">Salir</a></li>
+                <li><a href="#" id="btnparacualquiercosaextra">si</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div><h2 >Comandas Recientes</h2></div>
+    <main>
+        <section id="comandas">
+            
+            <div class="comanda">
+                <p><strong>Número de Mesa:</strong> 5</p>
+                <p><strong>Pedido:</strong> Hamburguesa, tacos de perrocoa</p>
+                <p><strong>Hora de Llegada:</strong> 12:30 PM</p>
+                <button class="btnAtendida">Marcar como Atendida</button>
+                <button class="btnEliminar">Eliminar Comanda</button>
+            </div>
+            <div class="comanda">
+                <p><strong>Número de Mesa:</strong> 2</p>
+                <p><strong>Pedido:</strong> Pizza, Ensalada frita</p>
+                <p><strong>Hora de Llegada:</strong> 12:32 PM</p>
+                <button class="btnAtendida">Marcar como Atendida</button>
+                <button class="btnEliminar">Eliminar Comanda</button>
+            </div>
+            <div class="comanda">
+                <p><strong>Número de Mesa:</strong> 1</p>
+                <p><strong>Pedido:</strong> coca de pina</p>
+                <p><strong>Hora de Llegada:</strong> 12:40 PM</p>
+                <button class="btnAtendida">Marcar como Atendida</button>
+                <button class="btnEliminar">Eliminar Comanda</button>
+            </div>
+            <div class="comanda">
+                <p><strong>Número de Mesa:</strong> 4</p>
+                <p><strong>Pedido:</strong> lirul sisa</p>
+                <p><strong>Hora de Llegada:</strong> 1:21 PM</p>
+                <button class="btnAtendida">Marcar como Atendida</button>
+                <button class="btnEliminar">Eliminar Comanda</button>
+            </div>
+            <div class="comanda">
+                <p><strong>Número de Mesa:</strong> 1</p>
+                <p><strong>Pedido:</strong> coca de pina</p>
+                <p><strong>Hora de Llegada:</strong> 12:40 PM</p>
+                <button class="btnAtendida">Marcar como Atendida</button>
+                <button class="btnEliminar">Eliminar Comanda</button>
+            </div>
+            <div class="comanda">
+            <p><strong>Número de Mesa:</strong> 1</p>
+            <p><strong>Pedido:</strong> coca de pina</p>
+            <p><strong>Hora de Llegada:</strong> 12:40 PM</p>
+                <button class="btnAtendida">Marcar como Atendida</button>
+                <button class="btnEliminar">Eliminar Comanda</button>
+            </div>
+                <div class="comanda">
+                <p><strong>Número de Mesa:</strong> 1</p>
+                <p><strong>Pedido:</strong> coca de pina</p>
+                <p><strong>Hora de Llegada:</strong> 12:40 PM</p>
+                <button class="btnAtendida">Marcar como Atendida</button>
+                <button class="btnEliminar">Eliminar Comanda</button>
+            </div>
+        </section>
+    </main>
+    <footer id="footer">
+        <p>&copy; 2024 QR SERVICE. TODOS LOS DERECHOS RESERVADOS</p>
+    </footer>
+    
+    <script>
+        // Función para verificar si el usuario llegó al final de la página
+        function checkScrollPosition() {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+                document.getElementById('footer').style.display = 'block';
+            } else {
+                document.getElementById('footer').style.display = 'none';
+            }
+        }
+    
+        // Ejecutar la función cuando el usuario haga scroll
+        window.addEventListener('scroll', checkScrollPosition);
+    
+        // Ejecutar al cargar la página para ocultar el footer inicialmente
+        window.onload = checkScrollPosition;
+    </script>
+</body>
+</html>

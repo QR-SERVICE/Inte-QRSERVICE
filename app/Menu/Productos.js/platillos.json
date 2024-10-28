@@ -1,0 +1,32 @@
+{
+    "producto#1":{
+        "nombre":"Pasta Alfredo",
+        "Descripcion":"esta es la primer platillos",
+        "precio":250.00,
+        "imagen":"hola"
+        },
+    "producto#2":{
+        "nombre":"Pita Julieta",
+        "Descripcion":"esta es la segunda platillos",
+        "precio":120.00,
+        "imagen":"hola"
+        },
+    "producto#3":{
+        "nombre":"Panini Gabriel",
+        "Descripcion":"esta es la tercer platillos",
+        "precio":120.00,
+        "imagen":"hola"
+        },
+    "producto#4":{
+        "nombre":"Pizza Pepperoni",
+        "Descripcion":"esta es la cuarta platillos",
+        "precio":360.00,
+        "imagen":"hola"
+            },
+    "producto#5":{
+        "nombre":"Ensalada Esther",
+        "Descripcion":"esta es la quinta platillos",
+        "precio":75.00,
+        "imagen":"hola"
+        }
+}

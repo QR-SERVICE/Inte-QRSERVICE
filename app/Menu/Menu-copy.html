@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú del Restaurante</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000; /* Fondo negro */
+            color: #f2f2f2; /* Texto claro */
+            margin: 0;
+            padding: 0;
+        }
+
+        h1{
+            font-family: 'Pacifico', cursive; 
+        }
+
+        header {
+            background-color: #222; /* Color oscuro del header */
+            padding: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 0;
+            color: #ffd700; /* Color dorado */
+        }
+
+        .menu-container {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .producto {
+            background-color: #333; /* Fondo de cada producto */
+            border-radius: 8px;
+            margin: 10px 0;
+            padding: 15px;
+            width: 100%; /* Ancho completo */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .producto img {
+            width: 100%; /* Imagen de ancho completo */
+            height: auto; /* Altura automática */
+            border-radius: 5px;
+        }
+
+        .nombreP {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #ffd700; /* Nombre dorado */
+        }
+
+        .descripcion {
+            font-size: 14px;
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        .precio {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #ffd700; /* Precio dorado */
+        }
+
+        .S-boton {
+            background-color: #ffd700; /* Botón dorado */
+            color: #000; /* Texto negro en el botón */
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-top: 10px; /* Margen superior para el botón */
+        }
+
+        .S-boton:hover {
+            background-color: #ffcc00; /* Color de fondo al pasar el ratón */
+        }
+
+        /* Estilos para dispositivos móviles */
+        @media (max-width: 768px) {
+            .producto {
+                width: 90%; /* Ancho reducido en dispositivos móviles */
+            }
+
+            h1 {
+                font-size: 20px; /* Tamaño de fuente del título */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>---- THE ----</h1>
+    <h1>MENU</h1>
+</header>
+
+<div class="menu-container">
+    <div class="producto">
+        <img src="imagen1.jpg" alt="Nombre del producto 1">
+        <div class="nombreP">Producto 1</div>
+        <div class="descripcion">Descripción breve del producto 1.</div>
+        <div class="precio">$12.99</div>
+        <button class="S-boton">Agregar al carrito</button>
+    </div>
+
+    <div class="producto">
+        <img src="imagen2.jpg" alt="Nombre del producto 2">
+        <div class="nombreP">Producto 2</div>
+        <div class="descripcion">Descripción breve del producto 2.</div>
+        <div class="precio">$15.49</div>
+        <button class="S-boton">Agregar al carrito</button>
+    </div>
+
+    <div class="producto">
+        <img src="imagen3.jpg" alt="Nombre del producto 3">
+        <div class="nombreP">Producto 3</div>
+        <div class="descripcion">Descripción breve del producto 3.</div>
+        <div class="precio">$8.99</div>
+        <button class="S-boton">Agregar al carrito</button>
+    </div>
+
+    <!-- Agrega más productos según sea necesario -->
+</div>
+
+</body>
+</html>

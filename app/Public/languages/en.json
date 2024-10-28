@@ -1,0 +1,12 @@
+{
+    "header":{
+        "Table":"TABLE #1",
+        "drinks":"Drinks",
+        "Appetizer":"Appetizer",
+        "Entrees":"Entrees",
+        "Desserts":"Desserts",
+        "Request waiter":"Request waiter",
+        "account":"Account",
+        "Add product":"Add product"
+    }
+}

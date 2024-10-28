@@ -1,0 +1,32 @@
+{
+    "producto#1":{
+        "nombre":"Tabla de quesos",
+        "Descripcion":"esta es la primer entrada",
+        "precio":400.00,
+        "imagen":"hola"
+    },
+    "producto#2":{
+        "nombre":"Aceitunas",
+        "Descripcion":"esta es la segunda entrada",
+        "precio":89.00,
+        "imagen":"hola"
+    },
+    "producto#3":{
+        "nombre":"Paolo",
+        "Descripcion":"esta es la tercer entrada",
+        "precio":200.00,
+        "imagen":"hola"
+    },
+    "producto#4":{
+        "nombre":"Ensalada Francisca",
+        "Descripcion":"esta es la cuarta entrada",
+        "precio":120.00,
+        "imagen":"hola"
+    },
+    "producto#5":{
+        "nombre":"Mejillones",
+        "Descripcion":"esta es la quinta entrada",
+        "precio":300.00,
+        "imagen":"hola"
+    }
+}
