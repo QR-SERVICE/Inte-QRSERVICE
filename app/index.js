@@ -24,6 +24,12 @@ server.get("/Me", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-
 server.get("/Comandas", (req, res) => res.sendFile(path.join(__dirname, 'PantallaComandas', 'index.HTML')))
 server.get("/Pedidos", (req, res) => res.sendFile(path.join(__dirname, 'Pedidos', 'Historial_pedidos.HTML')))
 
+//Rutas para los productos
+server.get("/Entradas", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu_Entradas.HTML')))
+server.get("/Platillos_Fuertes", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu_Fuertes.HTML')))
+server.get("/Postres", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu_Postres.HTML')))
+server.get("/Bebidas", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu_Bebidas.HTML')))
+
 // Inicia el servidor
 server.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);

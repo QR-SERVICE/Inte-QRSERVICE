@@ -79,20 +79,26 @@
     </footer>
     
     <script>
-        // Función para verificar si el usuario llegó al final de la página
-        function checkScrollPosition() {
-            if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-                document.getElementById('footer').style.display = 'block';
-            } else {
-                document.getElementById('footer').style.display = 'none';
-            }
-        }
-    
-        // Ejecutar la función cuando el usuario haga scroll
-        window.addEventListener('scroll', checkScrollPosition);
-    
-        // Ejecutar al cargar la página para ocultar el footer inicialmente
-        window.onload = checkScrollPosition;
+        // Recuperar los datos del localStorage
+        const productosGuardados = JSON.parse(localStorage.getItem("lst")) || [];
+        const totalGuardado = localStorage.getItem("total") || '0$';
+
+        const comandasSection = document.getElementById("comandas");
+        
+        // Mostrar los productos en la sección de comandas
+        productosGuardados.forEach((producto, index) => {
+            const comandaDiv = document.createElement("div");
+            comandaDiv.classList.add("comanda");
+            comandaDiv.innerHTML = `
+                <p><strong>Número de Mesa:</strong> ${index + 1}</p>
+                <p><strong>Pedido:</strong> ${producto.name}</p>
+                <p><strong>Precio:</strong> ${producto.price}$</p>
+                <p><strong>Hora de Llegada:</strong> ${new Date().toLocaleTimeString()}</p>
+                <button class="btnAtendida">Marcar como Atendida</button>
+                <button class="btnEliminar">Eliminar Comanda</button>
+            `;
+            comandasSection.appendChild(comandaDiv);
+        });
     </script>
 </body>
 </html>

@@ -148,7 +148,7 @@ sumProducts.forEach((sumProduct, index) => {
     });
 });
 
-
+//Cambios 
 document.addEventListener("DOMContentLoaded", () => {
     const botonEn = document.getElementById("enviar-t");
     if (botonEn) {
@@ -169,6 +169,9 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("lst", JSON.stringify(productosguardador));
             console.log("Lista de productos guardada:", JSON.parse(localStorage.getItem("lst")));
             console.log("Total guardado:", localStorage.getItem("total"));
+
+            // Redirigir a la página de Comandas
+            window.location.href = "/Comandas"; 
         });
     } else {
         console.error("Error al guardar los datos");
