@@ -1,15 +1,23 @@
 import express from 'express';
 import path from 'path';
 import cors from 'cors';
+import morgan from 'morgan';
 import { fileURLToPath } from 'url';
+const server = express();
 
+// Morgan nos ayudara a mantener un registro de las veces que se solicita entrar al sistema
+server.use(morgan('dev'));
 // Obtiene el nombre del archivo actual
 const __filename = fileURLToPath(import.meta.url);
 // Obtiene el directorio actual
 const __dirname = path.dirname(__filename);
 
-const server = express();
-const PORT = 3500; //El puerto en el cual se esta ejecutando 
+// conexion a la base de datos
+import { getQuickRestaurant } from './controlladores/BD_proyecto.js'
+server.get('/getQuickRestaurant', getQuickRestaurant);
+
+server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecutando 
+
 
 // Configuración de directorios estáticos
 server.use(express.static(path.join(__dirname, 'Public')));
@@ -31,8 +39,8 @@ server.get("/Postres", (req, res) => res.sendFile(path.join(__dirname, 'Menu', '
 server.get("/Bebidas", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu_Bebidas.HTML')))
 
 // Inicia el servidor
-server.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+server.listen(server.get('PORT'), () => {
+    console.log(`Servidor corriendo en http://localhost:${server.get('PORT')}`);
 });
 
 /* JSON Para el funcionamiento de las imagenes.
