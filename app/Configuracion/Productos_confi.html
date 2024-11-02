@@ -9,14 +9,45 @@
 <body>
 
     <header>
-        <h1>Agregar productos</h1>
-        <img src="/Img-prodcut.png" alt="img-logo" class="Logo">
+        <nav class="navbar-logo">
+            <div class="container-logo">
+                <img src="/Img-prodcut.png" class="Logo" alt="Logo_QRService">
+                <h1 class="logo"><a href="/">Agregar productos</a></h1>
+            </div>       
+            <ul class="nav">
+                <li>                        
+                    <a href="/Menu">
+                        <span> Menu </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Comandas" data-seccion="header" data-valor="drinks" data-categoria="bebidas" class="menu-boton" id="menu-bebidas" >
+                        <span> Comandas </span>
+                    </a>
+                <li>                            
+                    <a href="/Pedidos" data-seccion="header" data-valor="drinks" data-categoria="bebidas" class="menu-boton" id="menu-bebidas" >
+                        <span> Pedidos </span>
+                    </a>
+                </li>
+                <li>
+                </li>
+                <li>
+                    <button class="lang-button" data-language="es">ESPAÑOL</button>
+                    <button class="lang-button" data-language="en">ENGLISH</button>
+                </li>
+                </ul>
+            </nav>
     </header>
     
     <div class="Datos">
+        <h1> Imagen del producto: </h1>
         <input type="file" accept="image" required id="img-agreg">
+        <h1> Descripcion del producto: </h1>
         <textarea name="textos" id="texto_producto" placeholder="Escribe el texto del producto" required></textarea>
+        <h1> Precio del producto: </h1>
         <input type="number" placeholder="Colocar precio">
+        <h1> Cantidad del producto: </h1>
+        <input type="number" placeholder="Colocar cantidad">
         <button id="agreg_pro" class="Boton_submit">Agregar Producto</button>
     </div>
 
@@ -25,4 +56,5 @@
     <script src="/Producto.js"></script>
 
 </body>
+<footer style="bottom: 0;">©Todos los derechos reservados</footer>
 </html>

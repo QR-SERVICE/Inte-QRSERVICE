@@ -77,29 +77,31 @@
         </nav>
     </div>
 
-        <div id="carrito" class="carrito">
-                <button id="cerrar_carr" class="cerrar_carr"><i class="bi bi-x-square"></i></button>
-                <table class="cuenta" id="cuenta">
-                    <thead>
-                        <tr>
-                            <th class="datos-tabla" id="datos-tabla"> Productos Precio</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="productos_orden" id="productos_orden">
-                        </tr>
-                    </tbody>
-                    <thead>
-                        <div class="total-div" id="total-div">
-                        <tr>
-                            <th>TOTAL:</th>
-                            <th id="TOTAL" class="TOTAL"></th>
-                            <th><button class="enviar-t" id="enviar-t">Enviar</button></th>
-                        </tr>
-                        </div>
-                    </thead>
-                </table> 
-        </div>
+    <div id="carrito" class="carrito">
+        <table class="cuenta" id="cuenta">
+            <thead>
+                <tr>
+                    <th class="datos-tabla" id="datos-tabla"> Productos Precio </th>
+                    <th><button id="cerrar_carr" class="cerrar_carr"><i class="fa-solid fa-x"></i></button></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="productos_orden" id="productos_orden">
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>TOTAL:</th>
+                    <th id="TOTAL" class="TOTAL"></th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button class="enviar-t" id="enviar-t">Enviar</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table> 
+    </div>
 
         <div class="producto" id="producto">
                 <div class="productos_menu">

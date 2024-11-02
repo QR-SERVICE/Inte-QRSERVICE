@@ -1,5 +1,6 @@
 html{
     font-size: 16px;
+    margin-top: 6rem;
 }
 
 body{
@@ -171,7 +172,13 @@ header{
     font-size: 1rem;
     display: none;
     opacity: 0;
-    transition: 0.1s ease;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
 }
 
 .carrito.visible {
@@ -184,23 +191,35 @@ header{
     border: 5px solid rgb(0, 0, 0);
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
-    transition: opacity 0.4s ease;
     max-height: 70vh;
+    max-width: 70vh;
+    min-width: 40vh;
+    min-height: 40vh;
     overflow-y: auto;
     scrollbar-width: 8px;
     scrollbar-color: rgb(0, 0, 0) rgb(255, 255, 255);
-    
+    pointer-events: all;
+    justify-content: center;
+    align-items: center;
+    padding-right: 2rem;
+    pointer-events: all;
+}
+
+.cuenta {
+    width: 100%;
 }
 
 .cerrar_carr {
-    background-color: rgba(0, 0, 0, 0.8);
-    font-size: 15px;
-    color: rgb(255, 255, 255);
+    font-size: 30px;
     border: none;
     cursor: pointer;
     position: sticky;
-    top: 3%;
-    left: 90%;
+    justify-self: center;
+    width: 70%;
+    border: 3px solid black;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
 }
 
 .cuenta thead th {
@@ -208,12 +227,38 @@ header{
     top: 0;
     background-color: white;
     z-index: 1;
-    padding: 1.5rem;
+    border-bottom: 3px solid black;
+}
+
+.cuenta tfoot th {
+    position: sticky;
+    background-color: white;
+    border-top: 3px solid black;
+    padding: 1rem;
+    bottom: 0;
+}
+
+.cuenta tfoot td {
+    position: sticky;
+    background-color: white;
+    border-top: 3px solid rgb(0, 0, 0);
+    bottom: 0;
+}
+
+.cuenta td {
+    justify-content: center;
+}
+
+.cuenta tfoot {
+    position: sticky;
+    bottom: 0; 
 }
 
 .datos-tabla{
     padding: 1rem;
     margin: 1rem;
+    background-color: white;
+    border-bottom: 3px solid black;
 }
 .enviar-t{
     margin: 1rem;
@@ -222,6 +267,8 @@ header{
     border: 2px solid rgb(0, 0, 0);
     padding: 3px;
     cursor: pointer;
+    width: 100%;
+    align-items: center;
 }
 .enviar-t:active{
     background-color:white;
@@ -260,8 +307,21 @@ header{
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     border-radius: 1rem;
-    margin-top: 5.5rem;
     justify-content: space-between;
+}
+
+.productos_titulo{
+    padding: 1rem;
+    background-color: rgb(255, 255, 255);
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    color: black;
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .productos_menu{
@@ -325,23 +385,24 @@ footer{
     border: 2px solid white;
     border-radius: 1rem;
     place-items: center;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
 }
 
 .call-mesero, .call-account{
     margin: 1rem;
-    border: 2px solid rgb(0, 0, 0);
+    border: 2px solid rgb(255, 255, 255);
     background-color: black;
     color:rgb(255, 255, 255);
     padding: 0.5rem;
     cursor: pointer;
     border-radius: 10px;
-
-
 }
 
 .notificaciones.visible{
     box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .7);
     opacity: 1;
+    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     justify-content: center;
