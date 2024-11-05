@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="icon" href="Img-prodcut.png" type="image/png">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -103,20 +104,48 @@
         </table> 
     </div>
 
-        <div class="producto" id="producto">
-                <div class="productos_menu">
-                    <div>
-                        <p data-section="producto#1" data-value="nombre"class="nombreP">Un cambio</p>
-                        <p data-section="producto#1" data-value="Descripcion">nada</p>
-                        <div class="precio" >
+        <div class="producto" id="producto">   
+            <div class="productos_menu">
+                <div class="product-content">
+                    <img src="https://th.bing.com/th/id/OIP.y1UO3ijZtr2ij8YzTtpCkwHaHa?w=1000&h=1000&rs=1&pid=ImgDetMain" alt="Nombre del Producto" class="imagen_menu" onclick="openModal()">
+                    <div class="product-details">
+                        <p data-section="producto#1" data-value="nombre" class="nombreP">Un cambio</p>
+                        <p data-section="producto#1" data-value="Descripcion" class="Descripcion_produc">nada</p>
+                        <div class="precio">
                             <p>$</p>
-                            <p data-section="producto#1" data-value="precio" class="costo" >0.00</p>
+                            <p data-section="producto#1" data-value="precio" class="costo">0.00</p>
                         </div>
                     </div>
-                    <div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                </div>
+                <div class="div_boton">
+                    <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                    <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                </div>
+            </div>
+
+            <div id="pantalla_detalles_1" class="pantalla_detalles">
+                <div class="pantalla_detalles_contenido">
+                    <span class="pantalla_detalles_cerrar" onclick="closeModal()">X</span>
+                    
+                    <div class="producto_pantalla">
+                        <div class="product-content">
+                            <img src="https://th.bing.com/th/id/OIP.y1UO3ijZtr2ij8YzTtpCkwHaHa?w=1000&h=1000&rs=1&pid=ImgDetMain" alt="Nombre del Producto" class="imagen_menu_pantalla" onclick="openModal()">  
+                        </div>
+                        <div class="product-details">
+                            <p data-section="producto#1" data-value="nombre" class="nombreP">Un cambio</p>
+                            <p data-section="producto#1" data-value="Descripcion" class="Descripcion_produc">nada</p>
+                            <div class="precio">
+                                <p>$</p>
+                                <p data-section="producto#1" data-value="precio" class="costo">0.00</p>
+                            </div>
+                        </div>
+                        <div class="div_boton_detalles">
+                            <button class="pantalla_detalles_boton_añadir" data-seccion="header" data-valor="Add product">+</button>
+                            <button class="pantalla_detalles_boton_quitar" data-seccion="header" data-valor="Add product">-</button>
+                        </div>
                     </div>
                 </div>
+            </div>
                  <div  class="productos_menu">
                     <div>
                         <p data-section="producto#2" data-value="nombre" class="nombreP">AirPods</p>
@@ -127,8 +156,9 @@
                             <p data-section="producto#2" data-value="precio" class="costo" >400.00</p>
                         </div>
                     </div>
-                    <div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
                     </div>
                  </div>
                  <div class="productos_menu">
@@ -140,8 +170,9 @@
                             <p data-section="producto#3" data-value="precio" class="costo" >500.00</p>
                         </div>
                     </div>
-                    <div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
                     </div>
                  </div>
                  <div class="productos_menu">
@@ -153,8 +184,9 @@
                             <p data-section="producto#4" data-value="precio" class="costo" >20.00</p>
                         </div>
                     </div>
-                    <div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
                     </div>
                  </div>
                 <div  class="productos_menu" >
@@ -166,7 +198,10 @@
                             <p data-section="producto#5" data-value="precio" class="costo">100.00</p>
                         </div>
                     </div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                    </div>
                 </div>
                 <div  class="productos_menu" >
                     <div>
@@ -177,7 +212,10 @@
                             <p data-section="producto#5" data-value="precio" class="costo">100.00</p>
                         </div>
                     </div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                    </div>
                 </div>
                 <div  class="productos_menu" >
                     <div>
@@ -188,7 +226,10 @@
                             <p data-section="producto#5" data-value="precio" class="costo">100.00</p>
                         </div>
                     </div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                    </div>
                 </div>
                 <div  class="productos_menu" >
                     <div>
@@ -199,7 +240,10 @@
                             <p data-section="producto#5" data-value="precio" class="costo">100.00</p>
                         </div>
                     </div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                    </div>
                 </div>
                 <div  class="productos_menu" >
                     <div>
@@ -210,7 +254,10 @@
                             <p data-section="producto#5" data-value="precio" class="costo">100.00</p>
                         </div>
                     </div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                    </div>
                 </div>
                 <div  class="productos_menu" >
                     <div>
@@ -221,7 +268,10 @@
                             <p data-section="producto#5" data-value="precio" class="costo">100.00</p>
                         </div>
                     </div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                    </div>
                 </div>
                 <div  class="productos_menu" >
                     <div>
@@ -232,7 +282,10 @@
                             <p data-section="producto#5" data-value="precio" class="costo">100.00</p>
                         </div>
                     </div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                    </div>
                 </div>
                 <div  class="productos_menu" >
                     <div>
@@ -243,7 +296,10 @@
                             <p data-section="producto#5" data-value="precio" class="costo">100.00</p>
                         </div>
                     </div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -258,5 +314,5 @@
     <script src="https://kit.fontawesome.com/dc58fd35be.js" crossorigin="anonymous"></script>
     <script src="/jMenu.js"></script>
 </body>
-<footer style="bottom: 0;">©Todos los derechos reservados</footer>
+<footer>©Todos los derechos reservados</footer>
 </html>

@@ -287,27 +287,84 @@ header{
 .precio{
     display: flex;
 }
-.S-boton{
-    display: block;
-    background-color:transparent;
-    color:rgb(0, 0, 0);
+
+.S-boton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 197, 0);
     cursor: pointer;
     height: 30px;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    font-size: 2rem;
+    border-width: 4px 0px 4px 4px;
+    border-style: solid;
+    box-shadow: 0 6px #999;
 }
+
+.div_boton {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.eliminar-boton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 0, 0);
+    cursor: pointer;
+    height: 30px;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    border-width: 4px 0px 4px 4px;
+    border-style: solid;
+    box-shadow: 0 6px #999;
+}
+
+.S-boton:hover {
+    background-color: rgb(0, 201, 0);
+    transition-duration: 0.4s;
+ }
+
+ .eliminar-boton:hover{
+    background-color: rgb(221, 0, 0);
+    transition-duration: 0.4s;
+    
+ }
+
+ .S-boton:active {
+    background-color: rgb(0, 201, 0);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
+ .eliminar-boton:active {
+    background-color: rgb(221, 0, 0);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
 
 /*Zona del menu*/
 .producto{
     background-color: rgba(139, 95, 0, 0.8);
-    padding: 1.5rem;
+    padding: 0.5rem;
     margin: 0.5rem;
     align-items: center;
     place-items: center;
     color: rgb(0, 0, 0);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    border-radius: 1rem;
-    justify-content: space-between;
+    border-radius: 2rem;
+    justify-content: space-around;
+    gap: 0.5rem;
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .productos_titulo{
@@ -324,23 +381,33 @@ header{
     font-weight: bold;
 }
 
-.productos_menu{
-    padding: 1rem;
-    margin: 1.5rem;
+.productos_menu {
+    padding: 1rem 0rem 1rem 1rem;
+    margin: 1rem;
     background-color: white;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    width: 100%;
-    height: 100%;
-    border-radius: 1rem;
+    display: flex; 
+    justify-content: space-between;
     align-items: center;
-    place-items: center;
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.product-content{
+    margin-left: 0.5rem;
+    height: 50%;
+    width: auto;
 }
 
 .nombreP {
     font-size: 20px;
     font-weight: bold;
+    text-align: start;
+}
+
+.Descripcion_produc {
+    font-size: 16px;
+    text-align: start;
 }
 
 /*Zona del footer */
@@ -348,9 +415,11 @@ footer{
     display: flex;
     width: 100%;
     background-color: black;
-    height: 7rem;
+    height: 5rem;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    bottom: 0;
 }
 
 /*Zona de mensajes*/
@@ -419,15 +488,181 @@ footer{
     right: 5%;
 }
 
+.imagen_menu {
+    height: auto;
+    max-height: 150px;
+    width: auto;
+    border-radius: 1rem;
+}
+
+.pantalla_detalles {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    width: 60%;
+    height: 60%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transform: translate(-50%, -50%); 
+    border-radius: 1rem; 
+    display: flex;
+    align-items: center;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0; /* Inicialmente oculto */
+}
+
+.pantalla_detalles.show {
+    display: flex;
+    opacity: 1; 
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.pantalla_detalles_cerrar {
+    position: absolute;
+    top: 0;
+    right: 0.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.producto_pantalla {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Espacio entre elementos para que los botones queden abajo */
+    height: 100%;
+    gap: 1rem;
+}
+
+.pantalla_detalles_contenido {
+    background-color: #fff;
+    border-radius: 1rem;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1; /* Permite que el contenido principal se expanda, empujando los botones hacia abajo */
+    width: 100%;
+    text-align: center;
+    gap: 0.5rem;
+}
+
+.imagen_menu_pantalla {
+    height: auto;
+    max-height: 15rem;
+    max-width: 95%;
+    width: auto;
+    border-radius: 1rem;
+    margin-right: 1rem;
+}
+
+.pantalla_detalles_boton_añadir{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 197, 0);
+    cursor: pointer;
+    height: 6rem;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    font-size: 2rem;
+    border-width: 4px 0px 4px 4px;
+    border-style: solid;
+    box-shadow: 0 6px #999;
+}
+
+.pantalla_detalles_boton_quitar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 0, 0);
+    cursor: pointer;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    font-size: 2rem;
+    border-width: 4px 0px 4px 4px;
+    border-style: solid;
+    box-shadow: 0 6px #999;
+    height: 10rem;
+}
+
 /*Zona responsiva */
+@media (max-width:1140px){
+    .producto{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .S-boton {
+        height: 30px;
+        color: white;
+        padding: 1.5rem;
+        text-align: center;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        font-size: 1.5rem;
+        border-width: 4px 0px 4px 4px;
+        border-style: solid;
+    }
+    
+    .div_boton_detalles {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+    }
+    
+    .eliminar-boton {
+        height: 30px;
+        color: white;
+        padding: 1.5rem;
+        text-align: center;
+        font-size: 1.5rem;
+        border-width: 4px 0px 4px 4px;
+        border-style: solid;
+    }
+
+    .pantalla_detalles_boton_añadir{
+        height: 1rem;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        font-size: 2rem;
+        border-width: 4px 2px 4px 4px;
+        padding: 1.5rem;
+    }
+    
+    .pantalla_detalles_boton_quitar{
+        padding: 1.5rem;
+        text-align: center; 
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        border-width: 4px 4px 4px 2px;  
+        height: 1rem;
+    }
+}
+
 
 @media (max-width:934px){
     .producto{
         grid-template-columns: repeat(2, 1fr);
     }
+
+    
 }
 
-@media (max-width:650px){
+@media (max-width:720px){
     .opM hr{
         border: none;               
         border-left: 2px solid wheat; 
@@ -453,11 +688,58 @@ footer{
     .producto{
         grid-template-columns: repeat(1, 1fr);
     }
-}
+    
+    .productos_menu {
+        padding: 0.5rem 0rem 0.5rem 0.5rem;
+        margin: 0.5rem;
+    }
+    
+    .S-boton, .eliminar-boton {
+        padding: 1rem;
+        font-size: 2rem;
+        height: 4rem;
+        width: 4rem;
+    }
 
-@media (max-width:350px){
-    .productos_menu{
+    .pantalla_detalles {
+        width: 80%;
+        height: 60%;
+    }
+
+    .pantalla_detalles.show {
         display: block;
-        justify-content: center;
+        opacity: 1; 
     }
 }
+
+@media (max-width: 480px) {
+    .productos_menu {
+        padding: 0.5rem 0rem 0.5rem 0.5rem;
+        margin: 0.5rem;
+    }
+    
+    .S-boton, .eliminar-boton {
+        padding: 1rem;
+        font-size: 2rem;
+        height: 8rem;
+        width: 4rem;
+    }
+}
+
+
+@media (max-width:375px){
+
+    .abrir_notis{
+        font-size: 3rem;
+        cursor: pointer;
+        position: fixed;
+        bottom: 2.5rem;
+        right: .5rem;
+        width: 5rem;
+    }
+
+    footer{
+        height: 3rem;
+    }
+}
+

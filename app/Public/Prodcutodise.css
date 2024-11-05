@@ -80,7 +80,7 @@ header{
     align-items: center;
     flex-direction: column;
     padding: 10px;
-    margin-top: 10rem;
+    margin-top: 11rem;
 }
 
 .Datos input, .Datos textarea{
@@ -162,7 +162,6 @@ html {
     cursor: pointer;
 }
 
-
 .nav {
     list-style-type: none;
     display: flex;
@@ -201,4 +200,6 @@ footer{
     align-items: center;
     color: #ffffff;
     font-size: 1.5rem;
+    bottom: 0;
+    position: fixed;
 }
