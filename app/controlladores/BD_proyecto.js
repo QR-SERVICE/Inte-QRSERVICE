@@ -17,7 +17,7 @@ export const getQuickRestaurant = (req, res) => {
           Project = results;
           res.json(Project);
         } else {
-          res.json({ message: "Error al obtener los resultadotes" });
+          res.json({ message: "Error al obtener los resultades" });
         }
         connection.end();
       });
@@ -26,3 +26,6 @@ export const getQuickRestaurant = (req, res) => {
       res.json({ message: "Error al obtener los resultados" });
     }
   };
+
+
+  
