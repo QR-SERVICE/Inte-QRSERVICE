@@ -1,5 +1,4 @@
-export const getProducto = (req,res) =>{
-    const placeholder = [
+let productos = [
         {
             id_producto:1,
             nombre:"Limonada Natural",
@@ -46,14 +45,18 @@ export const getProducto = (req,res) =>{
             img:"aceitunas.jpg"
         }
     ];
-    res.json(placeholder);
-}
+
+    export const getProducto = (req, res) => {
+        res.json(productos);
+    }
 
 export const postProducto = (req,res) =>{
     try{
-        const { id_producto,nombre,precio,stock,categoria,descripcion,img} = req.body; 
-        console.log(id_producto,nombre,precio,stock,categoria,descripcion,img);
-        res.status(200).json({message:"Producto guardado"})
+        const {nombre,precio,stock,categoria,descripcion,img} = req.body; 
+        const id = productos.length + 1; 
+        const newProducto = {id,...req.body}
+        productos.push(newProducto);
+        res.status(200).json({Message:"Producto guardado"})
     }catch(e){
         console.log(e);
         res.status(500).json({Message: "Error al guardar el producto"});

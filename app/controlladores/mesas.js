@@ -1,5 +1,4 @@
-export const getMesas = (req,res) =>{
-    const placeholder = [
+    let Mesas = [
         {
             id_mesa:1,
             nombre:"Mesa 1",
@@ -13,13 +12,17 @@ export const getMesas = (req,res) =>{
             nombre:"Mesa 3",
         }
     ];
-    res.json(placeholder);
+    
+export const getMesas = (req,res) =>{
+    res.json(Mesas);
 }
 
 export const postMesa = (req,res) =>{
     try{
-        const { id_mesa,nombre} = req.body; 
-        console.log(id_mesa,nombre);
+        const {nombre} = req.body; 
+        const id = Mesas.length + 1;
+        const newMesa = {id,...req.body}
+        Mesas.push(newMesa);
         res.status(200).json({message:"Mesa Guardada"})
     }catch(e){
         console.log(e);

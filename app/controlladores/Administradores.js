@@ -1,5 +1,4 @@
-export const getAdministradores = (req,res) =>{
-    const placeholder = [
+let Administradores = [
         {
             id_admin:1,
             nombre:"Juan",
@@ -11,22 +10,26 @@ export const getAdministradores = (req,res) =>{
             id_admin:2,
             nombre:"Pedro",
             apellido:"Ortega",
-            correo:"@gmail.com",
+            correo:"pedro@gmail.com",
         },
         {
             id_admin:3,
             nombre:"Felipe",
             apellido:"Molina",
-            correo:"@gmail.com",
+            correo:"felipe@gmail.com",
         }
     ];
-    res.json(placeholder);
-}
+
+export const getAdministradores = (req,res) =>{
+    res.json(Administradores)
+};
 
 export const postAdministradores = (req,res) =>{
     try{
-        const { id_admin,nombre,apellido,correo} = req.body; 
-        console.log(id_admin,nombre,apellido,correo);
+        const {nombre,apellido,correo} = req.body;
+        const id = Administradores.length + 1; 
+        const newAdministrador = {id,...req.body}
+        Administradores.push(newAdministrador);
         res.status(200).json({message:"Aministrador guardado"})
     }catch(e){
         console.log(e);

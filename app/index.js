@@ -32,21 +32,21 @@ import {getAdministradores} from './controlladores/Administradores.js'
 server.get("/Administradores",getAdministradores);
 
 import {postAdministradores} from './controlladores/Administradores.js'
-server.post("/Nuevos-Administradores",postAdministradores);
+server.post("/Administradores/Nuevos-Administradores",postAdministradores);
 
 // Rutas de mesas
 import {getMesas} from './controlladores/mesas.js'
 server.get("/mesas",getMesas);
 
 import {postMesa} from './controlladores/mesas.js'
-server.post("/Nueva-mesa",postMesa);
+server.post("/mesas/Nueva-mesa",postMesa);
 
 // Rutas de productos
 import {getProducto} from './controlladores/Productos.js'
 server.get("/Productos",getProducto);
 
 import {postProducto} from './controlladores/Productos.js'
-server.post("/Nuevos-productos",postProducto);
+server.post("/Productos/Nuevos-productos",postProducto);
 
 // Rutas de pedidos
 import {getPedidos} from './controlladores/pedidos.js'
