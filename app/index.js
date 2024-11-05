@@ -2,7 +2,6 @@ import express from 'express';
 import path from 'path';
 import cors from 'cors';
 import morgan from 'morgan';
-import bodyParser from "body-parser";
 import { fileURLToPath } from 'url';
 const server = express();
 
