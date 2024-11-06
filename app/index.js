@@ -16,8 +16,18 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // conexion a la base de datos
-import { getQuickRestaurant } from './controlladores/BD_proyecto.js'
-server.get('/getQuickRestaurant', getQuickRestaurant);
+import { getBebidas } from './controlladores/Productos-BD.js'
+server.get('/BebidasP', getBebidas);
+
+import { getPlatillos } from './controlladores/Productos-BD.js'
+server.get('/PlatillosP', getPlatillos);
+
+import { getPostres } from './controlladores/Productos-BD.js'
+server.get('/PostresP', getPostres);
+
+import { getEntradas } from './controlladores/Productos-BD.js'
+server.get('/EntradasP', getEntradas);
+
 
 server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecutando 
 
@@ -26,6 +36,11 @@ server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecut
 server.use(express.static(path.join(__dirname, 'Public')));
 server.use(express.static(path.join(__dirname, 'Img')));
 server.use(cors());
+
+
+
+// Rutas para las categorias de productos
+
 
 // Rutas de administradores
 import {getAdministradores} from './controlladores/Administradores.js'
