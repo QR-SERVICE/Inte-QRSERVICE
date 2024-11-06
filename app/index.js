@@ -67,6 +67,8 @@ server.get("/Menu", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Men
 server.get("/Me", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-copy.HTML')))
 server.get("/Comandas", (req, res) => res.sendFile(path.join(__dirname, 'PantallaComandas', 'index.HTML')))
 server.get("/Pedidos", (req, res) => res.sendFile(path.join(__dirname, 'Pedidos', 'Historial_pedidos.HTML')))
+server.get("/Login", (req, res) => res.sendFile(path.join(__dirname, 'login', 'login.html')))
+server.get("/Admin", (req, res) => res.sendFile(path.join(__dirname, 'login', 'admin.html')))
 
 //Rutas para los productos
 server.get("/Entradas", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu_Entradas.HTML')))
