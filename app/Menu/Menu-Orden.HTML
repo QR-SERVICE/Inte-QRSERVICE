@@ -14,27 +14,27 @@
 <body>
     <header> 
         <h1 data-seccion="header" data-valor="Table" class="mesa"> MESA 1 </h1>
-        <button class="Abrir-menu" id="abrir"><i class="bi bi-menu-up"></i></button>
-                <nav class="nav" id="nav">
-                    
-                    <button class="cerrar-menu" id="cerrar"><i class="bi bi-x-square"></i></button>
+            <button class="Abrir-menu" id="abrir"><i class="bi bi-menu-up"></i></button>
+            <nav class="nav" id="nav">
 
-                    <ul class="opM">
-                        <div class="lenguages"> 
-                            <button class="lang-button" data-language="es">ESPAÑOL</button>
-                            <button class="lang-button" data-language="en">ENGLISH</button>
-                        </div>
-                        <div class="left">
-                            <div class="menu-container">
-                                <div class="menu-desplegable" id="menu-desplegable">
-                                    <div></div>
-                                    <div></div>
-                                    <div></div>
-                                </div>
+                <button class="cerrar-menu" id="cerrar"><i class="bi bi-x-square"></i></button>
+
+                <ul class="opM">
+                    <div class="lenguages"> 
+                        <button class="lang-button" data-language="es">ESPAÑOL</button>
+                        <button class="lang-button" data-language="en">ENGLISH</button>
+                    </div>
+                    <div class="left">
+                        <div class="menu-container">
+                            <div class="menu-desplegable" id="menu-desplegable">
+                                <div></div>
+                                <div></div>
+                                <div></div>
                             </div>
-                        </div> 
-                    </ul>
-                </nav>
+                        </div>
+                    </div> 
+                </ul>
+            </nav>
     </header>
 
     <div class="sidebar" id="sidebar">
@@ -79,55 +79,84 @@
     </div>
 
         <div id="carrito" class="carrito">
-                <button id="cerrar_carr" class="cerrar_carr"><i class="bi bi-x-square"></i></button>
-                <table class="cuenta" id="cuenta">
-                    <thead>
-                        <tr>
-                            <th class="datos-tabla" id="datos-tabla"> Productos Precio</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="productos_orden" id="productos_orden">
-                        </tr>
-                    </tbody>
-                    <thead>
-                        <div class="total-div" id="total-div">
-                        <tr>
-                            <th>TOTAL:</th>
-                            <th id="TOTAL" class="TOTAL"></th>
-                            <th><button class="enviar-t" id="enviar-t">Enviar</button></th>
-                        </tr>
-                        </div>
-                    </thead>
-                </table> 
+            <table class="cuenta" id="cuenta">
+                <thead>
+                    <tr>
+                        <th class="datos-tabla" id="datos-tabla"> Productos Precio </th>
+                        <th><button id="cerrar_carr" class="cerrar_carr"><i class="fa-solid fa-x"></i></button></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="productos_orden" id="productos_orden">
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>TOTAL:</th>
+                        <th id="TOTAL" class="TOTAL"></th>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button class="enviar-t" id="enviar-t">Enviar</button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table> 
         </div>
-
-        <div class="producto" id="producto">
-                <div class="productos_menu">
-                    <div>
-                        <p data-section="producto#1" data-value="nombre"class="nombreP">Un cambio</p>
-                        <p data-section="producto#1" data-value="Descripcion">nada</p>
-                        <div class="precio" >
+        <div class="producto" id="producto">   
+            <div class="productos_menu">
+                <div class="product-content">
+                    <img src="https://th.bing.com/th/id/OIP.y1UO3ijZtr2ij8YzTtpCkwHaHa?w=1000&h=1000&rs=1&pid=ImgDetMain" alt="Nombre del Producto" class="imagen_menu" onclick="openModal()">
+                    <div class="product-details">
+                        <p data-section="producto#1" data-value="nombre" class="nombreP">Un cambio</p>
+                        <p data-section="producto#1" data-value="Descripcion" class="Descripcion_produc">nada</p>
+                        <div class="precio">
                             <p>$</p>
-                            <p data-section="producto#1" data-value="precio" class="costo" >0.00</p>
+                            <p data-section="producto#1" data-value="precio" class="costo">0.00</p>
                         </div>
-                    </div>
-                    <div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
                     </div>
                 </div>
+                <div class="div_boton">
+                    <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                    <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                </div>
+            </div>
+            <div id="pantalla_detalles_1" class="pantalla_detalles">
+                <div class="pantalla_detalles_contenido">
+                    <span class="pantalla_detalles_cerrar" onclick="closeModal()">X</span>
+                    
+                    <div class="producto_pantalla">
+                        <div class="product-content">
+                            <img src="https://th.bing.com/th/id/OIP.y1UO3ijZtr2ij8YzTtpCkwHaHa?w=1000&h=1000&rs=1&pid=ImgDetMain" alt="Nombre del Producto" class="imagen_menu_pantalla" onclick="openModal()">  
+                        </div>
+                        <div class="product-details">
+                            <p data-section="producto#1" data-value="nombre" class="nombreP">Un cambio</p>
+                            <p data-section="producto#1" data-value="Descripcion" class="Descripcion_produc">nada</p>
+                            <div class="precio">
+                                <p>$</p>
+                                <p data-section="producto#1" data-value="precio" class="costo">0.00</p>
+                            </div>
+                        </div>
+                        <div class="div_boton_detalles">
+                            <button class="pantalla_detalles_boton_añadir" data-seccion="header" data-valor="Add product">+</button>
+                            <button class="pantalla_detalles_boton_quitar" data-seccion="header" data-valor="Add product">-</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
                  <div  class="productos_menu">
                     <div>
                         <p data-section="producto#2" data-value="nombre" class="nombreP">AirPods</p>
                         <p data-section="producto#2" data-value="Descripcion">Son robados</p>
-                    
+
                         <div class="precio">
                             <p>$</p>
                             <p data-section="producto#2" data-value="precio" class="costo" >400.00</p>
                         </div>
                     </div>
-                    <div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
                     </div>
                  </div>
                  <div class="productos_menu">
@@ -139,8 +168,9 @@
                             <p data-section="producto#3" data-value="precio" class="costo" >500.00</p>
                         </div>
                     </div>
-                    <div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
                     </div>
                  </div>
                  <div class="productos_menu">
@@ -152,8 +182,9 @@
                             <p data-section="producto#4" data-value="precio" class="costo" >20.00</p>
                         </div>
                     </div>
-                    <div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
                     </div>
                  </div>
                 <div  class="productos_menu" >
@@ -165,7 +196,24 @@
                             <p data-section="producto#5" data-value="precio" class="costo">100.00</p>
                         </div>
                     </div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                    </div>
+                </div>
+                <div  class="productos_menu" >
+                    <div>
+                        <p data-section="producto#5" data-value="nombre" class="nombreP">Refresco</p>
+                        <p data-section="producto#5" data-value="Descripcion">Es un refresco y ya</p>
+                        <div class="precio">
+                            <p>$</p>
+                            <p data-section="producto#5" data-value="precio" class="costo">100.00</p>
+                        </div>
+                    </div>   
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                    </div>
                 </div>
                 <div  class="productos_menu" >
                     <div>
@@ -177,6 +225,10 @@
                         </div>
                     </div>
                         <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                    </div>
                 </div>
                 <div  class="productos_menu" >
                     <div>
@@ -188,6 +240,10 @@
                         </div>
                     </div>
                         <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                    </div>
                 </div>
                 <div  class="productos_menu" >
                     <div>
@@ -199,6 +255,10 @@
                         </div>
                     </div>
                         <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                    </div>
                 </div>
                 <div  class="productos_menu" >
                     <div>
@@ -210,6 +270,10 @@
                         </div>
                     </div>
                         <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                    </div>
                 </div>
                 <div  class="productos_menu" >
                     <div>
@@ -221,6 +285,10 @@
                         </div>
                     </div>
                         <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
+                    </div>
                 </div>
                 <div  class="productos_menu" >
                     <div>
@@ -232,23 +300,14 @@
                         </div>
                     </div>
                         <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
-                </div>
-                <div  class="productos_menu" >
-                    <div>
-                        <p data-section="producto#5" data-value="nombre" class="nombreP">Refresco</p>
-                        <p data-section="producto#5" data-value="Descripcion">Es un refresco y ya</p>
-                        <div class="precio">
-                            <p>$</p>
-                            <p data-section="producto#5" data-value="precio" class="costo">100.00</p>
-                        </div>
+                    <div class="div_boton">
+                        <button class="S-boton" data-seccion="header" data-valor="Add product">+</button>
+                        <button class="eliminar-boton" data-seccion="header" data-valor="Add product">-</button>
                     </div>
-                        <button class="S-boton" data-seccion="header" data-valor="Add product">Añadir Producto</button>
                 </div>
             </div>
         </div>
-
         <div class="notis"><button class="abrir_notis" id="abrir-notis"><i class="bi bi-chat-dots"></i></button></div>
-
         <div class="notificaciones" id="notificaciones">
             <button class="cerrar-notis" id="cerrar-notis"><i class="bi bi-x-square"></i></button>
             <button class="call-mesero" data-seccion="header" data-valor="Request waiter">Llamar mesero</button>
@@ -257,5 +316,5 @@
     <script src="https://kit.fontawesome.com/dc58fd35be.js" crossorigin="anonymous"></script>
     <script src="/jMenu.js"></script>
 </body>
-<footer style="bottom: 0;">©Todos los derechos reservados</footer>
+<footer>©Todos los derechos reservados</footer>
 </html>

@@ -205,3 +205,18 @@ document.addEventListener('click', (event) => {
         sidebar.classList.remove('menu-toggle');
     }
 });
+
+function openModal() {
+    const modal = document.getElementById("pantalla_detalles_1");  // Abre pantalla_detalles
+    modal.style.display = 'flex';
+    setTimeout(() => {
+        modal.classList.add("show");
+    });
+}
+function closeModal() {
+    const modal = document.getElementById("pantalla_detalles_1"); // Oculta la pantalla_detalles
+    modal.classList.remove("show");
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 300);
+}
