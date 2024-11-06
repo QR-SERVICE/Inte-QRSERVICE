@@ -213,6 +213,7 @@ function openModal() {
         modal.classList.add("show");
     });
 }
+
 function closeModal() {
     const modal = document.getElementById("pantalla_detalles_1"); // Oculta la pantalla_detalles
     modal.classList.remove("show");
