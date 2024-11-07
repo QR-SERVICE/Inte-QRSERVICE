@@ -221,3 +221,39 @@ function closeModal() {
         modal.style.display = 'none';
     }, 300);
 }
+
+const navbar = document.getElementById('navbar');
+
+// Función para cambiar la clase según el scroll
+function cambiarClasePorScroll() {
+    // Si el scroll ha pasado (X)px desde la parte superior
+    if (window.scrollY > 90) {
+        navbar.classList.add('navbar-scroll'); 
+    } else {
+        navbar.classList.remove('navbar-scroll'); 
+    }
+}
+
+
+// Función para cambiar el margen superior del sidebar según el scroll
+
+function cambiarClaseSidebarScroll() {
+    const scrollY = window.scrollY;
+    let newMarginTop;
+
+    // Solo ajustar el margin-top si scrollY es menor a 90
+    if (scrollY < 90) {
+        newMarginTop = 40 - (scrollY / 4); // Ajustar este factor de división para controlar la velocidad
+    } else {
+        newMarginTop = 16; // Fijar el margin-top en 48% cuando scrollY es mayor a 90
+    }
+
+    // Aplicar el nuevo margen superior al sidebar
+    sidebar.style.marginTop = newMarginTop + '%';
+}
+
+// Llamar a ambas funciones cuando se haga scroll
+window.addEventListener('scroll', function() {
+    cambiarClasePorScroll();
+    cambiarClaseSidebarScroll();
+});
