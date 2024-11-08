@@ -51,6 +51,13 @@
             align-items: center;
         }
 
+        .descripcion{
+            border-radius:7px ;
+            background-color: #2c2929;
+            border:1px solid black;
+            padding: 10px;
+        }
+
         .producto img {
             width: 100%; /* Imagen de ancho completo */
             height: auto; /* Altura automática */
@@ -83,33 +90,59 @@
     <a href="/Me"><h1>The Menu</h1></a>
 </header>
 
-<div class="menu-container">
+<div id="menu-container" class="menu-container">
 
-    <div class="producto">
-        <img src="Bebida1.png" alt="Nombre del producto 1">
-        <div class="nombreP">Drink De Fresa</div>
-        <div class="nombreP">$110</div>
-    </div>
-
-    <div class="producto">
-        <img src="Bebida2.png" alt="Nombre del producto 2">
-        <div class="nombreP">Drink Coctel</div>
-        <div class="nombreP">$120</div>
-    </div>
-
-    <div class="producto">
-        <img src="Bebida3.png" alt="Nombre del producto 3">
-        <div class="nombreP">Agua De Horchata</div>
-        <div class="nombreP">$130</div>
-    </div>
-
-    <div class="producto">
-        <img src="Bebida4.png" alt="Nombre del producto 3">
-        <div class="nombreP">Vino Tinto</div>
-        <div class="nombreP">$140</div>
-    </div>
+    
     
 </div>
+
+<script>
+    // Realiza la solicitud a la API para obtener los productos
+    fetch('/BebidasP')
+        .then(response => response.json()) // Convierte la respuesta en JSON
+        .then(data => {
+            const menuContainer = document.getElementById("menu-container"); // Obtiene el contenedor
+
+            // Recorre cada producto recibido de la base de datos
+            data.forEach(bebidas => {
+                // Crea el contenedor para cada producto
+                const productoDiv = document.createElement('div');
+                productoDiv.classList.add('producto'); // Agrega la clase producto
+
+                // Crea y agrega la imagen del producto
+                const productoImg = document.createElement('img');
+                productoImg.src = `../bebidas.img/${bebidas.img}`;  // Usa la URL de la imagen de la base de datos
+                productoImg.alt = bebidas.nombre_producto; // Texto alternativo con el nombre del producto
+                
+                // Crea y agrega el nombre del producto
+                const nombreP = document.createElement('div');
+                nombreP.classList.add('nombreP');
+                nombreP.textContent = bebidas.nombre_producto; // Nombre del producto
+
+                // Crea y agrega la descripción del producto
+                const descripcionP = document.createElement('p');
+                descripcionP.classList.add('descripcion');
+                descripcionP.textContent = bebidas.descripcion; // Descripción del producto
+
+                // Crea y agrega el precio del producto
+                const precioP = document.createElement('div');
+                precioP.classList.add('nombreP');
+                precioP.textContent = `$${bebidas.precio_producto}`; // Precio del producto
+
+                // Agrega todos los elementos al contenedor de producto
+                productoDiv.appendChild(productoImg);
+                productoDiv.appendChild(nombreP);
+                productoDiv.appendChild(descripcionP);
+                productoDiv.appendChild(precioP);
+
+                // Agrega el producto al contenedor principal
+                menuContainer.appendChild(productoDiv);
+            });
+        })
+        .catch(error => {
+            console.error('Error al cargar los productos:', error);
+        });
+</script>
 
 </body>
 </html>

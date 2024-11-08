@@ -49,16 +49,3 @@ let productos = [
     export const getProducto = (req, res) => {
         res.json(productos);
     }
-
-export const postProducto = (req,res) =>{
-    try{
-        const {nombre,precio,stock,categoria,descripcion,img} = req.body; 
-        const id = productos.length + 1; 
-        const newProducto = {id,...req.body}
-        productos.push(newProducto);
-        res.status(200).json({Message:"Producto guardado"})
-    }catch(e){
-        console.log(e);
-        res.status(500).json({Message: "Error al guardar el producto"});
-    }
-}

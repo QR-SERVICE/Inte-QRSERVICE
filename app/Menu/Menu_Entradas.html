@@ -64,6 +64,13 @@
             color: #ffd700; /* Nombre dorado */
         }
 
+        .descripcion{
+            border-radius:7px ;
+            background-color: #2c2929;
+            border:1px solid black;
+            padding: 10px;
+        }
+
         /* Estilos para dispositivos móviles */
         @media (max-width: 768px) {
             .producto {
@@ -83,33 +90,57 @@
     <a href="/Me"><h1>The Menu</h1></a>
 </header>
 
-<div class="menu-container">
+<div id="menu-container" class="menu-container">
 
-    <div class="producto">
-        <img src="spagueti_clasico.png" alt="Nombre del producto 1">
-        <div class="nombreP">Spagueti Clasico</div>
-        <div class="nombreP">$110</div>
-    </div>
-
-    <div class="producto">
-        <img src="Espaguetis a la boloñesa.png" alt="Nombre del producto 2">
-        <div class="nombreP">Espagueti a la boloñesa</div>
-        <div class="nombreP">$120</div>
-    </div>
-
-    <div class="producto">
-        <img src="spagueti_Blanco.png" alt="Nombre del producto 3">
-        <div class="nombreP">Espagueti Blanco</div>
-        <div class="nombreP">$130</div>
-    </div>
-
-    <div class="producto">
-        <img src="spagueti_verde.png" alt="Nombre del producto 3">
-        <div class="nombreP">Espagueti Verde</div>
-        <div class="nombreP">$140</div>
-    </div>
     
 </div>
 
+<script>
+    // Realiza la solicitud a la API para obtener los productos
+    fetch('/EntradasP')
+        .then(response => response.json()) // Convierte la respuesta en JSON
+        .then(data => {
+            const menuContainer = document.getElementById("menu-container"); // Obtiene el contenedor
+
+            // Recorre cada producto recibido de la base de datos
+            data.forEach(entradas => {
+                // Crea el contenedor para cada producto
+                const productoDiv = document.createElement('div');
+                productoDiv.classList.add('producto'); // Agrega la clase producto
+
+                // Crea y agrega la imagen del producto
+                const productoImg = document.createElement('img');
+                productoImg.src = `../entradas.img/${entradas.img}`;  // Usa la URL de la imagen de la base de datos
+                productoImg.alt = entradas.nombre_producto; // Texto alternativo con el nombre del producto
+                
+                // Crea y agrega el nombre del producto
+                const nombreP = document.createElement('div');
+                nombreP.classList.add('nombreP');
+                nombreP.textContent = entradas.nombre_producto; // Nombre del producto
+
+                // Crea y agrega la descripción del producto
+                const descripcionP = document.createElement('p');
+                descripcionP.classList.add('descripcion');
+                descripcionP.textContent = entradas.descripcion; // Descripción del producto
+
+                // Crea y agrega el precio del producto
+                const precioP = document.createElement('div');
+                precioP.classList.add('nombreP');
+                precioP.textContent = `$${entradas.precio_producto}`; // Precio del producto
+
+                // Agrega todos los elementos al contenedor de producto
+                productoDiv.appendChild(productoImg);
+                productoDiv.appendChild(nombreP);
+                productoDiv.appendChild(descripcionP);
+                productoDiv.appendChild(precioP);
+
+                // Agrega el producto al contenedor principal
+                menuContainer.appendChild(productoDiv);
+            });
+        })
+        .catch(error => {
+            console.error('Error al cargar los productos:', error);
+        });
+</script>
 </body>
 </html>

@@ -8,6 +8,14 @@
 </head>
 <body>
 
+
+    <datalist id="categorias">
+        <option value="Bebidas"></option>
+        <option value="Platillos"></option>
+        <option value="Postres"></option>
+        <option value="Entradas"></option>
+    </datalist> 
+
     <header>
         <nav class="navbar-logo">
             <div class="container-logo">
@@ -16,7 +24,7 @@
             </div>       
             <ul class="nav">
                 <li>                        
-                    <a href="/Menu">
+                    <a href="/Me">
                         <span> Menu </span>
                     </a>
                 </li>
@@ -40,22 +48,72 @@
     </header>
 
     <div class="Datos">
+        <h1> Nombre del producto: </h1>
+        <input id="nombre-producto" type="text" placeholder="Agregue un nombre a su producto">
+        <h1> Categoria del producto: </h1>
+        <input id="categoria_producto" type="text" list="categorias" placeholder="Seleccione una categoria para su producto">
         <h1> Imagen del producto: </h1>
-        <input type="file" accept="image" required id="img-agreg">
+        <input type="text"  id="img-agreg">
         <h1> Descripcion del producto: </h1>
-        <textarea name="textos" id="texto_producto" placeholder="Escribe el texto del producto" required></textarea>
+        <textarea id="descripcion_producto" name="textos"  placeholder="Escribe el texto del producto" required></textarea>
         <h1> Precio del producto: </h1>
-        <input type="number" placeholder="Colocar precio">
+        <input id="precio_producto" type="number" placeholder="Coloque el precio de su producto">
         <h1> Cantidad del producto: </h1>
-        <input type="number" placeholder="Colocar cantidad">
+        <input id="cantidad_producto" type="number" placeholder="Coloque el stock de su producto">
         <button id="agreg_pro" class="Boton_submit">Agregar Producto</button>
     </div>
 
-    <div id="Aqui-pro" class="Aqui-pro"></div>
+    <div class="productos-ya-creados" id="productos-ya-creados">
+    <div id="Drinks" class="Drinks"></div>
 
-    <script src="/Producto.js"></script>
+    <div id="Food" class="Food"></div>
 
+    <div id="Desserts" class="Desserts"></div>
+
+    <div id="Tickets" class="Tickets"></div>
+    </div>
+    
 </body>
+
+<script src="/Producto.js"></script>
+
+
+<script>
+
+document.getElementById("agreg_pro").addEventListener('click', async () => {
+    const nombre = document.getElementById("nombre-producto").value;
+    const categoria = document.getElementById("categoria_producto").value;
+    const descripcion = document.getElementById("descripcion_producto").value;
+    const precio = parseFloat(document.getElementById("precio_producto").value);
+    const stock = parseInt(document.getElementById("cantidad_producto").value);
+    const imgFile = document.getElementById("img-agreg").value;
+
+    try {
+        const response = await fetch('http://localhost:3500/AgregarProductos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ nombre, categoria, precio, stock, descripcion, imgFile })
+        });
+
+        const responseData = await response.json();
+        console.log('Mensaje del servidor:', responseData.message || 'Sin mensaje de error');
+
+        console.log('Estado de respuesta:', response.status);
+        console.log('Respuesta completa:', response);
+
+        if (response.ok) {
+            alert('Producto agregado exitosamente');
+        } else {
+            alert('Problemas al agregar el producto');
+        }
+    } catch (e) {
+        alert('Se agrego el producto correctamente');
+    }
+});
+
+</script>
 <footer>
     ©Todos los derechos reservados
 </footer>

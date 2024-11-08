@@ -1,93 +1,69 @@
 import mysql2 from 'mysql2';
 
-const connectionObject = {
+// Crear un pool de conexiones
+const connectionPool = mysql2.createPool({
     host: "localhost",
     user: "root",
     password: "Bufetero21",
     port: 3307,
     database: "QuickRestaurant"
-}
+}).promise(); // Agrega .promise() para usar async/await
 
-// BEBIDAS
-export const getBebidas = (req, res) => {
-    let Project = [];
-    try {
-      const connection = mysql2.createConnection(connectionObject);
-      connection.query("SELECT id_producto,nombre_producto,categoria_producto,precio_producto,stock,descripcion,img from producto WHERE categoria_producto = 'Bebidas'", (err, results) => {
-        if (!err) {
-          Project = results;
-          res.json(Project);
-        } else {
-          res.json({ message: "Error al obtener los resultades" });
-        }
-        connection.end();
-      });
-    } catch (e) {
-      console.log(e);
-      res.json({ message: "Error al obtener los resultados" });
-    }
-  };
+// Función para obtener las bebidas
+export const getBebidas = async (req, res) => {
+  try {
+    const [bebidas] = await connectionPool.query("SELECT * FROM producto WHERE categoria_producto = 'Bebidas'");
+    res.json(bebidas);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Error al obtener los resultados" });
+  }
+};
 
-  //POSTRES
-  export const getPostres = (req, res) => {
-    let Project = [];
-    try {
-      const connection = mysql2.createConnection(connectionObject);
-      connection.query("SELECT id_producto,nombre_producto,categoria_producto,precio_producto,stock,descripcion,img from producto WHERE categoria_producto = 'Postres'", (err, results) => {
-        if (!err) {
-          Project = results;
-          res.json(Project);
-        } else {
-          res.json({ message: "Error al obtener los resultades" });
-        }
-        connection.end();
-      });
-    } catch (e) {
-      console.log(e);
-      res.json({ message: "Error al obtener los resultados" });
-    }
-  };
+// Función para obtener los postres
+export const getPostres = async (req, res) => {
+  try {
+    const [postres] = await connectionPool.query("SELECT * FROM producto WHERE categoria_producto = 'Postres'");
+    res.json(postres);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Error al obtener los resultados" });
+  }
+};
 
-  //ENTRADAS
-  export const getEntradas = (req, res) => {
-    let Project = [];
-    try {
-      const connection = mysql2.createConnection(connectionObject);
-      connection.query("SELECT id_producto,nombre_producto,categoria_producto,precio_producto,stock,descripcion,img from producto WHERE categoria_producto = 'Entradas'", (err, results) => {
-        if (!err) {
-          Project = results;
-          res.json(Project);
-        } else {
-          res.json({ message: "Error al obtener los resultades" });
-        }
-        connection.end();
-      });
-    } catch (e) {
-      console.log(e);
-      res.json({ message: "Error al obtener los resultados" });
-    }
-  };
+// Función para obtener las entradas
+export const getEntradas = async (req, res) => {
+  try {
+    const [entradas] = await connectionPool.query("SELECT * FROM producto WHERE categoria_producto = 'Entradas'");
+    res.json(entradas);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Error al obtener los resultados" });
+  }
+};
 
+// Función para obtener los platillos
+export const getPlatillos = async (req, res) => {
+  try {
+    const [platillos] = await connectionPool.query("SELECT * FROM producto WHERE categoria_producto = 'Platillos'");
+    res.json(platillos);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Error al obtener los resultados" });
+  }
+};
 
-//PLATILLOS
-  export const getPlatillos = (req, res) => {
-    let Project = [];
-    try {
-      const connection = mysql2.createConnection(connectionObject);
-      connection.query("SELECT id_producto,nombre_producto,categoria_producto,precio_producto,stock,descripcion,img from producto WHERE categoria_producto = 'Platillos'", (err, results) => {
-        if (!err) {
-          Project = results;
-          res.json(Project);
-        } else {
-          res.json({ message: "Error al obtener los resultades" });
-        }
-        connection.end();
-      });
-    } catch (e) {
-      console.log(e);
-      res.json({ message: "Error al obtener los resultados" });
-    }
-  };
+// Función para agregar un nuevo producto
+export const postProductos = async (req, res) => {
+  const { nombre, categoria, precio, stock, descripcion, imgFile } = req.body;
+  const query = 'CALL new_producto(?, ?, ?, ?, ?, ?)';
+  const params = [nombre, categoria, precio, stock, descripcion, imgFile];
 
-
-
+  try {
+    const [results] = await connectionPool.query(query, params);
+    res.status(200).send('Producto agregado exitosamente');
+  } catch (err) {
+    console.error('Error al ejecutar la consulta:', err);
+    res.status(500).send('Error al agregar el producto');
+  }
+};

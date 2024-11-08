@@ -1,59 +1,215 @@
-const Imagen_agregar = document.getElementById("img-agreg")
-const Texto_agregar = document.getElementById("texto_producto");
-const Boton_agregar = document.getElementById("agreg_pro");
-const Producto = document.getElementById("Aqui-pro");
+fetch("/BebidasP")
+    .then(response => response.json())
+    .then(data => {
+        const bebidas = document.getElementById('Drinks');
 
-Boton_agregar.addEventListener("click", () =>{
-    /*Evaluamos el texto antes de agregar*/
-    const Txt = Texto_agregar.value;
+        // Crear el título
+        const h1 = document.createElement('h1');
+        h1.textContent = 'BEBIDAS';
+        h1.classList.add('ProductH1');
+        bebidas.appendChild(h1);
 
-    /*Creamos la constante en donde el texto se guardara*/
-    const agreg_txt= document.createTextNode(Txt);
-    /*Se crea la constante en donde se crea la imagen*/
-    const agreg_img = document.createElement('img');
-    agreg_img.src = URL.createObjectURL(Imagen_agregar.files[0]); // Previsualizar la imagen seleccionada
+        // Crear la tabla
+        const table = document.createElement('table');
+        table.classList.add('productTable');
 
-    /*Se crea boton borrar, el cual borra el producto*/
-    const boton_borrar = document.createElement("button");
-    /*Se le da el nombre al boton*/
-    boton_borrar.textContent = "Borrar";
-    boton_borrar.classList.add("Boton-delete")
+        // Crear la cabecera de la tabla
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        
+        const headers = ['Nombre', 'Precio', 'Stock'];
+        headers.forEach(headerText => {
+            const th = document.createElement('th');
+            th.textContent = headerText;
+            headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
 
-    /*Se crea un contenedor, para guardar los productos*/
-    const Men_pro = document.createElement("div");
-    Men_pro.classList.add("Productos_agreg");
+        // Crear el cuerpo de la tabla
+        const tbody = document.createElement('tbody');
+        data.forEach(drinks => {
+            const row = document.createElement('tr');
+            
+            const nombreCell = document.createElement('td');
+            nombreCell.textContent = drinks.nombre_producto;
+            row.appendChild(nombreCell);
 
-    /*Se crea un p, en donde se guarda el texto*/
-    const Texto = document.createElement("p");
-    Texto.textContent = Texto_agregar.value;
+            const precioCell = document.createElement('td');
+            precioCell.textContent = `$${drinks.precio_producto}`;
+            row.appendChild(precioCell);
 
-    /*Se crea un boton el cual sirve para editar texto*/
-    const Edit_text = document.createElement("button");
-    Edit_text.textContent = "Editar-text";
-    Edit_text.classList.add("Boton-delete")
+            const stockCell = document.createElement('td');
+            stockCell.textContent = drinks.stock;
+            row.appendChild(stockCell);
 
-    Edit_text.addEventListener("click", () =>{
-        if(Texto.contentEditable === "true"){
-            Texto.contentEditable = "false";
-            Edit_text.textContent = "Edit";
-        }else{
-            Texto.contentEditable = "true";
-            Edit_text.textContent = "Edit";
-        }
+            tbody.appendChild(row);
+        });
+
+        table.appendChild(tbody);
+        bebidas.appendChild(table);
+    })
+    .catch(error => {
+        console.error('Error al cargar los productos:', error);
     });
 
-    boton_borrar.addEventListener("click", () =>{
-        agreg_img.remove();
-        agreg_txt.remove();
-        boton_borrar.remove();
-        Men_pro.remove();
+    fetch("/PlatillosP")
+    .then(response => response.json())
+    .then(data => {
+        const foodContainer = document.getElementById('Food');
+
+        // Crear el título
+        const h1 = document.createElement('h1');
+        h1.textContent = 'PLATILLOS';
+        h1.classList.add('ProductH1');
+        foodContainer.appendChild(h1);
+
+        const table = document.createElement('table');
+        table.classList.add('productTable');
+
+
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        
+        const headers = ['Nombre', 'Precio', 'Stock'];
+        headers.forEach(headerText => {
+            const th = document.createElement('th');
+            th.textContent = headerText;
+            headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        data.forEach(food => {
+            const row = document.createElement('tr');
+            
+            const nombreCell = document.createElement('td');
+            nombreCell.textContent = food.nombre_producto;
+            row.appendChild(nombreCell);
+
+            const precioCell = document.createElement('td');
+            precioCell.textContent = `$${food.precio_producto}`;
+            row.appendChild(precioCell);
+
+            const stockCell = document.createElement('td');
+            stockCell.textContent = food.stock;
+            row.appendChild(stockCell);
+
+            tbody.appendChild(row);
+        });
+
+        table.appendChild(tbody);
+        foodContainer.appendChild(table);
+    })
+    .catch(error => {
+        console.error('Error al cargar los productos:', error);
     });
 
-    /*Se agregan los prodcutos, al div, el cual va tener todos los productos*/
-    Men_pro.appendChild(boton_borrar);
-    Men_pro.appendChild(Texto);
-    Men_pro.appendChild(agreg_img);
-    Men_pro.appendChild(Edit_text);
-    Producto.appendChild(Men_pro);
+        fetch("/PostresP")
+    .then(response => response.json())
+    .then(data => {
+        const dessertsContainer = document.getElementById('Desserts');
 
-});
+        const h1 = document.createElement('h1');
+        h1.textContent = 'POSTRES';
+        h1.classList.add('ProductH1');
+        dessertsContainer.appendChild(h1);
+
+        // Crear la tabla
+        const table = document.createElement('table');
+        table.classList.add('productTable');
+
+        // Crear la cabecera de la tabla
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        
+        const headers = ['Nombre', 'Precio', 'Stock'];
+        headers.forEach(headerText => {
+            const th = document.createElement('th');
+            th.textContent = headerText;
+            headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        // Crear el cuerpo de la tabla
+        const tbody = document.createElement('tbody');
+        data.forEach(dessert => {
+            const row = document.createElement('tr');
+            
+            const nombreCell = document.createElement('td');
+            nombreCell.textContent = dessert.nombre_producto;
+            row.appendChild(nombreCell);
+
+            const precioCell = document.createElement('td');
+            precioCell.textContent = `$${dessert.precio_producto}`;
+            row.appendChild(precioCell);
+
+            const stockCell = document.createElement('td');
+            stockCell.textContent = dessert.stock;
+            row.appendChild(stockCell);
+
+            tbody.appendChild(row);
+        });
+
+        table.appendChild(tbody);
+        dessertsContainer.appendChild(table);
+    })
+    .catch(error => {
+        console.error('Error al cargar los productos:', error);
+    });
+
+    fetch("/EntradasP")
+    .then(response => response.json())
+    .then(data => {
+        const ticketsContainer = document.getElementById('Tickets');
+
+        // Crear el título
+        const h1 = document.createElement('h1');
+        h1.textContent = 'ENTRADAS';
+        h1.classList.add('ProductH1');
+        ticketsContainer.appendChild(h1);
+
+        // Crear la tabla
+        const table = document.createElement('table');
+        table.classList.add('productTable');
+
+        // Crear la cabecera de la tabla
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        
+        const headers = ['Nombre', 'Precio', 'Stock'];
+        headers.forEach(headerText => {
+            const th = document.createElement('th');
+            th.textContent = headerText;
+            headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        data.forEach(ticket => {
+            const row = document.createElement('tr');
+            
+            const nombreCell = document.createElement('td');
+            nombreCell.textContent = ticket.nombre_producto;
+            row.appendChild(nombreCell);
+
+            const precioCell = document.createElement('td');
+            precioCell.textContent = `$${ticket.precio_producto}`;
+            row.appendChild(precioCell);
+
+            const stockCell = document.createElement('td');
+            stockCell.textContent = ticket.stock;
+            row.appendChild(stockCell);
+
+            tbody.appendChild(row);
+        });
+
+        table.appendChild(tbody);
+        ticketsContainer.appendChild(table);
+    })
+    .catch(error => {
+        console.error('Error al cargar los productos:', error);
+    });

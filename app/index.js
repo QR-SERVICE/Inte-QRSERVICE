@@ -29,6 +29,9 @@ import { getEntradas } from './controlladores/Productos-BD.js'
 server.get('/EntradasP', getEntradas);
 
 
+import {postProductos} from './controlladores/Productos-BD.js'
+server.post("/AgregarProductos",postProductos);
+
 server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecutando 
 
 
@@ -58,10 +61,7 @@ server.post("/mesas/Nueva-mesa",postMesa);
 
 // Rutas de productos
 import {getProducto} from './controlladores/Productos.js'
-server.get("/Productos",getProducto);
-
-import {postProducto} from './controlladores/Productos.js'
-server.post("/Productos/Nuevos-productos",postProducto);
+server.get("/Productost",getProducto);
 
 // Rutas de pedidos
 import {getPedidos} from './controlladores/pedidos.js'
