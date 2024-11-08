@@ -148,37 +148,58 @@ sumProducts.forEach((sumProduct, index) => {
     });
 });
 
-//Cambios 
+/////////////////////////// Cambios boton enviar (Modificado por chris) ////////////////////////////////////////
 document.addEventListener("DOMContentLoaded", () => {
     const botonEn = document.getElementById("enviar-t");
     if (botonEn) {
         botonEn.addEventListener("click", () => {
-            const productosguardador = []; 
+            const productosGuardador = []; 
             const productosName = document.querySelectorAll(".name");
             const productosPrice = document.querySelectorAll(".price");
             productosName.forEach((nameElement, index) => {
                 const name = nameElement.textContent;
-                const price = productosPrice[index].textContent.replace("$", "").trim();
-                productosguardador.push({
+                const price = parseFloat(productosPrice[index].textContent.replace("$", "").trim()); 
+                productosGuardador.push({
                     name: name,
                     price: price
                 });
             });
-            const total = document.getElementById("TOTAL").textContent;
-            localStorage.setItem("total", total);
-            localStorage.setItem("lst", JSON.stringify(productosguardador));
-            console.log("Lista de productos guardada:", JSON.parse(localStorage.getItem("lst")));
-            console.log("Total guardado:", localStorage.getItem("total"));
+            const mesa = 1; /* Mas adelante tenemos que crear aqui la funcion para que ese numero 1 cambie al numero de
+         la mesa que realizo la orden */
+         const comanda = {
+            mesa: mesa,
+            pedido: productosGuardador,
+            total: totalSum
+        };
 
-            // Redirigir a la página de Comandas
-            window.location.href = "/Comandas"; 
+        //ENVIAR LA COMANDA AL SERVIDOR
+        fetch('http://localhost:3500/api/comandas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(comanda)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Comanda guardada:", data);
+             // Limpiar el carrito y restablecer el total
+             productOrde.innerHTML = ""; // Limpia el contenido del carrito
+             totalSum = 0; // Restablece el total a cero
+             TOTAL.textContent = totalSum.toFixed(2) + "$"; // Actualiza la visualización del total
+             alert("¡Comanda enviada exitosamente! Puedes seguir agregando productos.");
+        })
+        .catch(error => {
+            console.error("Error al guardar la comanda:", error);
         });
-    } else {
-        console.error("Error al guardar los datos");
-    }
+    });
+}
 });
 
-// cerrar si se hace click fuera de notificaciones
+
+////////////////// Terminan cambios de christian /////////////////////////////
+
+
 const notificacionesM = document.querySelector('#notificaciones');
 
 notificacionesM.addEventListener("click", cerrarNotificacion);
