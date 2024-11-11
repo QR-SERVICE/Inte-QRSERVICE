@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Menu.css">
+</head>
+<body>
+    <div id="contenedor-navbar">
+        <div class="sidebar" id="sidebar">
+            <nav class="nav-desplegable">
+                <ul>
+                    <li>
+                        <a href="#" data-seccion="contenedor-navbar" data-valor="drinks" data-categoria="bebidas" class="menu-boton" id="menu-bebidas" >
+                            <span> Bebidas </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"data-seccion="contenedor-navbar" data-valor="Appetizer" class="menu-boton" data-categoria="entradas">
+                            <span> Entradas </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-seccion="contenedor-navbar" data-valor="Entrees" class="menu-boton" data-categoria="platillos">
+                            <span> Platillos </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data-seccion="contenedor-navbar" data-valor="Desserts" class="menu-boton" data-categoria="postres">
+                            <span> Postres </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="carr menu-boton" id="carr">
+                        <i class="fas fa-receipt"></i>
+                            <span >Carrito</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <nav class="navbar" id="navbar">
+            <h1 data-seccion="header" data-valor="Table" class="mesa"> Mesa 1 </h1>
+            <button class="Abrir-menu" id="abrir"><i class="bi bi-menu-up"></i></button>
+            <button class="cerrar-menu" id="cerrar"><i class="bi bi-x-square"></i></button>
+
+            <ul class="opM">
+                <div class="lenguages"> 
+                    <button class="lang-button" data-language="es">ESPAÑOL</button>
+                    <button class="lang-button" data-language="en">ENGLISH</button>
+                </div>
+                <div>
+                    <div class="menu-container-navbar">
+                        <div class="menu-desplegable" id="menu-desplegable">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div> 
+            </ul>
+
+            <div id="carrito" class="carrito">
+                <table class="cuenta" id="cuenta">
+                    <thead>
+                        <tr>
+                            <th class="datos-tabla" id="datos-tabla"> Productos Precio </th>
+                            <th><button id="cerrar_carr" class="cerrar_carr"><i class="fa-solid fa-x"></i></button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="productos_orden" id="productos_orden">
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>TOTAL:</th>
+                            <th id="TOTAL" class="TOTAL"></th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button class="enviar-t" id="enviar-t">Enviar</button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </nav>
+    </div>
+</body>
+</html>
