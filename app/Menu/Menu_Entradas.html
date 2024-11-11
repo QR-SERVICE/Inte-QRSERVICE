@@ -18,34 +18,7 @@
     <!-- Navbar -->
     <div id="navbar-container"></div>
 
-    <div class="menu-container">
-
-        <div class="producto">
-            <img src="spagueti_clasico.png" alt="Nombre del producto 1">
-            <div class="nombreP">Spagueti Clasico</div>
-            <div class="nombreP">$110</div>
-        </div>
-
-        <div class="producto">
-            <img src="Espaguetis a la boloñesa.png" alt="Nombre del producto 2">
-            <div class="nombreP">Espagueti a la boloñesa</div>
-            <div class="nombreP">$120</div>
-        </div>
-
-        <div class="producto">
-            <img src="spagueti_Blanco.png" alt="Nombre del producto 3">
-            <div class="nombreP">Espagueti Blanco</div>
-            <div class="nombreP">$130</div>
-        </div>
-
-        <div class="producto">
-            <img src="spagueti_verde.png" alt="Nombre del producto 3">
-            <div class="nombreP">Espagueti Verde</div>
-            <div class="nombreP">$140</div>
-        </div>
-    </div>
-
-
+    <div class="menu-container"></div>
 
     <div class="notis"><button class="abrir_notis" id="abrir-notis"><i class="bi bi-chat-dots"></i></button></div>
             <div class="notificaciones" id="notificaciones">
@@ -64,7 +37,7 @@
                 const menuContainer = document.getElementById("menu-container"); // Obtiene el contenedor
 
                 // Recorre cada producto recibido de la base de datos
-                data.forEach(entradas => {
+                data.forEach(entradas => {  
                     // Crea el contenedor para cada producto
                     const productoDiv = document.createElement('div');
                     productoDiv.classList.add('producto'); // Agrega la clase producto
@@ -89,11 +62,31 @@
                     precioP.classList.add('nombreP');
                     precioP.textContent = `$${entradas.precio_producto}`; // Precio del producto
 
+                    // Crear div de botones
+                    const botones = document.createElement('div');
+                    botones.classList.add('botones');
+                    
+                    // Boton eliminar
+                    const button_del = document.createElement('button');
+                    button_del.classList.add('button_del');
+                    button_del.textContent = "-";
+
+                    // Boton añadir
+                    const button_sum = document.createElement('button');
+                    button_sum.classList.add('button_add');
+                    button_sum.textContent = "+";
+
                     // Agrega todos los elementos al contenedor de producto
                     productoDiv.appendChild(productoImg);
                     productoDiv.appendChild(nombreP);
-                    productoDiv.appendChild(descripcionP);
+                    nombreP.appendChild(descripcionP);
+                    
                     productoDiv.appendChild(precioP);
+
+                    botones.appendChild(button_del);
+                    botones.appendChild(button_sum);
+
+                    productoDiv.appendChild(botones);
 
                     // Agrega el producto al contenedor principal
                     menuContainer.appendChild(productoDiv);

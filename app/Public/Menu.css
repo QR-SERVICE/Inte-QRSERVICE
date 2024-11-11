@@ -56,6 +56,79 @@ h1 {
     color: #ffd700; /* Nombre dorado */
 }
 
+.descripcion {
+    color: white;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.botones {
+    display: flex;
+    width: 80%;
+    height: auto;
+    background-color: #333;
+    justify-content: center;
+}
+
+.button_del {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 0, 0);
+    cursor: pointer;
+    height: 10px;
+    width: 2rem;
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 2rem;
+    border-width: 4px 0px 4px 4px;
+    border-style: solid;
+    box-shadow: 0 6px #4d4d4d;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.button_add {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: rgb(0, 197, 0);
+    cursor: pointer;
+    height: 15px;
+    width: 2rem;
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    font-size: 2rem;
+    border-width: 4px 4px 4px 0px;
+    border-style: solid;
+    box-shadow: 0 6px #4d4d4d;
+}
+
+.button_add:hover {
+    background-color: rgb(0, 201, 0);
+    transition-duration: 0.4s;
+ }
+ .button_del:hover{
+    background-color: rgb(221, 0, 0);
+    transition-duration: 0.4s;
+    
+ }
+ .button_add:active {
+    background-color: rgb(0, 201, 0);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+ .button_del:active {
+    background-color: rgb(221, 0, 0);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+
 li{
     cursor: pointer;
     list-style-type: none;

@@ -18,10 +18,14 @@
 
 <!-- Navbar -->
 <div id="navbar-container"></div>
+<!-- Menu -->
+<div class="menu-container" id="menu-container"></div>
 
-<div class="menu-container" id="menu-container">
-
-    
+<div class="notis"><button class="abrir_notis" id="abrir-notis"><i class="bi bi-chat-dots"></i></button></div>
+    <div class="notificaciones" id="notificaciones">
+    <button class="cerrar-notis" id="cerrar-notis"><i class="bi bi-x-square"></i></button>
+    <button class="call-mesero" data-seccion="header" data-valor="Request waiter">Llamar mesero</button>
+    <button class="call-account" data-seccion="header" data-valor="Request Account">Solicitar cuenta</button>
 </div>
 
 </body>
@@ -58,11 +62,31 @@
                 precioP.classList.add('nombreP');
                 precioP.textContent = `$${platillos.precio_producto}`; // Precio del producto
 
+                // Crear div de botones
+                const botones = document.createElement('div');
+                botones.classList.add('botones');
+                    
+                // Boton eliminar
+                const button_del = document.createElement('button');
+                button_del.classList.add('button_del');
+                button_del.textContent = "-";
+
+                // Boton añadir
+                const button_sum = document.createElement('button');
+                button_sum.classList.add('button_add');
+                button_sum.textContent = "+";
+
                 // Agrega todos los elementos al contenedor de producto
                 productoDiv.appendChild(productoImg);
                 productoDiv.appendChild(nombreP);
-                productoDiv.appendChild(descripcionP);
+                nombreP.appendChild(descripcionP);
+                    
                 productoDiv.appendChild(precioP);
+
+                botones.appendChild(button_del);
+                botones.appendChild(button_sum);
+
+                productoDiv.appendChild(botones);
 
                 // Agrega el producto al contenedor principal
                 menuContainer.appendChild(productoDiv);
