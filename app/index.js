@@ -39,8 +39,9 @@ server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecut
 server.use(express.static(path.join(__dirname, 'Public')));
 server.use(express.static(path.join(__dirname, 'Img')));
 server.use(cors());
-
-
+// a
+server.use('/Menu', express.static(path.join(__dirname, 'Menu')));
+server.use('/public', express.static(path.join(__dirname, 'Public')));
 
 // Rutas para las categorias de productos
 
@@ -71,10 +72,6 @@ import {postPedidos} from './controlladores/pedidos.js'
 server.post("/Hacer-Pedido",postPedidos);
 
 
-
-
-
-
 // Rutas
 server.get("/", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'Productos_confi.html')))
 server.get("/confi", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'Configuraciones.html')))
@@ -90,6 +87,9 @@ server.get("/Entradas", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 
 server.get("/Platillos_Fuertes", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu_Fuertes.HTML')))
 server.get("/Postres", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu_Postres.HTML')))
 server.get("/Bebidas", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu_Bebidas.HTML')))
+
+// ruta para la navbar
+server.get("/Navbar", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'navbar.html')));
 
 // Inicia el servidor
 server.listen(server.get('PORT'), () => {

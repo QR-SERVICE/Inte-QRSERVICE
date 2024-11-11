@@ -1,0 +1,440 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000; /* Fondo negro */
+    color: #f2f2f2; /* Texto claro */
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    font-family: 'Pacifico', cursive; 
+}
+
+header {
+    background-color: #222; /* Color oscuro del header */
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    z-index: 11;
+}        
+
+h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #ffd700; /* Color dorado */
+}
+
+.menu-container {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.producto {
+    background-color: #333; /* Fondo de cada producto */
+    border-radius: 8px;
+    margin: 10px;
+    padding: 15px;
+    width: 900px; /* Ancho completo */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.producto img {
+    width: 100%; /* Imagen de ancho completo */
+    height: auto; /* Altura automática */
+    border-radius: 5px;
+}
+
+.nombreP {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #ffd700; /* Nombre dorado */
+}
+
+li{
+    cursor: pointer;
+    list-style-type: none;
+}
+
+.mesa{
+    color: white;
+}
+
+.navbar {
+    background-color: black;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+    padding: 0.2rem;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    z-index: 10; 
+    position: relative;
+    border-bottom: 1px solid white;
+    display: flex;
+    margin-top: 0;
+    transition: height 0.3s ease, transform 0.5s ease, opacity 0.3s ease;
+}
+
+@keyframes slideUpDown {
+    0% {
+        transform: translateY(0) scaleY(1); /* Posición y escala inicial */
+    }
+    50% {
+        transform: translateY(10px) scaleY(1.1); /* Desplazamiento hacia abajo y crecimiento */
+    }
+    100% {
+        transform: translateY(0) scaleY(1); /* Regreso a la posición y escala originales */
+    }
+}
+
+.navbar-scroll {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2; 
+    margin-top: 0;
+    opacity: 1;
+    padding: 0.3rem;
+    animation: slideUpDown 0.5s ease;
+}        
+
+.Abrir-menu, .cerrar-menu{
+    display: none;
+}
+
+.opM{
+    list-style-type: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.opM li button{
+    color:rgb(255, 255, 255);  
+    text-decoration: none;
+    background-color: transparent;
+    border:none;
+    font-size: 2;
+    cursor: pointer;
+}
+
+.lang-button{
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    border: 0;
+    cursor: pointer;
+    padding: .2rem;
+}
+
+.menu-container-navbar {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.menu-desplegable {
+    width: 1.5rem;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu-desplegable div {
+    width: 100%;
+    height: 0.15rem;
+    background-color: rgb(255, 255, 255);
+    transition: all 0.2s ease;
+}
+
+.sidebar {
+    margin-top: 11rem;
+    width: 0;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 0; 
+    padding: 1rem 0;
+    overflow-y: auto;
+    background-color: black;
+    transition: width 0.4s ease;
+    align-items: flex-end;
+    border-left: 1px solid white;
+}
+
+.sidebar-scroll {
+    margin-top: 10%;
+}
+
+.sidebar.menu-toggle {
+    width: 10rem;
+    
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.9rem 0.7rem;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    color: white;
+    border-radius: 0.3rem;
+    white-space: nowrap;
+    overflow: hidden;
+
+}
+
+.sidebar a:hover {
+    background-color: rgb(20, 20, 20);
+}
+
+.menu-boton.a-selected {
+    border-bottom: 2px solid white;
+    color: rgb(230, 230, 230);
+    background-color: rgb(20, 20, 20);
+}
+
+.sidebar.a-toggle {
+    border-bottom: 2px solid white;
+    color: rgb(230, 230, 230);
+    background-color: rgb(20, 20, 20);
+}
+
+.sidebar nav ul {
+    list-style-type: none;
+    padding: 0; 
+    margin: 0; 
+    text-align: left; /* Alinea el contenido a la izquierda */
+}
+
+.contenedor-navbar {
+    position: relative;
+    transition: top 0.3s;
+}
+
+.contenedor-navbar-scroll {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2; 
+    margin-top: 0;
+}
+
+.sticky {
+    position: fixed;
+    margin-top: 0;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.nav-desplegable li {
+    list-style-type: none;
+    align-items: flex-start;
+}
+
+/*Zona de la orden*/
+.productos_orden{
+    display: block;
+    flex-direction: column; 
+    align-items: baseline; 
+    max-width: 300px; 
+    padding: 1rem;
+}
+#bote-basura{
+    display: block;
+    padding: 0.1rem 0.4rem;
+    background-color:transparent;
+    color:rgb(255, 255, 255);
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
+#bote-basura:active{
+    transform: scale(0.98);
+    background-color: white;
+}
+
+.carrito {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+    display: flex; 
+    opacity: 0;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    flex-direction: column;
+    border: 5px solid rgb(0, 0, 0);
+    border-radius: 1rem;
+    max-height: 70vh;
+    max-width: 70vh;
+    min-width: 40vh;
+    min-height: 50vh;
+    overflow-y: auto;
+    padding: 1rem 0rem 0rem;
+}
+
+.carrito.visible {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-size: 1rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid rgb(0, 0, 0);
+    border-radius: 1rem;
+    max-height: 70vh;
+    max-width: 70vh;
+    min-width: 40vh;
+    min-height: 50vh;
+    overflow-y: auto;
+    padding: 1rem 0rem 0rem;
+    pointer-events: all;
+    transition: opacity 0.3s ease;
+    opacity: 1;
+}
+
+.cuenta {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    justify-content: space-around;
+}
+
+.cerrar_carr {
+    font-size: 30px;
+    border: none;
+    cursor: pointer;
+    position: sticky;
+    justify-self: center;
+    width: 70%;
+    border: 3px solid black;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
+
+.cuenta thead th {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+    border-bottom: 3px solid black;
+    text-align: left;
+}
+
+.cuenta tfoot th {
+    position: sticky;
+    background-color: white;
+    border-top: 3px solid black;
+    padding: 1rem;
+    bottom: 0;
+    text-align: center;
+}
+
+.cuenta tfoot td {
+    position: sticky;
+    background-color: white;
+    border-top: 3px solid rgb(0, 0, 0);
+    bottom: 0;
+    text-align: left;
+    table-layout: fixed;
+}
+
+.cuenta td {
+    justify-content: center;
+}
+
+.cuenta tbody {
+    flex-grow: 1; /* Permite que tbody ocupe el espacio disponible */
+}
+
+.cuenta tfoot {
+    position: sticky;
+    bottom: 0; 
+}
+
+.datos-tabla{
+    padding: 1rem;
+    margin: 1rem;
+    background-color: white;
+    border-bottom: 3px solid black;
+}
+
+.enviar-t{
+    margin: 0.5rem;
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    border: 2px solid rgb(0, 0, 0);
+    padding: 3px;
+    cursor: pointer;
+    width: 95%;
+    align-items: center;
+}
+.enviar-t:active{
+    background-color:white;
+    transform: scale(0.95);
+}
+.opM hr{
+    border-color: rgb(255, 255, 255);
+}
+
+.datos-producto{
+    margin: 1rem;
+    display: block;
+}
+/*Zona de precio*/
+.precio{
+    display: flex;
+}
+
+/* Estilos para dispositivos móviles */
+
+@media (max-width: 400px) {
+    .sidebar {
+        margin-top: 7.5rem;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .producto {
+        width: 90%; /* Ancho reducido en dispositivos móviles */
+    }
+
+    h1 {
+        font-size: 20px; /* Tamaño de fuente del título */
+    }
+
+    .sidebar {
+        margin-top: 10rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .sidebar {
+        margin-top: 10rem;
+    }
+}
