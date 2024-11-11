@@ -35,6 +35,60 @@ server.post("/AgregarProductos",postProductos);
 server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecutando 
 
 
+/////////////////////////////// COMIENZA DESPAPAYE DE CHRISTIAN  ///////////////////
+
+// Configurar CORS y manejar el cuerpo de las solicitudes
+server.use(cors());
+server.use(express.json());
+
+// Simulamos las comandas como un array temporal (ESTO SE SUSTITUYE POR LA BASE DE DATOS)
+let comandas = [
+    {
+        mesa: 1,
+        pedido: [
+            { cantidad: 2, platillo: 'Hamburguesa' },
+            { cantidad: 1, platillo: 'Coca-Cola' }
+        ],
+        comentarios: 'Pedido rápido, por favor.'
+    },
+    {
+        mesa: 2,
+        pedido: [
+            { cantidad: 1, platillo: 'Pizza' }
+        ],
+        comentarios: 'Sin cebolla.'
+    }
+];
+
+// Ruta para obtener todas las comandas
+server.get('/api/comandas', (req, res) => {
+    res.json(comandas);  // Devuelve las comandas como un JSON
+});
+
+// Ruta para guardar una nueva comanda
+server.post('/api/comandas', (req, res) => {
+    const nuevaComanda = req.body;
+    comandas.push(nuevaComanda);
+    res.status(201).json({ message: 'Comanda guardada con éxito', comanda: nuevaComanda });
+});
+
+// Ruta para marcar una comanda como lista y moverla a historial
+server.delete('/api/comandas/:index', (req, res) => {
+    const index = parseInt(req.params.index, 10);
+    if (index >= 0 && index < comandas.length) {
+        comandas.splice(index, 1);
+        res.json({ message: 'Comanda marcada como lista y eliminada' });
+    } else {
+        res.status(404).json({ error: 'Comanda no encontrada' });
+    }
+});
+//////NOTA DESPUES ACOMODAMOS LAS RUTAS EN LA SECCION DE RUTAS, LAS TENGO AQUI SEPARADAS PARA NO MESCLAR CON LAS DEMAS PARTES DEL CODIGO /////
+
+////////////////////// TERMINA DESPAPAYE DE CHRISTIAN ///////////////////////
+
+
+
+
 // Configuración de directorios estáticos
 server.use(express.static(path.join(__dirname, 'Public')));
 server.use(express.static(path.join(__dirname, 'Img')));
