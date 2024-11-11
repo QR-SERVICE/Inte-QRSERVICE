@@ -39,9 +39,7 @@ server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecut
 server.use(express.static(path.join(__dirname, 'Public')));
 server.use(express.static(path.join(__dirname, 'Img')));
 server.use(cors());
-// a
-server.use('/Menu', express.static(path.join(__dirname, 'Menu')));
-server.use('/public', express.static(path.join(__dirname, 'Public')));
+
 
 // Rutas para las categorias de productos
 
