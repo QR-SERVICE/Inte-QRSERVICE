@@ -52,7 +52,7 @@ h1 {
 .nombreP {
     font-size: 20px;
     font-weight: bold;
-    margin: 10px 0;
+    margin: 5px 0;
     color: #ffd700; /* Nombre dorado */
 }
 
@@ -64,7 +64,7 @@ h1 {
 
 .botones {
     display: flex;
-    width: 80%;
+    width: 100%;
     height: auto;
     background-color: #333;
     justify-content: center;
@@ -113,17 +113,20 @@ h1 {
     background-color: rgb(0, 201, 0);
     transition-duration: 0.4s;
  }
- .button_del:hover{
+
+.button_del:hover{
     background-color: rgb(221, 0, 0);
     transition-duration: 0.4s;
     
  }
- .button_add:active {
+
+.button_add:active {
     background-color: rgb(0, 201, 0);
     box-shadow: 0 5px #666;
     transform: translateY(4px);
   }
- .button_del:active {
+
+.button_del:active {
     background-color: rgb(221, 0, 0);
     box-shadow: 0 5px #666;
     transform: translateY(4px);
