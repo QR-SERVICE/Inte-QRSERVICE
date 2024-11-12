@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" href="Img-prodcut.png" type="image/png">
+    <link rel="icon" href="Img-product.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entradas</title>
@@ -20,75 +20,75 @@
 
     <div class="menu-container"></div>
 
-    <div class="notis"><button class="abrir_notis" id="abrir-notis"><i class="bi bi-chat-dots"></i></button></div>
-            <div class="notificaciones" id="notificaciones">
-                <button class="cerrar-notis" id="cerrar-notis"><i class="bi bi-x-square"></i></button>
-                <button class="call-mesero" data-seccion="header" data-valor="Request waiter">Llamar mesero</button>
-                <button class="call-account" data-seccion="header" data-valor="Request Account">Solicitar cuenta</button>
-            </div>
-    <div id="menu-container" class="menu-container">    
+    <div class="notis">
+        <button class="abrir_notis" id="abrir-notis"><i class="bi bi-chat-dots"></i></button>
+    </div>
+    <div class="notificaciones" id="notificaciones">
+        <button class="cerrar-notis" id="cerrar-notis"><i class="bi bi-x-square"></i></button>
+        <button class="call-mesero" data-seccion="header" data-valor="Request waiter">Llamar mesero</button>
+        <button class="call-account" data-seccion="header" data-valor="Request Account">Solicitar cuenta</button>
     </div>
 
+    <div id="menu-container" class="menu-container"></div>
+
     <script>
+        // Arreglo para almacenar productos en el carrito
+        const carrito = [];
+
         // Realiza la solicitud a la API para obtener los productos
         fetch('/EntradasP')
-            .then(response => response.json()) // Convierte la respuesta en JSON
+            .then(response => response.json())
             .then(data => {
-                const menuContainer = document.getElementById("menu-container"); // Obtiene el contenedor
+                const menuContainer = document.getElementById("menu-container");
 
-                // Recorre cada producto recibido de la base de datos
-                data.forEach(entradas => {  
-                    // Crea el contenedor para cada producto
+                data.forEach(entradas => {
                     const productoDiv = document.createElement('div');
-                    productoDiv.classList.add('producto'); // Agrega la clase producto
+                    productoDiv.classList.add('producto');
 
-                    // Crea y agrega la imagen del producto
                     const productoImg = document.createElement('img');
-                    productoImg.src = `../entradas.img/${entradas.img}`;  // Usa la URL de la imagen de la base de datos
-                    productoImg.alt = entradas.nombre_producto; // Texto alternativo con el nombre del producto
-                    
-                    // Crea y agrega el nombre del producto
+                    productoImg.src = `../entradas.img/${entradas.img}`;
+                    productoImg.alt = entradas.nombre_producto;
+
                     const nombreP = document.createElement('div');
                     nombreP.classList.add('nombreP');
-                    nombreP.textContent = entradas.nombre_producto; // Nombre del producto
+                    nombreP.textContent = entradas.nombre_producto;
 
-                    // Crea y agrega la descripción del producto
                     const descripcionP = document.createElement('p');
                     descripcionP.classList.add('descripcion');
-                    descripcionP.textContent = entradas.descripcion; // Descripción del producto
+                    descripcionP.textContent = entradas.descripcion;
 
-                    // Crea y agrega el precio del producto
                     const precioP = document.createElement('div');
-                    precioP.classList.add('nombreP');
-                    precioP.textContent = `$${entradas.precio_producto}`; // Precio del producto
+                    precioP.classList.add('precio');
+                    precioP.textContent = `$${entradas.precio_producto}`;
 
-                    // Crear div de botones
                     const botones = document.createElement('div');
                     botones.classList.add('botones');
-                    
-                    // Boton eliminar
+
                     const button_del = document.createElement('button');
                     button_del.classList.add('button_del');
                     button_del.textContent = "-";
 
-                    // Boton añadir
                     const button_sum = document.createElement('button');
                     button_sum.classList.add('button_add');
                     button_sum.textContent = "+";
 
-                    // Agrega todos los elementos al contenedor de producto
+                    // Evento para agregar producto al carrito
+                    button_sum.addEventListener('click', () => {
+                        agregarAlCarrito(entradas);
+                    });
+
+                    // Evento para eliminar producto del carrito
+                    button_del.addEventListener('click', () => {
+                        eliminarDelCarrito(entradas);
+                    });
+
                     productoDiv.appendChild(productoImg);
                     productoDiv.appendChild(nombreP);
                     nombreP.appendChild(descripcionP);
-                    
                     productoDiv.appendChild(precioP);
-                    
                     botones.appendChild(button_del);
                     botones.appendChild(button_sum);
-
                     productoDiv.appendChild(botones);
-
-                    // Agrega el producto al contenedor principal
                     menuContainer.appendChild(productoDiv);
                 });
             })
@@ -96,22 +96,63 @@
                 console.error('Error al cargar los productos:', error);
             });
 
-            fetch('/Navbar')
+        fetch('/Navbar')
             .then(response => response.text())
             .then(data => {
-                // Insertar el HTML en el contenedor
                 document.getElementById('navbar-container').innerHTML = data;
 
-                // Crear un script para ejecutar el contenido JS de JMenu.js
                 const script = document.createElement('script');
-                script.src = '/JMenu.js';  // Ruta del script
+                script.src = '/JMenu.js';
                 script.onload = () => {
                     console.log('El script se cargó y ejecutó correctamente');
                 };
                 document.body.appendChild(script);
             })
             .catch(error => console.error('Error al cargar el navbar:', error));
+
+        // Función para agregar productos al carrito
+        function agregarAlCarrito(producto) {
+            carrito.push(producto);
+            actualizarNavbar();
+        }
+
+        // Función para eliminar productos del carrito
+        function eliminarDelCarrito(producto) {
+            const index = carrito.indexOf(producto);
+            if (index > -1) {
+                carrito.splice(index, 1);
+            }
+            actualizarNavbar();
+        }
+
+        // Función para actualizar el contenido del carrito en el navbar
+        function actualizarNavbar() {
+            const navbarContainer = document.getElementById('navbar-container');
+
+            // Encuentra o crea la sección de carrito en el navbar
+            let carritoContainer = navbarContainer.querySelector('.carrito-container');
+            if (!carritoContainer) {
+                carritoContainer = document.createElement('div');
+                carritoContainer.classList.add('carrito-container');
+                navbarContainer.appendChild(carritoContainer);
+            }
+            
+            carritoContainer.innerHTML = '<h3>Carrito</h3>'; 
+
+            // Añadir los productos del carrito
+            if (carrito.length === 0) {
+                carritoContainer.innerHTML += '<p>Carrito vacío</p>';
+            } else {
+                carrito.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.classList.add('carrito-item');
+                    itemDiv.textContent = `${item.nombre_producto} - $${item.precio_producto}`;
+                    carritoContainer.appendChild(itemDiv);
+                });
+            }
+        }
+
+        
     </script>
 </body>
-
 </html>
