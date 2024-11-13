@@ -28,9 +28,14 @@ server.get('/PostresP', getPostres);
 import { getEntradas } from './controlladores/Productos-BD.js'
 server.get('/EntradasP', getEntradas);
 
+import { getOrdenesBorradas } from './controlladores/Productos-BD.js'
+server.get('/Historial_ordenes', getOrdenesBorradas);
 
 import {postProductos} from './controlladores/Productos-BD.js'
 server.post("/AgregarProductos",postProductos);
+
+import {deleteProductos} from './controlladores/Productos-BD.js'
+server.delete("/EliminarProducto/:producDelete",deleteProductos);
 
 server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecutando 
 
@@ -94,44 +99,14 @@ server.use(express.static(path.join(__dirname, 'Public')));
 server.use(express.static(path.join(__dirname, 'Img')));
 server.use(cors());
 
-
-// Rutas para las categorias de productos
-
-
-// Rutas de administradores
-import {getAdministradores} from './controlladores/Administradores.js'
-server.get("/Administradores",getAdministradores);
-
-import {postAdministradores} from './controlladores/Administradores.js'
-server.post("/Administradores/Nuevos-Administradores",postAdministradores);
-
-// Rutas de mesas
-import {getMesas} from './controlladores/mesas.js'
-server.get("/mesas",getMesas);
-
-import {postMesa} from './controlladores/mesas.js'
-server.post("/mesas/Nueva-mesa",postMesa);
-
-// Rutas de productos
-import {getProducto} from './controlladores/Productos.js'
-server.get("/Productost",getProducto);
-
-// Rutas de pedidos
-import {getPedidos} from './controlladores/pedidos.js'
-server.get("/PedidosV",getPedidos);
-
-import {postPedidos} from './controlladores/pedidos.js'
-server.post("/Hacer-Pedido",postPedidos);
-
-
 // Rutas
-server.get("/", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'Productos_confi.html')))
+server.get("/productos", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'Productos_confi.html')))
 server.get("/confi", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'Configuraciones.html')))
 server.get("/Menu", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-Orden.HTML')))
 server.get("/Me", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-copy.HTML')))
 server.get("/Comandas", (req, res) => res.sendFile(path.join(__dirname, 'PantallaComandas', 'index.HTML')))
 server.get("/Pedidos", (req, res) => res.sendFile(path.join(__dirname, 'Pedidos', 'Historial_pedidos.HTML')))
-server.get("/Login", (req, res) => res.sendFile(path.join(__dirname, 'login', 'login.html')))
+server.get("/", (req, res) => res.sendFile(path.join(__dirname, 'login', 'login.html')))
 server.get("/Admin", (req, res) => res.sendFile(path.join(__dirname, 'login', 'admin.html')))
 
 //Rutas para los productos

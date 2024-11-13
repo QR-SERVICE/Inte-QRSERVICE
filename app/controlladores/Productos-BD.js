@@ -53,6 +53,17 @@ export const getPlatillos = async (req, res) => {
   }
 };
 
+// Función para obtener las ordenes que estan borradas
+export const getOrdenesBorradas = async (req, res) => {
+  try {
+    const [platillos] = await connectionPool.query("SELECT * FROM orden_borrada WHERE estatus = 0");
+    res.json(platillos);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Error al obtener los resultados" });
+  }
+};
+
 // Función para agregar un nuevo producto
 export const postProductos = async (req, res) => {
   const { nombre, categoria, precio, stock, descripcion, imgFile } = req.body;
@@ -65,5 +76,20 @@ export const postProductos = async (req, res) => {
   } catch (err) {
     console.error('Error al ejecutar la consulta:', err);
     res.status(500).send('Error al agregar el producto');
+  }
+};
+
+// Función para eliminar un producto
+export const deleteProductos = async (req, res) => {
+  const { producDelete } = req.params;
+  const query = 'DELETE FROM producto WHERE id_producto = ?;';
+  const params = [producDelete];
+
+  try {
+    const [results] = await connectionPool.query(query, params);
+    res.status(200).send('Producto eliminado exitosamente');
+  } catch (err) {
+    console.error('Error al ejecutar la consulta:', err);
+    res.status(500).send('Error al eliminar el producto');
   }
 };

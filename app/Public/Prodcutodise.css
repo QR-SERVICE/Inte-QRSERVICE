@@ -241,3 +241,20 @@ footer{
 .productTable th, .roductTable td {
     width: calc(100% / 3); /* Distribuye equitativamente las columnas */
 }
+
+.deleteButton{
+    height: 20px;
+    width: 100px;
+    cursor: pointer;
+    border: none;
+}
+.deleteButton:active{
+    height: 20px;
+    width: 102px;
+    background-color: #6e6868;
+    
+}
+.productStock{
+    display: flex;
+    justify-content: space-between;
+}
