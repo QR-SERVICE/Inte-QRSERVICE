@@ -79,6 +79,37 @@ export const postProductos = async (req, res) => {
   }
 };
 
+// Función para agregar un nuevo pedido
+export const postOrder = async (req, res) => {
+  const {cantidad} = req.body;
+  const {id_producto,id_orden} = req.params;
+  const query = 'CALL agregar_pedido(?, ?, ?)';
+  const params = [id_producto,cantidad,id_orden];
+
+  try {
+    const [results] = await connectionPool.query(query, params);
+    res.status(200).send('pedido creado exitosamente');
+  } catch (err) {
+    console.error('Error al ejecutar la consulta:', err);
+    res.status(500).send('Error al agregar el pedido');
+  }
+};
+
+// Función para eliminar un producto
+export const deletePedido = async (req, res) => {
+  const { pedidoDelete } = req.params;
+  const query = 'DELETE FROM pedido WHERE id_pedido = ?;';
+  const params = [pedidoDelete];
+
+  try {
+    const [results] = await connectionPool.query(query, params);
+    res.status(200).send('pedido eliminado exitosamente');
+  } catch (err) {
+    console.error('Error al ejecutar la consulta:', err);
+    res.status(500).send('Error al eliminar el pedido');
+  }
+};
+
 // Función para eliminar un producto
 export const deleteProductos = async (req, res) => {
   const { producDelete } = req.params;

@@ -25,10 +25,10 @@ server.get('/PlatillosP', getPlatillos);
 import { getPostres } from './controlladores/Productos-BD.js'
 server.get('/PostresP', getPostres);
 
-import { getEntradas } from './controlladores/Productos-BD.js'
+import {getEntradas } from './controlladores/Productos-BD.js'
 server.get('/EntradasP', getEntradas);
 
-import { getOrdenesBorradas } from './controlladores/Productos-BD.js'
+import {getOrdenesBorradas } from './controlladores/Productos-BD.js'
 server.get('/Historial_ordenes', getOrdenesBorradas);
 
 import {postProductos} from './controlladores/Productos-BD.js'
@@ -36,6 +36,12 @@ server.post("/AgregarProductos",postProductos);
 
 import {deleteProductos} from './controlladores/Productos-BD.js'
 server.delete("/EliminarProducto/:producDelete",deleteProductos);
+
+import {deletePedido} from './controlladores/Productos-BD.js'
+server.delete("/EliminarPedido/:pedidoDelete",deletePedido);
+
+import {postOrder} from './controlladores/Productos-BD.js'
+server.post("/pedidos/:id_producto/:id_orden",postOrder);
 
 server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecutando 
 
@@ -105,7 +111,7 @@ server.get("/confi", (req, res) => res.sendFile(path.join(__dirname, 'Configurac
 server.get("/Menu", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-Orden.HTML')))
 server.get("/Me", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-copy.HTML')))
 server.get("/Comandas", (req, res) => res.sendFile(path.join(__dirname, 'PantallaComandas', 'index.HTML')))
-server.get("/Pedidos", (req, res) => res.sendFile(path.join(__dirname, 'Pedidos', 'Historial_pedidos.HTML')))
+server.get("/Pedidos-completados", (req, res) => res.sendFile(path.join(__dirname, 'Pedidos', 'Historial_pedidos.HTML')))
 server.get("/", (req, res) => res.sendFile(path.join(__dirname, 'login', 'login.html')))
 server.get("/Admin", (req, res) => res.sendFile(path.join(__dirname, 'login', 'admin.html')))
 
