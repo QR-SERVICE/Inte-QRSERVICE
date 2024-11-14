@@ -81,10 +81,10 @@ export const postProductos = async (req, res) => {
 
 // Función para agregar un nuevo pedido
 export const postOrder = async (req, res) => {
-  const {cantidad} = req.body;
+  const {cantidad,comentario} = req.body;
   const {id_producto,id_orden} = req.params;
   const query = 'CALL agregar_pedido(?, ?, ?)';
-  const params = [id_producto,cantidad,id_orden];
+  const params = [id_producto,cantidad,id_orden,comentario];
 
   try {
     const [results] = await connectionPool.query(query, params);
