@@ -104,6 +104,7 @@
             .then(data => {
                 // Insertar el HTML en el contenedor
                 document.getElementById('navbar-configuracion').innerHTML = data;
+                document.getElementById("titulo").innerHTML = "Comandas Recientes";
 
                 // Crear un script para ejecutar el contenido JS de Producto.js
                 const script = document.createElement('script');
