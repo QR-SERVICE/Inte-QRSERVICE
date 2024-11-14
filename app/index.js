@@ -123,6 +123,8 @@ server.get("/Bebidas", (req, res) => res.sendFile(path.join(__dirname, 'Menu', '
 
 // ruta para la navbar
 server.get("/Navbar", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'navbar.html')));
+// Navbar configuracion
+server.get("/NavbarConfiguracion", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'navbarconfiguracion.html')));
 
 // Inicia el servidor
 server.listen(server.get('PORT'), () => {

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/Prodcutodise.css">
+    <link rel="stylesheet" href="/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
 </head>
@@ -15,34 +15,7 @@
     </datalist> 
 
     <header>
-        <nav class="navbar-logo">
-            <div class="container-logo">
-                <img src="/Img-prodcut.png" class="Logo" alt="Logo_QRService">
-                <h1 class="logo"><a href="/">Agregar productos</a></h1>
-            </div>       
-            <ul class="nav">
-                <li>                        
-                    <a href="/Me">
-                        <span> Menu </span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/Comandas" data-seccion="header" data-valor="drinks" data-categoria="bebidas" class="menu-boton" id="menu-bebidas" >
-                        <span> Comandas </span>
-                    </a>
-                <li>                            
-                    <a href="/Pedidos" data-seccion="header" data-valor="drinks" data-categoria="bebidas" class="menu-boton" id="menu-bebidas" >
-                        <span> Pedidos </span>
-                    </a>
-                </li>
-                <li>
-                </li>
-                <li>
-                    <button class="lang-button" data-language="es">ESPAÑOL</button>
-                    <button class="lang-button" data-language="en">ENGLISH</button>
-                </li>
-                </ul>
-            </nav>
+        <div id="navbar-configuracion" class="navbar-configuracion"></div>
     </header>
 
     <div class="Datos">
@@ -110,6 +83,22 @@ document.getElementById("agreg_pro").addEventListener('click', async () => {
         alert('Se agrego el producto correctamente');
     }
 });
+
+    fetch('/NavbarConfiguracion')
+           .then(response => response.text())
+           .then(data => {
+               // Insertar el HTML en el contenedor
+               document.getElementById('navbar-configuracion').innerHTML = data;
+
+               // Crear un script para ejecutar el contenido JS de Producto.js
+               const script = document.createElement('script');
+               script.src = '/Producto.js';  // Ruta del script
+               script.onload = () => {
+                   console.log('El script se cargó y ejecutó correctamente');
+               };
+               document.body.appendChild(script);
+           })
+           .catch(error => console.error('Error al cargar el navbar:', error));
 
 </script>
 <footer>
