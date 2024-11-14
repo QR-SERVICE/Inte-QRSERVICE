@@ -257,3 +257,11 @@ fetch("/BebidasP")
     .catch(error => {
         console.error('Error al cargar los productos:', error);
     });
+
+    // Boton para abrir la sidebar
+    const menu = document.getElementById('menu-btn');
+    const sidebar = document.getElementById('sidebar');
+
+    menu.addEventListener('click', () => {
+        sidebar.classList.toggle('menu-toggle');
+    })
