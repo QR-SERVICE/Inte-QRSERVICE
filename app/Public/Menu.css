@@ -560,12 +560,14 @@ li{
         }
 
         .descripcion {
-            color: #555;
+            color: #ffffff;
+            font-family: serif;
         }
 
         .precio {
             font-size: 20px;
-            color: #333;
+            color: #ffffff;
+            font-family: serif;
         }
 
         .botones {
