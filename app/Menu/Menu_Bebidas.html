@@ -15,79 +15,88 @@
     <a href="/Me"><h1>The Menu</h1></a>
 </header>
 
- <!-- Navbar -->
- <div id="navbar-container"></div>
-
-<!-- Menu -->
-<div class="menu-container" id="menu-container"></div>
-
-<div class="notis"><button class="abrir_notis" id="abrir-notis"><i class="bi bi-chat-dots"></i></button></div>
-    <div class="notificaciones" id="notificaciones">
+<div class="notis">
+    <button class="abrir_notis" id="abrir-notis"><i class="bi bi-chat-dots"></i></button>
+</div>
+<div class="notificaciones" id="notificaciones">
     <button class="cerrar-notis" id="cerrar-notis"><i class="bi bi-x-square"></i></button>
     <button class="call-mesero" data-seccion="header" data-valor="Request waiter">Llamar mesero</button>
     <button class="call-account" data-seccion="header" data-valor="Request Account">Solicitar cuenta</button>
 </div>
 
+<div id="navbar-container"></div>
+<div class="menu-container" id="menu-container"></div>
+
+<!-- Botón de menú -->
+<button id="menu-btn"><i class="fas fa-bars"></i></button>
+
+<!-- Ventana Modal de productos del carrito -->
+<div id="cartModal" class="modal">
+    <div class="modal-content">
+        <button class="close-btn" id="close-modal">Cerrar</button>
+        <h2>Carrito de Compras</h2>
+        <div id="productos-modal"></div>
+        <div id="total-modal"></div>
+        <button id="vaciar-carrito">Vaciar Carrito</button>
+        <button id="enviar-carrito">Enviar Pedido</button>
+    </div>
+</div>
+
 <script>
+    const carrito = [];
+
     // Realiza la solicitud a la API para obtener los productos
     fetch('/BebidasP')
-        .then(response => response.json()) // Convierte la respuesta en JSON
+        .then(response => response.json())
         .then(data => {
-            const menuContainer = document.getElementById("menu-container"); // Obtiene el contenedor
+            const menuContainer = document.getElementById("menu-container");
 
-            // Recorre cada producto recibido de la base de datos
             data.forEach(bebidas => {
-                // Crea el contenedor para cada producto
                 const productoDiv = document.createElement('div');
-                productoDiv.classList.add('producto'); // Agrega la clase producto
+                productoDiv.classList.add('producto');
 
-                // Crea y agrega la imagen del producto
                 const productoImg = document.createElement('img');
-                productoImg.src = `../bebidas.img/${bebidas.img}`;  // Usa la URL de la imagen de la base de datos
-                productoImg.alt = bebidas.nombre_producto; // Texto alternativo con el nombre del producto
-                
-                // Crea y agrega el nombre del producto
+                productoImg.src = `../bebidas.img/${bebidas.img}`;
+                productoImg.alt = bebidas.nombre_producto;
+
                 const nombreP = document.createElement('div');
                 nombreP.classList.add('nombreP');
-                nombreP.textContent = bebidas.nombre_producto; // Nombre del producto
+                nombreP.textContent = bebidas.nombre_producto;
 
-                // Crea y agrega la descripción del producto
                 const descripcionP = document.createElement('p');
                 descripcionP.classList.add('descripcion');
-                descripcionP.textContent = bebidas.descripcion; // Descripción del producto
+                descripcionP.textContent = bebidas.descripcion;
 
-                // Crea y agrega el precio del producto
                 const precioP = document.createElement('div');
-                precioP.classList.add('nombreP');
-                precioP.textContent = `$${bebidas.precio_producto}`; // Precio del producto
+                precioP.classList.add('precio');
+                precioP.textContent = `$${bebidas.precio_producto}`;
 
-                // Crear div de botones
                 const botones = document.createElement('div');
                 botones.classList.add('botones');
-                    
-                // Boton eliminar
+
                 const button_del = document.createElement('button');
                 button_del.classList.add('button_del');
                 button_del.textContent = "-";
-
-                // Boton añadir
+                
                 const button_sum = document.createElement('button');
                 button_sum.classList.add('button_add');
                 button_sum.textContent = "+";
 
-                // Agrega todos los elementos al contenedor de producto
+                button_sum.addEventListener('click', () => {
+                    agregarAlCarrito(bebidas);
+                });
+
+                button_del.addEventListener('click', () => {
+                    eliminarDelCarrito(bebidas);
+                });
+
                 productoDiv.appendChild(productoImg);
                 productoDiv.appendChild(nombreP);
                 nombreP.appendChild(descripcionP);
-                    
                 productoDiv.appendChild(precioP);
-
                 botones.appendChild(button_del);
                 botones.appendChild(button_sum);
-
                 productoDiv.appendChild(botones);
-
-                // Agrega el producto al contenedor principal
                 menuContainer.appendChild(productoDiv);
             });
         })
@@ -95,22 +104,118 @@
             console.error('Error al cargar los productos:', error);
         });
 
-        fetch('/Navbar')
-            .then(response => response.text())
-            .then(data => {
-                // Insertar el HTML en el contenedor
-                document.getElementById('navbar-container').innerHTML = data;
+        function agregarAlCarrito(producto) {
+        const productoExistente = carrito.find(item => item.nombre_producto === producto.nombre_producto);
 
-                // Crear un script para ejecutar el contenido JS de JMenu.js
-                const script = document.createElement('script');
-                script.src = '/JMenu.js';  // Ruta del script
-                script.onload = () => {
-                    console.log('El script se cargó y ejecutó correctamente');
-                };
-                document.body.appendChild(script);
+        if (productoExistente) {
+            productoExistente.cantidad++;
+        } else {
+            carrito.push({ ...producto, cantidad: 1 });
+        }
+
+        mostrarCarrito();
+    }
+
+    function eliminarDelCarrito(producto) {
+        const index = carrito.findIndex(item => item.nombre_producto === producto.nombre_producto);
+        if (index !== -1) {
+            carrito.splice(index, 1);
+        }
+        mostrarCarrito();
+    }
+
+    function mostrarCarrito() {
+        const productosModal = document.getElementById("productos-modal");
+        const totalModal = document.getElementById("total-modal");
+        productosModal.innerHTML = '';
+        let total = 0;
+
+        carrito.forEach(producto => {
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('carrito-item');
+            itemDiv.textContent = `${producto.nombre_producto} x${producto.cantidad} - $${producto.precio_producto * producto.cantidad}`;
+            productosModal.appendChild(itemDiv);
+            total += producto.precio_producto * producto.cantidad;
+        });
+
+        totalModal.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    document.getElementById('menu-btn').addEventListener('click', () => {
+        const modal = document.getElementById("cartModal");
+        modal.style.display = 'flex';
+    });
+
+    document.getElementById('close-modal').addEventListener('click', () => {
+        const modal = document.getElementById("cartModal");
+        modal.style.display = 'none';
+    });
+
+    document.getElementById('vaciar-carrito').addEventListener('click', () => {
+        carrito.length = 0;
+        mostrarCarrito();
+    });
+
+    // Seleccionamos los elementos necesarios
+const abrirNotis = document.getElementById('abrir-notis');
+const cerrarNotis = document.getElementById('cerrar-notis');
+const notificaciones = document.getElementById('notificaciones');
+const callMesero = document.querySelector('.call-mesero');
+const callAccount = document.querySelector('.call-account');
+
+// Función para mostrar el menú de notificaciones
+abrirNotis.addEventListener('click', function() {
+    notificaciones.style.display = 'block';
+});
+
+// Función para ocultar el menú de notificaciones
+cerrarNotis.addEventListener('click', function() {
+    notificaciones.style.display = 'none';
+});
+
+// Cerrar el menú cuando se hace clic fuera de él
+document.addEventListener('click', function(event) {
+    if (notificaciones.style.display === 'block' && 
+        !notificaciones.contains(event.target) && 
+        event.target !== abrirNotis) {
+        notificaciones.style.display = 'none';
+    }
+});
+
+// Alerta al hacer clic en "Llamar mesero"
+callMesero.addEventListener('click', function() {
+    alert('Llamé al mesero');
+});
+
+// Alerta al hacer clic en "Solicitar cuenta"
+callAccount.addEventListener('click', function() {
+    alert('Llamé para pedir la cuenta');
+});
+
+
+    document.getElementById('enviar-carrito').addEventListener('click', () => {
+        fetch('/api/pedir', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                productos: carrito,
+                total: carrito.reduce((total, item) => total + (item.precio_producto * item.cantidad), 0)
             })
-            .catch(error => console.error('Error al cargar el navbar:', error));
-</script>
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Pedido enviado exitosamente!");
+            carrito.length = 0;
+            mostrarCarrito();
+        })
+        .catch(error => {
+            alert("Hubo un problema al enviar el pedido.");
+        });
+    });
 
+        
+</script>
 </body>
 </html>

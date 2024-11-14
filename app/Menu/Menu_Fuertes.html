@@ -16,6 +16,15 @@
     <a href="/Me"><h1>The Menu</h1></a>
 </header>
 
+<div class="notis">
+    <button class="abrir_notis" id="abrir-notis"><i class="bi bi-chat-dots"></i></button>
+</div>
+<div class="notificaciones" id="notificaciones">
+    <button class="cerrar-notis" id="cerrar-notis"><i class="bi bi-x-square"></i></button>
+    <button class="call-mesero" data-seccion="header" data-valor="Request waiter">Llamar mesero</button>
+    <button class="call-account" data-seccion="header" data-valor="Request Account">Solicitar cuenta</button>
+</div>
+
 <div id="navbar-container"></div>
 <div class="menu-container" id="menu-container"></div>
 
@@ -147,6 +156,43 @@
         carrito.length = 0;
         mostrarCarrito();
     });
+
+    // Seleccionamos los elementos necesarios
+const abrirNotis = document.getElementById('abrir-notis');
+const cerrarNotis = document.getElementById('cerrar-notis');
+const notificaciones = document.getElementById('notificaciones');
+const callMesero = document.querySelector('.call-mesero');
+const callAccount = document.querySelector('.call-account');
+
+// Función para mostrar el menú de notificaciones
+abrirNotis.addEventListener('click', function() {
+    notificaciones.style.display = 'block';
+});
+
+// Función para ocultar el menú de notificaciones
+cerrarNotis.addEventListener('click', function() {
+    notificaciones.style.display = 'none';
+});
+
+// Cerrar el menú cuando se hace clic fuera de él
+document.addEventListener('click', function(event) {
+    if (notificaciones.style.display === 'block' && 
+        !notificaciones.contains(event.target) && 
+        event.target !== abrirNotis) {
+        notificaciones.style.display = 'none';
+    }
+});
+
+// Alerta al hacer clic en "Llamar mesero"
+callMesero.addEventListener('click', function() {
+    alert('Llamé al mesero');
+});
+
+// Alerta al hacer clic en "Solicitar cuenta"
+callAccount.addEventListener('click', function() {
+    alert('Llamé para pedir la cuenta');
+});
+
 
     document.getElementById('enviar-carrito').addEventListener('click', () => {
         fetch('/api/pedir', {

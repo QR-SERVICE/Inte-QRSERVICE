@@ -15,21 +15,33 @@
         <a href="/Me"><h1>The Menu</h1></a>
     </header>
 
-    <!-- Navbar -->
-    <div id="navbar-container"></div>
+<!-- Navbar -->
+<div id="navbar-container"></div>
 
-    <div class="menu-container"></div>
+<!-- Menu -->
+<div class="menu-container" id="menu-container"></div>
 
-    <div class="notis">
-        <button class="abrir_notis" id="abrir-notis"><i class="bi bi-chat-dots"></i></button>
-    </div>
+<div class="notis"><button class="abrir_notis" id="abrir-notis"><i class="bi bi-chat-dots"></i></button></div>
     <div class="notificaciones" id="notificaciones">
-        <button class="cerrar-notis" id="cerrar-notis"><i class="bi bi-x-square"></i></button>
-        <button class="call-mesero" data-seccion="header" data-valor="Request waiter">Llamar mesero</button>
-        <button class="call-account" data-seccion="header" data-valor="Request Account">Solicitar cuenta</button>
-    </div>
+    <button class="cerrar-notis" id="cerrar-notis"><i class="bi bi-x-square"></i></button>
+    <button class="call-mesero" data-seccion="header" data-valor="Request waiter">Llamar mesero</button>
+    <button class="call-account" data-seccion="header" data-valor="Request Account">Solicitar cuenta</button>
+</div>
 
-    <div id="menu-container" class="menu-container"></div>
+<!-- Botón de menú -->
+<button id="menu-btn"><i class="fas fa-bars"></i></button>
+
+<!-- Ventana Modal de productos del carrito -->
+<div id="cartModal" class="modal">
+    <div class="modal-content">
+        <button class="close-btn" id="close-modal">Cerrar</button>
+        <h2>Carrito de Compras</h2>
+        <div id="productos-modal"></div>
+        <div id="total-modal"></div>
+        <button id="vaciar-carrito">Vaciar Carrito</button>
+        <button id="enviar-carrito">Enviar Pedido</button>
+    </div>
+</div>
 
     <script>
         // Arreglo para almacenar productos en el carrito
@@ -96,61 +108,116 @@
                 console.error('Error al cargar los productos:', error);
             });
 
-        fetch('/Navbar')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-container').innerHTML = data;
+            function agregarAlCarrito(producto) {
+        const productoExistente = carrito.find(item => item.nombre_producto === producto.nombre_producto);
 
-                const script = document.createElement('script');
-                script.src = '/JMenu.js';
-                script.onload = () => {
-                    console.log('El script se cargó y ejecutó correctamente');
-                };
-                document.body.appendChild(script);
+        if (productoExistente) {
+            productoExistente.cantidad++;
+        } else {
+            carrito.push({ ...producto, cantidad: 1 });
+        }
+
+        mostrarCarrito();
+    }
+
+    function eliminarDelCarrito(producto) {
+        const index = carrito.findIndex(item => item.nombre_producto === producto.nombre_producto);
+        if (index !== -1) {
+            carrito.splice(index, 1);
+        }
+        mostrarCarrito();
+    }
+
+    function mostrarCarrito() {
+        const productosModal = document.getElementById("productos-modal");
+        const totalModal = document.getElementById("total-modal");
+        productosModal.innerHTML = '';
+        let total = 0;
+
+        carrito.forEach(producto => {
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('carrito-item');
+            itemDiv.textContent = `${producto.nombre_producto} x${producto.cantidad} - $${producto.precio_producto * producto.cantidad}`;
+            productosModal.appendChild(itemDiv);
+            total += producto.precio_producto * producto.cantidad;
+        });
+
+        totalModal.textContent = `Total: $${total.toFixed(2)}`;
+    }
+
+    document.getElementById('menu-btn').addEventListener('click', () => {
+        const modal = document.getElementById("cartModal");
+        modal.style.display = 'flex';
+    });
+
+    document.getElementById('close-modal').addEventListener('click', () => {
+        const modal = document.getElementById("cartModal");
+        modal.style.display = 'none';
+    });
+
+    document.getElementById('vaciar-carrito').addEventListener('click', () => {
+        carrito.length = 0;
+        mostrarCarrito();
+    });
+
+    // Seleccionamos los elementos necesarios
+const abrirNotis = document.getElementById('abrir-notis');
+const cerrarNotis = document.getElementById('cerrar-notis');
+const notificaciones = document.getElementById('notificaciones');
+const callMesero = document.querySelector('.call-mesero');
+const callAccount = document.querySelector('.call-account');
+
+// Función para mostrar el menú de notificaciones
+abrirNotis.addEventListener('click', function() {
+    notificaciones.style.display = 'block';
+});
+
+// Función para ocultar el menú de notificaciones
+cerrarNotis.addEventListener('click', function() {
+    notificaciones.style.display = 'none';
+});
+
+// Cerrar el menú cuando se hace clic fuera de él
+document.addEventListener('click', function(event) {
+    if (notificaciones.style.display === 'block' && 
+        !notificaciones.contains(event.target) && 
+        event.target !== abrirNotis) {
+        notificaciones.style.display = 'none';
+    }
+});
+
+// Alerta al hacer clic en "Llamar mesero"
+callMesero.addEventListener('click', function() {
+    alert('Llamé al mesero');
+});
+
+// Alerta al hacer clic en "Solicitar cuenta"
+callAccount.addEventListener('click', function() {
+    alert('Llamé para pedir la cuenta');
+});
+
+
+    document.getElementById('enviar-carrito').addEventListener('click', () => {
+        fetch('/api/pedir', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                productos: carrito,
+                total: carrito.reduce((total, item) => total + (item.precio_producto * item.cantidad), 0)
             })
-            .catch(error => console.error('Error al cargar el navbar:', error));
-
-        // Función para agregar productos al carrito
-        function agregarAlCarrito(producto) {
-            carrito.push(producto);
-            actualizarNavbar();
-        }
-
-        // Función para eliminar productos del carrito
-        function eliminarDelCarrito(producto) {
-            const index = carrito.indexOf(producto);
-            if (index > -1) {
-                carrito.splice(index, 1);
-            }
-            actualizarNavbar();
-        }
-
-        // Función para actualizar el contenido del carrito en el navbar
-        function actualizarNavbar() {
-            const navbarContainer = document.getElementById('navbar-container');
-
-            // Encuentra o crea la sección de carrito en el navbar
-            let carritoContainer = navbarContainer.querySelector('.carrito-container');
-            if (!carritoContainer) {
-                carritoContainer = document.createElement('div');
-                carritoContainer.classList.add('carrito-container');
-                navbarContainer.appendChild(carritoContainer);
-            }
-            
-            carritoContainer.innerHTML = '<h3>Carrito</h3>'; 
-
-            // Añadir los productos del carrito
-            if (carrito.length === 0) {
-                carritoContainer.innerHTML += '<p>Carrito vacío</p>';
-            } else {
-                carrito.forEach(item => {
-                    const itemDiv = document.createElement('div');
-                    itemDiv.classList.add('carrito-item');
-                    itemDiv.textContent = `${item.nombre_producto} - $${item.precio_producto}`;
-                    carritoContainer.appendChild(itemDiv);
-                });
-            }
-        }
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Pedido enviado exitosamente!");
+            carrito.length = 0;
+            mostrarCarrito();
+        })
+        .catch(error => {
+            alert("Hubo un problema al enviar el pedido.");
+        });
+    });
 
         
     </script>
