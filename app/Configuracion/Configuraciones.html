@@ -9,6 +9,8 @@
 <body>
     
     <header>
+        <!-- navbar configuracion-->
+        <!-- <div id="navbar-configuracion" class="navbar-configuracion"></div> --> 
 
         <div class="header-left">
             <a href="/Configuracion/Configuraciones.html" class="Logo-button">
@@ -65,6 +67,22 @@
         </div>
 
     </div>
-
 </body>
+<script>
+    fetch('/NavbarConfiguracion')
+           .then(response => response.text())
+           .then(data => {
+               // Insertar el HTML en el contenedor
+               document.getElementById('navbar-configuracion').innerHTML = data;
+
+               // Crear un script para ejecutar el contenido JS de Producto.js
+               const script = document.createElement('script');
+               script.src = '/Producto.js';  // Ruta del script
+               script.onload = () => {
+                   console.log('El script se cargó y ejecutó correctamente');
+               };
+               document.body.appendChild(script);
+           })
+           .catch(error => console.error('Error al cargar el navbar:', error));
+   </script>
 </html>

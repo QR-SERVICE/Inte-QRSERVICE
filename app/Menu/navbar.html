@@ -60,18 +60,35 @@
                 </div> 
             </ul>
 
-        <!-- Ventana Modal de productos del carrito -->
-        <div id="cartModal" class="modal">
-            <div class="modal-content">
-                <button class="close-btn" id="close-modal">Cerrar</button>
-                <h2>Carrito de Compras</h2>
-                <div id="productos-modal"></div>
-                <div id="total-modal"></div>
-                <button id="vaciar-carrito">Vaciar Carrito</button>
-                <button id="enviar-carrito">Enviar Pedido</button>
+            <div id="carrito" class="carrito">
+                <table class="cuenta" id="cuenta">
+                    <thead>
+                        <tr>
+                            <th class="datos-tabla" id="datos-tabla"> Productos Precio </th>
+                            <th><button id="cerrar_carr" class="cerrar_carr"><i class="fa-solid fa-x"></i></button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="productos_orden" id="productos_orden">
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>TOTAL:</th>
+                            <th id="TOTAL" class="TOTAL"></th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button class="enviar-t" id="enviar-t">Enviar</button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
-        </div>
         </nav>
     </div>
 </body>
+
+<script>
+</script>
 </html>

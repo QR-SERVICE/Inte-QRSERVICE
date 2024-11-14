@@ -123,21 +123,10 @@ server.get("/Bebidas", (req, res) => res.sendFile(path.join(__dirname, 'Menu', '
 
 // ruta para la navbar
 server.get("/Navbar", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'navbar.html')));
+// Navbar configuracion
+server.get("/NavbarConfiguracion", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'navbarconfiguracion.html')));
 
 // Inicia el servidor
 server.listen(server.get('PORT'), () => {
     console.log(`Servidor corriendo en http://localhost:${server.get('PORT')}`);
 });
-
-/* JSON Para el funcionamiento de las imagenes.
-
-const ImgJson =[
-    {nombre: "Juan", foto: "https://www.unileverfoodsolutions.com.co/dam/global-ufs/mcos/NOLA/calcmenu/recipes/col-recipies/fruco-tomate-cocineros/HAMBURGUESA%201200x709.png"}
-];
-
-const Pro_img =[
-    {}
-]
-
-app.get("/", (req, res) => res.json(ImgJson[0]));
-app.get("/prueba1", (req, res) => res.json(ImgJson[1]));*/
