@@ -43,8 +43,6 @@
 </div>
 
 <script>
-    const carrito = [];
-
     // Realiza la solicitud a la API para obtener los productos
     fetch('/BebidasP')
         .then(response => response.json())
@@ -104,118 +102,21 @@
             console.error('Error al cargar los productos:', error);
         });
 
-        function agregarAlCarrito(producto) {
-        const productoExistente = carrito.find(item => item.nombre_producto === producto.nombre_producto);
+        fetch('/Navbar')
+            .then(response => response.text())
+            .then(data => {
+                // Insertar el HTML en el contenedor
+                document.getElementById('navbar-container').innerHTML = data;
 
-        if (productoExistente) {
-            productoExistente.cantidad++;
-        } else {
-            carrito.push({ ...producto, cantidad: 1 });
-        }
-
-        mostrarCarrito();
-    }
-
-    function eliminarDelCarrito(producto) {
-        const index = carrito.findIndex(item => item.nombre_producto === producto.nombre_producto);
-        if (index !== -1) {
-            carrito.splice(index, 1);
-        }
-        mostrarCarrito();
-    }
-
-    function mostrarCarrito() {
-        const productosModal = document.getElementById("productos-modal");
-        const totalModal = document.getElementById("total-modal");
-        productosModal.innerHTML = '';
-        let total = 0;
-
-        carrito.forEach(producto => {
-            const itemDiv = document.createElement('div');
-            itemDiv.classList.add('carrito-item');
-            itemDiv.textContent = `${producto.nombre_producto} x${producto.cantidad} - $${producto.precio_producto * producto.cantidad}`;
-            productosModal.appendChild(itemDiv);
-            total += producto.precio_producto * producto.cantidad;
-        });
-
-        totalModal.textContent = `Total: $${total.toFixed(2)}`;
-    }
-
-    document.getElementById('menu-btn').addEventListener('click', () => {
-        const modal = document.getElementById("cartModal");
-        modal.style.display = 'flex';
-    });
-
-    document.getElementById('close-modal').addEventListener('click', () => {
-        const modal = document.getElementById("cartModal");
-        modal.style.display = 'none';
-    });
-
-    document.getElementById('vaciar-carrito').addEventListener('click', () => {
-        carrito.length = 0;
-        mostrarCarrito();
-    });
-
-    // Seleccionamos los elementos necesarios
-const abrirNotis = document.getElementById('abrir-notis');
-const cerrarNotis = document.getElementById('cerrar-notis');
-const notificaciones = document.getElementById('notificaciones');
-const callMesero = document.querySelector('.call-mesero');
-const callAccount = document.querySelector('.call-account');
-
-// Función para mostrar el menú de notificaciones
-abrirNotis.addEventListener('click', function() {
-    notificaciones.style.display = 'block';
-});
-
-// Función para ocultar el menú de notificaciones
-cerrarNotis.addEventListener('click', function() {
-    notificaciones.style.display = 'none';
-});
-
-// Cerrar el menú cuando se hace clic fuera de él
-document.addEventListener('click', function(event) {
-    if (notificaciones.style.display === 'block' && 
-        !notificaciones.contains(event.target) && 
-        event.target !== abrirNotis) {
-        notificaciones.style.display = 'none';
-    }
-});
-
-// Alerta al hacer clic en "Llamar mesero"
-callMesero.addEventListener('click', function() {
-    alert('Llamé al mesero');
-});
-
-// Alerta al hacer clic en "Solicitar cuenta"
-callAccount.addEventListener('click', function() {
-    alert('Llamé para pedir la cuenta');
-});
-
-
-    document.getElementById('enviar-carrito').addEventListener('click', () => {
-        fetch('/api/pedir', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                productos: carrito,
-                total: carrito.reduce((total, item) => total + (item.precio_producto * item.cantidad), 0)
+                // Crear un script para ejecutar el contenido JS de JMenu.js
+                const script = document.createElement('script');
+                script.src = '/JMenu.js';  // Ruta del script
+                script.onload = () => {
+                    console.log('El script se cargó y ejecutó correctamente');
+                };
+                document.body.appendChild(script);
             })
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert("Pedido enviado exitosamente!");
-            carrito.length = 0;
-            mostrarCarrito();
-        })
-        .catch(error => {
-            alert("Hubo un problema al enviar el pedido.");
-        });
-    });
-
-        
+            .catch(error => console.error('Error al cargar el navbar:', error));
 </script>
 </body>
 </html>

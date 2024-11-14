@@ -6,6 +6,132 @@ menu.addEventListener('click', () => {
     sidebar.classList.toggle('menu-toggle');
 })
 
+// Carrito
+
+const carrito_cant = [];
+
+function agregarAlCarrito(producto) {
+    const productoExistente = carrito.find(item => item.nombre_producto === producto.nombre_producto);
+
+    if (productoExistente) {
+        productoExistente.cantidad++;
+    } else {
+        carrito.push({ ...producto, cantidad: 1 });
+    }
+
+    mostrarCarrito();
+}
+
+function eliminarDelCarrito(producto) {
+    const index = carrito.findIndex(item => item.nombre_producto === producto.nombre_producto);
+    if (index !== -1) {
+        carrito.splice(index, 1);
+    }
+    mostrarCarrito();
+}
+
+
+function eliminarDelCarrito(producto) {
+    const index = carrito.findIndex(item => item.nombre_producto === producto.nombre_producto);
+    if (index !== -1) {
+        carrito.splice(index, 1);
+    }
+    mostrarCarrito();
+}
+
+function mostrarCarrito() {
+    const productosModal = document.getElementById("productos-modal");
+    const totalModal = document.getElementById("total-modal");
+    productosModal.innerHTML = '';
+    let total = 0;
+
+    carrito.forEach(producto => {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('carrito-item');
+        itemDiv.textContent = `${producto.nombre_producto} x${producto.cantidad} - $${producto.precio_producto * producto.cantidad}`;
+        productosModal.appendChild(itemDiv);
+        total += producto.precio_producto * producto.cantidad;
+    });
+
+    totalModal.textContent = `Total: $${total.toFixed(2)}`;
+}
+
+document.getElementById('menu-btn').addEventListener('click', () => {
+    const modal = document.getElementById("cartModal");
+    modal.style.display = 'flex';
+});
+
+document.getElementById('close-modal').addEventListener('click', () => {
+    const modal = document.getElementById("cartModal");
+    modal.style.display = 'none';
+});
+
+document.getElementById('vaciar-carrito').addEventListener('click', () => {
+    carrito.length = 0;
+    mostrarCarrito();
+});
+
+// Seleccionamos los elementos necesarios
+const abrirNotis = document.getElementById('abrir-notis');
+const cerrarNotis = document.getElementById('cerrar-notis');
+const notificaciones = document.getElementById('notificaciones');
+const callMesero = document.querySelector('.call-mesero');
+const callAccount = document.querySelector('.call-account');
+
+// Función para mostrar el menú de notificaciones
+abrirNotis.addEventListener('click', function() {
+notificaciones.style.display = 'block';
+});
+
+// Función para ocultar el menú de notificaciones
+cerrarNotis.addEventListener('click', function() {
+notificaciones.style.display = 'none';
+});
+
+// Cerrar el menú cuando se hace clic fuera de él
+document.addEventListener('click', function(event) {
+if (notificaciones.style.display === 'block' && 
+    !notificaciones.contains(event.target) && 
+    event.target !== abrirNotis) {
+    notificaciones.style.display = 'none';
+}
+});
+
+// Alerta al hacer clic en "Llamar mesero"
+callMesero.addEventListener('click', function() {
+alert('Llamé al mesero');
+});
+
+// Alerta al hacer clic en "Solicitar cuenta"
+callAccount.addEventListener('click', function() {
+alert('Llamé para pedir la cuenta');
+});
+
+
+document.getElementById('enviar-carrito').addEventListener('click', () => {
+    fetch('/api/pedir', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            productos: carrito,
+            total: carrito.reduce((total, item) => total + (item.precio_producto * item.cantidad), 0)
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert("Pedido enviado exitosamente!");
+        carrito.length = 0;
+        mostrarCarrito();
+    })
+    .catch(error => {
+        alert("Hubo un problema al enviar el pedido.");
+    });
+});
+
+    
+
 // cambiar estado de seleccionado en el menu
 const menuButtons = document.querySelectorAll('.menu-boton');
 
@@ -48,24 +174,6 @@ NoVer.addEventListener("click", () => {
         carrito.style.display = 'none'; 
     }, { once: true }); 
 });
-// Boton para mostrar las opciones de notificaciones
-
-const notificaciones = document.getElementById("notificaciones");
-const cerrar_notis = document.getElementById("cerrar-notis");
-const abrir_notis = document.getElementById("abrir-notis");
-
-abrir_notis.addEventListener("click", () => {
-    notificaciones.style.display = 'block'; 
-    notificaciones.style.zIndex = 1; 
-    setTimeout(() => {
-        notificaciones.classList.add("visible"); 
-    }, 10); 
-})
-
-cerrar_notis.addEventListener("click", () => {
-    notificaciones.classList.remove("visible");
-})
-
 
 // Boton de traduccion
 const langButtons = document.querySelectorAll("[data-language]");
