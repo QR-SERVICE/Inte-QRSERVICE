@@ -4,8 +4,8 @@ import mysql2 from 'mysql2';
 const connectionPool = mysql2.createPool({
     host: "localhost",
     user: "root",
-    password: "277353",
-    port: 3306,
+    password: "Bufetero21",
+    port: 3307,
     database: "QuickRestaurant"
 }).promise(); // Agrega .promise() para usar async/await
 

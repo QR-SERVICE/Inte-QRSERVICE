@@ -119,7 +119,8 @@ server.get("/", (req, res) => res.sendFile(path.join(__dirname, 'login_', 'login
 server.get("/grafica", (req, res) => res.sendFile(path.join(__dirname, 'grafica', 'grafica_ventas.html')))
 server.get("/login_copy", (req, res) => res.sendFile(path.join(__dirname, 'login_', 'login_copy.html')))
 
-server.get("/MenuP", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu_Bebidas.HTML')))
+
+server.get("/MenuP", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'MenuGood.HTML')))
 
 // ruta para la navbar
 server.get("/Navbar", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'navbar.html')));
