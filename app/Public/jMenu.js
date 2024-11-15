@@ -325,9 +325,9 @@ function cambiarClaseSidebarScroll() {
 
     // Solo ajustar el margin-top si scrollY es menor a 90
     if (scrollY < 90) {
-        newMarginTop = 40 - (scrollY / 4); // Ajustar este factor de división para controlar la velocidad
+        newMarginTop = 30 - (scrollY / 4); // Ajustar este factor de división para controlar la velocidad
     } else {
-        newMarginTop = 12; // Fijar el margin-top en 48% cuando scrollY es mayor a 90
+        newMarginTop = 15; // Fijar el margin-top en 48% cuando scrollY es mayor a 90
     }
 
     // Aplicar el nuevo margen superior al sidebar
@@ -340,3 +340,18 @@ window.addEventListener('scroll', function() {
     cambiarClaseSidebarScroll();
 });
 
+// Animacion suave al darle click a la sidebar
+document.querySelectorAll('.menu-boton').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault(); // Evita el comportamiento predeterminado del enlace.
+      const targetId = this.getAttribute('href').substring(1); // Obtén el id de destino.
+      const targetElement = document.getElementById(targetId);
+  
+      if (targetElement) {
+        window.scrollTo({
+            top: targetElement.offsetTop - 100, // Margen de arriba
+          behavior: 'smooth' // Desplazamiento suave.
+        });
+      }
+    });
+  });

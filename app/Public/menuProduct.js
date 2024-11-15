@@ -292,9 +292,8 @@ fetch('/PostresP')
                 botones.appendChild(button_del);
                 botones.appendChild(input_cant);
                 botones.appendChild(button_sum);
-                
-                productoDiv.appendChild(botones);
                 botones.appendChild(button_agregar_carrito);
+                productoDiv.appendChild(botones);
                 menuContainer.appendChild(productoDiv);
             });
         })

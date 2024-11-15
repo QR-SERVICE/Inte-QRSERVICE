@@ -105,6 +105,18 @@ li{
     color: white;
 }
 
+.productos_titulo{
+    padding: 1rem;
+    background-color: rgb(0, 0, 0);
+    align-items: center;
+    color: rgb(255, 255, 255);
+    border-top: 2px solid rgb(145, 145, 145);;
+    border-bottom: 2px solid rgb(145, 145, 145);
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
 .navbar {
     background-color: black;
     text-align: center;
@@ -114,7 +126,7 @@ li{
     padding: 0.2rem;
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
-    z-index: 100; 
+    z-index: 10; 
     position: relative;
     border-bottom: 1px solid white;
     display: flex;
@@ -202,7 +214,7 @@ li{
     position: fixed;
     top: 0;
     right: 0;
-    z-index: 0; 
+    z-index: 2; 
     padding: 1rem 0;
     overflow-y: auto;
     background-color: black;
@@ -292,6 +304,7 @@ li{
     max-width: 300px; 
     padding: 1rem;
 }
+
 #bote-basura{
     display: block;
     padding: 0.1rem 0.4rem;
@@ -453,6 +466,21 @@ li{
 
 
         /* Carrito de compras */
+
+        .boton-carrito {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color:#4d4d4d;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
         .carrito-container {
             background-color: #fff;
             border-radius: 8px;
@@ -581,9 +609,9 @@ li{
         }
 
         .button_agregar_carrito {
-            right: 0;
+            z-index: 0; 
             position: absolute;
-            z-index: 1; 
+            right: 0;
         }
 
 
@@ -592,18 +620,26 @@ li{
     position: fixed;
     bottom: 20px;
     right: 20px;
+    z-index: 4;
 }
 
 .abrir_notis {
     background-color: #007bff;
     color: white;
-    border: none;
-    padding: 10px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     cursor: pointer;
     font-size: 24px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
+    z-index: 10;
+    position: relative;
+    box-sizing: content-box;
+}
+
+.abrir_notis i {
+    pointer-events: none; /* Evita que el clic interactúe solo con el ícono */
 }
 
 .abrir_notis:hover {
@@ -623,6 +659,7 @@ li{
     text-align: center;
     display: none; /* Oculto inicialmente */
     animation: fadeIn 0.4s ease;
+    z-index: 3;
 }
 
 @keyframes fadeIn {
@@ -657,11 +694,13 @@ li{
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 3;
 }
 
 .call-mesero {
     background-color: #28a745;
     color: white;
+    z-index: 11;
 }
 
 .call-account {
@@ -671,21 +710,12 @@ li{
 
 .notificaciones button:hover {
     transform: translateY(-2px);
+    
 }
 
 .call-account:hover {
     background-color: #e0a800;
 }
-
-
-/* Estilos para dispositivos móviles */
-
-@media (max-width: 400px) {
-    .sidebar {
-        margin-top: 7.5rem;
-    }
-}
-
 
 @media (max-width: 768px) {
     .producto {
@@ -698,6 +728,16 @@ li{
 
     .sidebar {
         margin-top: 8rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .botones {
+        justify-content: center;
+    }
+    
+    .button_agregar_carrito {
+        position: relative;
     }
 }
 
