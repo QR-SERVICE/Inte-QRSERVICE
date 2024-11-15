@@ -4,8 +4,8 @@ import mysql2 from 'mysql2';
 const connectionPool = mysql2.createPool({
     host: "localhost",
     user: "root",
-    password: "277353",
-    port: 3306,
+    password: "Bufetero21",
+    port: 3307,
     database: "QuickRestaurant"
 }).promise(); // Agrega .promise() para usar async/await
 
@@ -136,3 +136,17 @@ export const deleteProductos = async (req, res) => {
     res.status(500).send('Error al eliminar el producto');
   }
 };
+
+export const getMesa = async (req, res) => {
+  const {id_mesa} = req.params;
+  const query = 'SELECT nombre_mesa FROM mesa WHERE id_mesa = ?;';
+  const params = [id_mesa];
+  try {
+    const [mesa] =  await connectionPool.query(query, params);
+    res.status(200).send(mesa[0]);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Error al obtener los resultados" });
+  }
+};
+

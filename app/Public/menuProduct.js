@@ -1,3 +1,4 @@
+ 
  // Realiza la solicitud a la API para obtener los productos
  fetch('/BebidasP')
  .then(response => response.json())
@@ -47,13 +48,13 @@
 
          button_sum.addEventListener('click', () => {
              input_cant.value = parseInt(input_cant.value) + 1;
-             agregarAlCarrito(bebidas);
+            //  agregarAlCarrito(bebidas);
          });
 
          button_del.addEventListener('click', () => {
              if(input_cant.value > 0){
                  input_cant.value = parseInt(input_cant.value) - 1;
-                 eliminarCantCarrito(bebidas);
+                //  eliminarCantCarrito(bebidas);
              }  
          });
 
@@ -122,14 +123,14 @@
                     // Evento para agregar producto al carrito
                     button_sum.addEventListener('click', () => {
                         input_cant.value = parseInt(input_cant.value || 0) + 1;
-                        agregarAlCarrito(entradas);
+                        // agregarAlCarrito(entradas);
                     });
 
                     // Evento para eliminar producto del carrito
                     button_del.addEventListener('click', () => {
                     if(input_cant.value > 0){
                         input_cant.value = parseInt(input_cant.value) - 1;
-                        eliminarCantCarrito(entradas);
+                        // eliminarCantCarrito(entradas);
                     }  
                     });
 
@@ -198,13 +199,13 @@ fetch('/PlatillosP')
 
         button_sum.addEventListener('click', () => {
             input_cant.value = parseInt(input_cant.value) + 1;
-            agregarAlCarrito(platillo);
+            // agregarAlCarrito(platillo);
         });
 
         button_del.addEventListener('click', () => {
             if(input_cant.value > 0){
                 input_cant.value = parseInt(input_cant.value) - 1;
-                eliminarCantCarrito(platillo);
+                // eliminarCantCarrito(platillo);
             }  
         });
 
@@ -271,13 +272,13 @@ fetch('/PostresP')
 
                 button_sum.addEventListener('click', () => {
                     input_cant.value = parseInt(input_cant.value) + 1;
-                    agregarAlCarrito(postres);
+                    // agregarAlCarrito(postres);
                 });
 
                 button_del.addEventListener('click', () => {
                     if(input_cant.value > 0){
                         input_cant.value = parseInt(input_cant.value) - 1;
-                        eliminarCantCarrito(postres);
+                        // eliminarCantCarrito(postres);
                     }  
                 });
 
@@ -301,7 +302,7 @@ fetch('/PostresP')
             console.error('Error al cargar los productos:', error);
         });
 
-
+document.addEventListener('DOMContentLoaded', () => {
  fetch('/Navbar')
      .then(response => response.text())
      .then(data => {
@@ -315,8 +316,10 @@ fetch('/PostresP')
              console.log('El script se cargó y ejecutó correctamente');
          };
          document.body.appendChild(script);
+
      })
      .catch(error => console.error('Error al cargar el navbar:', error));
+    });
 
  /*    
 const carrito = [];
