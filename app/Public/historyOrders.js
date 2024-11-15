@@ -45,9 +45,13 @@ fetch('/Historial_ordenes')
             const productoPrecio = document.createElement('p');
             productoPrecio.textContent = `Precio: ${detalle.precio_producto}`;
 
+            const productoTotal = document.createElement('p');
+            productoTotal.textContent = `Total: ${detalle.total}`;
+
             productoDiv.appendChild(productoNombre);
             productoDiv.appendChild(productoCantidad);
             productoDiv.appendChild(productoPrecio);
+            productoDiv.appendChild(productoTotal);
             div.appendChild(productoDiv);
           });
         })
