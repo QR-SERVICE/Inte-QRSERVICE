@@ -16,6 +16,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // conexion a la base de datos
+import { getMesa } from './controlladores/QuickRestaurant-BD.js'
+server.get('/Mesa/:id_mesa', getMesa);
+
 import { getBebidas } from './controlladores/QuickRestaurant-BD.js'
 server.get('/BebidasP', getBebidas);
 
