@@ -339,7 +339,6 @@ window.addEventListener('scroll', function() {
     cambiarClasePorScroll();
     cambiarClaseSidebarScroll();
 });
-<<<<<<< HEAD
 
 // Animacion suave al darle click a la sidebar
 document.querySelectorAll('.menu-boton').forEach(link => {
@@ -356,5 +355,5 @@ document.querySelectorAll('.menu-boton').forEach(link => {
       }
     });
   });
-=======
->>>>>>> d1d90346ab5c157f67d56f455f53bbf675253b55
+
+
