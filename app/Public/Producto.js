@@ -130,6 +130,32 @@ fetch("/BebidasP")
             stockCell.textContent = food.stock;
             stockCell.appendChild(deleteButton)
             stockCell.classList.add('productStock');
+
+            deleteButton.addEventListener('click', async () => {
+                const producDelete = food.id_producto;
+              
+                try {
+                  const response = await fetch(`http://localhost:3500/EliminarProducto/${producDelete}`, {
+                    method: 'DELETE',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    }
+                  });
+              
+                  const responseData = await response.json();
+                  console.log('Mensaje del servidor:', responseData.message || 'Sin mensaje de error');
+                  
+                  if (response.ok) {
+                    row.remove(); 
+                    alert('Producto eliminado correctamente');
+                  } else {
+                    alert('Problemas al eliminar el producto');
+                  }
+                } catch (e) {
+                  console.error('Error en el catch:', e);
+                  alert('Producto eliminado correctamente');
+                }
+              });
             row.appendChild(stockCell);
 
             tbody.appendChild(row);
@@ -188,6 +214,32 @@ fetch("/BebidasP")
             stockCell.textContent = dessert.stock;
             stockCell.appendChild(deleteButton)
             stockCell.classList.add('productStock');
+
+            deleteButton.addEventListener('click', async () => {
+                const producDelete = dessert.id_producto;
+              
+                try {
+                  const response = await fetch(`http://localhost:3500/EliminarProducto/${producDelete}`, {
+                    method: 'DELETE',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    }
+                  });
+              
+                  const responseData = await response.json();
+                  console.log('Mensaje del servidor:', responseData.message || 'Sin mensaje de error');
+                  
+                  if (response.ok) {
+                    row.remove(); 
+                    alert('Producto eliminado correctamente');
+                  } else {
+                    alert('Problemas al eliminar el producto');
+                  }
+                } catch (e) {
+                  console.error('Error en el catch:', e);
+                  alert('Producto eliminado correctamente');
+                }
+              });
             row.appendChild(stockCell);
 
             tbody.appendChild(row);
@@ -246,6 +298,32 @@ fetch("/BebidasP")
             stockCell.textContent = ticket.stock;
             stockCell.appendChild(deleteButton)
             stockCell.classList.add('productStock');
+
+            deleteButton.addEventListener('click', async () => {
+                const producDelete = ticket.id_producto;
+              
+                try {
+                  const response = await fetch(`http://localhost:3500/EliminarProducto/${producDelete}`, {
+                    method: 'DELETE',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    }
+                  });
+              
+                  const responseData = await response.json();
+                  console.log('Mensaje del servidor:', responseData.message || 'Sin mensaje de error');
+                  
+                  if (response.ok) {
+                    row.remove(); 
+                    alert('Producto eliminado correctamente');
+                  } else {
+                    alert('Problemas al eliminar el producto');
+                  }
+                } catch (e) {
+                  console.error('Error en el catch:', e);
+                  alert('Producto eliminado correctamente');
+                }
+              });
             row.appendChild(stockCell);
 
             tbody.appendChild(row);

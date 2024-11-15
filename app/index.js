@@ -16,31 +16,34 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // conexion a la base de datos
-import { getBebidas } from './controlladores/Productos-BD.js'
+import { getBebidas } from './controlladores/QuickRestaurant-BD.js'
 server.get('/BebidasP', getBebidas);
 
-import { getPlatillos } from './controlladores/Productos-BD.js'
+import { getPlatillos } from './controlladores/QuickRestaurant-BD.js'
 server.get('/PlatillosP', getPlatillos);
 
-import { getPostres } from './controlladores/Productos-BD.js'
+import { getPostres } from './controlladores/QuickRestaurant-BD.js'
 server.get('/PostresP', getPostres);
 
-import {getEntradas } from './controlladores/Productos-BD.js'
+import {getEntradas } from './controlladores/QuickRestaurant-BD.js'
 server.get('/EntradasP', getEntradas);
 
-import {getOrdenesBorradas } from './controlladores/Productos-BD.js'
+import {getOrdenesBorradas } from './controlladores/QuickRestaurant-BD.js'
 server.get('/Historial_ordenes', getOrdenesBorradas);
 
-import {postProductos} from './controlladores/Productos-BD.js'
+import {getDetallesOrden } from './controlladores/QuickRestaurant-BD.js'
+server.get('/Detalles/:id_orden', getDetallesOrden);
+
+import {postProductos} from './controlladores/QuickRestaurant-BD.js'
 server.post("/AgregarProductos",postProductos);
 
-import {deleteProductos} from './controlladores/Productos-BD.js'
+import {deleteProductos} from './controlladores/QuickRestaurant-BD.js'
 server.delete("/EliminarProducto/:producDelete",deleteProductos);
 
-import {deletePedido} from './controlladores/Productos-BD.js'
+import {deletePedido} from './controlladores/QuickRestaurant-BD.js'
 server.delete("/EliminarPedido/:pedidoDelete",deletePedido);
 
-import {postOrder} from './controlladores/Productos-BD.js'
+import {postOrder} from './controlladores/QuickRestaurant-BD.js'
 server.post("/pedidos/:id_producto/:id_orden",postOrder);
 
 server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecutando 
@@ -107,13 +110,14 @@ server.use(cors());
 
 // Rutas
 server.get("/productos", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'Productos_confi.html')))
-server.get("/confi", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'Configuraciones.html')))
-server.get("/Menu", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-Orden.HTML')))
-server.get("/Me", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-copy.HTML')))
+server.get("/configuracion", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'Configuraciones.html')))
+server.get("/Menu-prueba", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-Orden.HTML')))
+server.get("/Menu", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-copy.HTML')))
 server.get("/Comandas", (req, res) => res.sendFile(path.join(__dirname, 'PantallaComandas', 'index.HTML')))
 server.get("/Pedidos-completados", (req, res) => res.sendFile(path.join(__dirname, 'Pedidos', 'Historial_pedidos.HTML')))
 server.get("/", (req, res) => res.sendFile(path.join(__dirname, 'login_', 'login.html')))
-server.get("/Admin", (req, res) => res.sendFile(path.join(__dirname, 'login', 'admin.html')))
+server.get("/grafica", (req, res) => res.sendFile(path.join(__dirname, 'grafica', 'grafica_ventas.html')))
+server.get("/login_copy", (req, res) => res.sendFile(path.join(__dirname, 'login_', 'login_copy.html')))
 
 //Rutas para los productos
 server.get("/Entradas", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu_Entradas.HTML')))

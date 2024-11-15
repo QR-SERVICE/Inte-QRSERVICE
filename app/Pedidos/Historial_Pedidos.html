@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QRService</title>
-    <link rel="stylesheet" href="/historyOrder.css">
+    <link rel="stylesheet" href="/historyOrders.css">
     <script src="https://kit.fontawesome.com/dc58fd35be.js" crossorigin="anonymous"></script>
     <script src="/historyOrders.js"></script>
 </head>
@@ -19,77 +19,6 @@
 
     <div id="finishedOrders"></div>
 
-    <!-- <section id="comandas">
-        <div class="comanda-realizada">
-            <div class="descripcion">
-                <p><strong>Número de Mesa:</strong> 5</p>
-                <p><strong>Pedido:</strong> Hamburguesa, tacos de perrocoa</p>
-                <p><strong>Hora de Llegada:</strong> 12:30 PM</p>
-            </div>
-            <div class="botones">
-                <button class="btnEliminar">Eliminar Comanda</button>
-            </div>
-        </div>
-        <div class="comanda-realizada">
-            <div class="descripcion">
-                <p><strong>Número de Mesa:</strong> 2</p>
-                <p><strong>Pedido:</strong> Pizza, Ensalada frita</p>
-                <p><strong>Hora de Llegada:</strong> 12:32 PM</p>
-            </div>
-            <div class="botones">
-                <button class="btnEliminar">Eliminar Comanda</button>
-            </div>
-        </div>
-        <div class="comanda-realizada">
-            <div class="descripcion">
-                <p><strong>Número de Mesa:</strong> 1</p>
-                <p><strong>Pedido:</strong> coca de pina</p>
-                <p><strong>Hora de Llegada:</strong> 12:40 PM</p>
-            </div>
-            <div class="botones">
-                <button class="btnEliminar">Eliminar Comanda</button>
-            </div>    
-        </div>
-        <div class="comanda-realizada">
-            <div class="descripcion">
-                <p><strong>Número de Mesa:</strong> 1</p>
-                <p><strong>Pedido:</strong> coca de pina</p>
-                <p><strong>Hora de Llegada:</strong> 12:40 PM</p>
-            </div>
-            <div class="botones">
-                <button class="btnEliminar">Eliminar Comanda</button>
-            </div>    
-        </div>
-        <div class="comanda-realizada">
-            <div class="descripcion">
-                <p><strong>Número de Mesa:</strong> 1</p>
-                <p><strong>Pedido:</strong> coca de pina</p>
-                <p><strong>Hora de Llegada:</strong> 12:40 PM</p>
-            </div>
-            <div class="botones">
-                <button class="btnEliminar">Eliminar Comanda</button>
-            </div>    
-        </div>
-        <div class="comanda-realizada">
-            <div class="descripcion">
-                <p><strong>Número de Mesa:</strong> 1</p>
-                <p><strong>Pedido:</strong> coca de pina</p>
-                <p><strong>Hora de Llegada:</strong> 12:40 PM</p>
-            </div>
-            <div class="botones">
-                <button class="btnEliminar">Eliminar Comanda</button>
-            </div>    
-        </div>
-        <div class="comanda-realizada">
-            <div class="descripcion">
-                <p><strong>Número de Mesa:</strong> 1</p>
-                <p><strong>Pedido:</strong> coca de pina</p>
-                <p><strong>Hora de Llegada:</strong> 12:40 PM</p>
-            </div>
-            <div class="botones">
-                <button class="btnEliminar">Eliminar Comanda</button>
-            </div>    
-        </div> -->
 </body>
 <script>
     fetch('/NavbarConfiguracion')
@@ -98,14 +27,6 @@
                // Insertar el HTML en el contenedor
                document.getElementById('navbar-configuracion').innerHTML = data;
                document.getElementById("titulo").innerHTML = "Historial Pedidos Completados";
-
-               // Crear un script para ejecutar el contenido JS de Producto.js
-               const script = document.createElement('script');
-               script.src = '/Producto.js';  // Ruta del script
-               script.onload = () => {
-                   console.log('El script se cargó y ejecutó correctamente');
-               };
-               document.body.appendChild(script);
            })
            .catch(error => console.error('Error al cargar el navbar:', error));
 
