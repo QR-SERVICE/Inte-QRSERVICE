@@ -40,6 +40,11 @@
          input_cant.classList.add('input_cant');
          input_cant.value = 0;
 
+         const button_agregar_carrito = document.createElement('button');
+         button_agregar_carrito.classList.add('button_agregar_carrito');
+         button_agregar_carrito.textContent = "Agregar Carrito";
+
+
          button_sum.addEventListener('click', () => {
              input_cant.value = parseInt(input_cant.value) + 1;
              agregarAlCarrito(bebidas);
@@ -59,6 +64,7 @@
          botones.appendChild(button_del);
          botones.appendChild(input_cant);
          botones.appendChild(button_sum);
+         botones.appendChild(button_agregar_carrito);
          productoDiv.appendChild(botones);
          menuContainer.appendChild(productoDiv);
      });
@@ -108,6 +114,11 @@
                     input_cant.classList.add('input_cant');
                     input_cant.value = 0;
 
+                    const button_agregar_carrito = document.createElement('button');
+                    button_agregar_carrito.classList.add('button_agregar_carrito');
+                    button_agregar_carrito.textContent = "Agregar Carrito";
+
+
                     // Evento para agregar producto al carrito
                     button_sum.addEventListener('click', () => {
                         input_cant.value = parseInt(input_cant.value || 0) + 1;
@@ -129,6 +140,7 @@
                     botones.appendChild(button_del);
                     botones.appendChild(input_cant);
                     botones.appendChild(button_sum);
+                    botones.appendChild(button_agregar_carrito);
                     productoDiv.appendChild(botones);
                     menuContainer.appendChild(productoDiv);
                 });
@@ -179,6 +191,11 @@ fetch('/PlatillosP')
         input_cant.classList.add('input_cant');
         input_cant.value = 0;
 
+        const button_agregar_carrito = document.createElement('button');
+        button_agregar_carrito.classList.add('button_agregar_carrito');
+        button_agregar_carrito.textContent = "Agregar Carrito";
+
+
         button_sum.addEventListener('click', () => {
             input_cant.value = parseInt(input_cant.value) + 1;
             agregarAlCarrito(platillo);
@@ -198,6 +215,7 @@ fetch('/PlatillosP')
         botones.appendChild(button_del);
         botones.appendChild(input_cant);
         botones.appendChild(button_sum);
+        botones.appendChild(button_agregar_carrito);
         productoDiv.appendChild(botones);
         menuContainer.appendChild(productoDiv);
     });
@@ -247,6 +265,10 @@ fetch('/PostresP')
                 input_cant.classList.add('input_cant');
                 input_cant.value = 0;
 
+                const button_agregar_carrito = document.createElement('button');
+                button_agregar_carrito.classList.add('button_agregar_carrito');
+                button_agregar_carrito.textContent = "Agregar Carrito";
+
                 button_sum.addEventListener('click', () => {
                     input_cant.value = parseInt(input_cant.value) + 1;
                     agregarAlCarrito(postres);
@@ -259,6 +281,10 @@ fetch('/PostresP')
                     }  
                 });
 
+                button_agregar_carrito.addEventListener('click', () => {
+                    
+                });
+
                 productoDiv.appendChild(productoImg);
                 productoDiv.appendChild(nombreP);
                 nombreP.appendChild(descripcionP);
@@ -266,6 +292,7 @@ fetch('/PostresP')
                 botones.appendChild(button_del);
                 botones.appendChild(input_cant);
                 botones.appendChild(button_sum);
+                botones.appendChild(button_agregar_carrito);
                 productoDiv.appendChild(botones);
                 menuContainer.appendChild(productoDiv);
             });
