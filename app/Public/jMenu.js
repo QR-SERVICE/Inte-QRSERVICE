@@ -327,7 +327,7 @@ function cambiarClaseSidebarScroll() {
     if (scrollY < 90) {
         newMarginTop = 40 - (scrollY / 4); // Ajustar este factor de división para controlar la velocidad
     } else {
-        newMarginTop = 16; // Fijar el margin-top en 48% cuando scrollY es mayor a 90
+        newMarginTop = 12; // Fijar el margin-top en 48% cuando scrollY es mayor a 90
     }
 
     // Aplicar el nuevo margen superior al sidebar
