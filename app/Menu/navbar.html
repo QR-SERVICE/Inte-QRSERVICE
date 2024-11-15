@@ -21,7 +21,7 @@
                     </li>
                     <li>
                         <a href="/Platillos_Fuertes" data-seccion="contenedor-navbar" data-valor="Entrees" class="menu-boton" data-categoria="platillos">
-                            <span> Platillos Fuertes</span>
+                            <span> Platillos </span>
                         </a>
                     </li>
                     <li>
@@ -30,7 +30,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="carr menu-boton" id="menu-btn">
+                        <a class="carr menu-boton" id="carr">
                         <i class="fas fa-receipt"></i>
                             <span >Carrito</span>
                         </a>
@@ -60,15 +60,30 @@
                 </div> 
             </ul>
 
-            <div id="cartModal" class="modal">
-                <div class="modal-content">
-                    <button class="close-btn" id="close-modal">Cerrar</button>
-                    <h2>Carrito de Compras</h2>
-                    <div id="productos-modal"></div>
-                    <div id="total-modal"></div>
-                    <button id="vaciar-carrito">Vaciar Carrito</button>
-                    <button id="enviar-carrito">Enviar Pedido</button>
-                </div>
+            <div id="carrito" class="carrito">
+                <table class="cuenta" id="cuenta">
+                    <thead>
+                        <tr>
+                            <th class="datos-tabla" id="datos-tabla"> Productos Precio </th>
+                            <th><button id="cerrar_carr" class="cerrar_carr"><i class="fa-solid fa-x"></i></button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="productos_orden" id="productos_orden">
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>TOTAL:</th>
+                            <th id="TOTAL" class="TOTAL"></th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button class="enviar-t" id="enviar-t">Enviar</button>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
         </nav>
     </div>

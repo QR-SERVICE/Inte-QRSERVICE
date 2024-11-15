@@ -291,7 +291,7 @@ fetch('/PostresP')
      })
      .catch(error => console.error('Error al cargar el navbar:', error));
 
-     
+ /*    
 const carrito = [];
 
 function agregarAlCarrito(producto) {
@@ -345,3 +345,4 @@ carrito.forEach(producto => {
 
 totalModal.textContent = `Total: $${total.toFixed(2)}`;
 }
+*/

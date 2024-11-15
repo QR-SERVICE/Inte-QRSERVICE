@@ -6,6 +6,7 @@ menu.addEventListener('click', () => {
     sidebar.classList.toggle('menu-toggle');
 })
 
+/*
 // Carrito
 document.getElementById('menu-btn').addEventListener('click', () => {
     const modal = document.getElementById("cartModal");
@@ -21,6 +22,7 @@ document.getElementById('vaciar-carrito').addEventListener('click', () => {
     carrito.length = 0;
     mostrarCarrito();
 });
+*/
 
 // Seleccionamos los elementos necesarios
 const abrirNotis = document.getElementById('abrir-notis');
@@ -58,6 +60,26 @@ callAccount.addEventListener('click', function() {
 alert('Llamé para pedir la cuenta');
 });
 
+
+// Boton para mostrar lo que llevan de orden 
+const carrito = document.getElementById("carrito");
+const ver = document.getElementById("carr")
+const NoVer = document.getElementById("cerrar_carr")
+
+ver.addEventListener("click", () => {
+    carrito.style.display = 'block'; 
+    carrito.style.zIndex = 1; 
+    setTimeout(() => {
+        carrito.classList.add("visible"); 
+    }, 10); 
+});
+
+NoVer.addEventListener("click", () => {
+    carrito.classList.remove("visible"); 
+    carrito.addEventListener('transitionend', () => {
+        carrito.style.display = 'none'; 
+    }, { once: true }); 
+});
 
 document.getElementById('enviar-carrito').addEventListener('click', () => {
     fetch('/api/pedir', {
