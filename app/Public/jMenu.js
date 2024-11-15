@@ -7,55 +7,6 @@ menu.addEventListener('click', () => {
 })
 
 // Carrito
-
-const carrito_cant = [];
-
-function agregarAlCarrito(producto) {
-    const productoExistente = carrito.find(item => item.nombre_producto === producto.nombre_producto);
-
-    if (productoExistente) {
-        productoExistente.cantidad++;
-    } else {
-        carrito.push({ ...producto, cantidad: 1 });
-    }
-
-    mostrarCarrito();
-}
-
-function eliminarDelCarrito(producto) {
-    const index = carrito.findIndex(item => item.nombre_producto === producto.nombre_producto);
-    if (index !== -1) {
-        carrito.splice(index, 1);
-    }
-    mostrarCarrito();
-}
-
-
-function eliminarDelCarrito(producto) {
-    const index = carrito.findIndex(item => item.nombre_producto === producto.nombre_producto);
-    if (index !== -1) {
-        carrito.splice(index, 1);
-    }
-    mostrarCarrito();
-}
-
-function mostrarCarrito() {
-    const productosModal = document.getElementById("productos-modal");
-    const totalModal = document.getElementById("total-modal");
-    productosModal.innerHTML = '';
-    let total = 0;
-
-    carrito.forEach(producto => {
-        const itemDiv = document.createElement('div');
-        itemDiv.classList.add('carrito-item');
-        itemDiv.textContent = `${producto.nombre_producto} x${producto.cantidad} - $${producto.precio_producto * producto.cantidad}`;
-        productosModal.appendChild(itemDiv);
-        total += producto.precio_producto * producto.cantidad;
-    });
-
-    totalModal.textContent = `Total: $${total.toFixed(2)}`;
-}
-
 document.getElementById('menu-btn').addEventListener('click', () => {
     const modal = document.getElementById("cartModal");
     modal.style.display = 'flex';
@@ -155,26 +106,6 @@ cerrar.addEventListener("click", () => {
     nav.classList.remove("visible");
 })
 
-// Boton para mostrar lo que llevan de orden 
-const carrito = document.getElementById("carrito");
-const ver = document.getElementById("carr")
-const NoVer = document.getElementById("cerrar_carr")
-
-ver.addEventListener("click", () => {
-    carrito.style.display = 'block'; 
-    carrito.style.zIndex = 1; 
-    setTimeout(() => {
-        carrito.classList.add("visible"); 
-    }, 10); 
-});
-
-NoVer.addEventListener("click", () => {
-    carrito.classList.remove("visible"); 
-    carrito.addEventListener('transitionend', () => {
-        carrito.style.display = 'none'; 
-    }, { once: true }); 
-});
-
 // Boton de traduccion
 const langButtons = document.querySelectorAll("[data-language]");
 langButtons.forEach((button) =>{
@@ -239,10 +170,10 @@ sumProducts.forEach((sumProduct, index) => {
         restProduct.className = "bi bi-trash";
         restProduct.id =("bote-basura");
         restProduct.addEventListener("click", () => {
-            agregarOrden.remove();
-            restProduct.remove();
-            totalSum -= precio;
-            TOTAL.textContent = totalSum.toFixed(2) + "$";
+        agregarOrden.remove();
+        restProduct.remove();
+        totalSum -= precio;
+        TOTAL.textContent = totalSum.toFixed(2) + "$";
 
         });
         agregarOrden.appendChild(parrafoName);
@@ -386,3 +317,4 @@ window.addEventListener('scroll', function() {
     cambiarClasePorScroll();
     cambiarClaseSidebarScroll();
 });
+
