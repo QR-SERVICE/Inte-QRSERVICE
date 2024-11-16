@@ -13,7 +13,7 @@
          productoImg.src = `../bebidas.img/${bebidas.img}`;
          productoImg.alt = bebidas.nombre_producto;
 
-         const nombreP = document.createElement('div');
+         const nombreP = document.createElement('p');
          nombreP.classList.add('nombreP');
          nombreP.textContent = bebidas.nombre_producto;
 
@@ -21,7 +21,7 @@
          descripcionP.classList.add('descripcion');
          descripcionP.textContent = bebidas.descripcion;
 
-         const precioP = document.createElement('div');
+         const precioP = document.createElement('p');
          precioP.classList.add('precio');
          precioP.textContent = `$${bebidas.precio_producto}`;
 
@@ -60,7 +60,7 @@
 
          productoDiv.appendChild(productoImg);
          productoDiv.appendChild(nombreP);
-         nombreP.appendChild(descripcionP);
+         productoDiv.appendChild(descripcionP);
          productoDiv.appendChild(precioP);
          botones.appendChild(button_del);
          botones.appendChild(input_cant);
@@ -87,7 +87,7 @@
                     productoImg.src = `../entradas.img/${entradas.img}`;
                     productoImg.alt = entradas.nombre_producto;
 
-                    const nombreP = document.createElement('div');
+                    const nombreP = document.createElement('p');
                     nombreP.classList.add('nombreP');
                     nombreP.textContent = entradas.nombre_producto;
 
@@ -95,7 +95,7 @@
                     descripcionP.classList.add('descripcion');
                     descripcionP.textContent = entradas.descripcion;
 
-                    const precioP = document.createElement('div');
+                    const precioP = document.createElement('p');
                     precioP.classList.add('precio');
                     precioP.textContent = `$${entradas.precio_producto}`;
 
@@ -136,7 +136,7 @@
 
                     productoDiv.appendChild(productoImg);
                     productoDiv.appendChild(nombreP);
-                    nombreP.appendChild(descripcionP);
+                    productoDiv.appendChild(descripcionP);
                     productoDiv.appendChild(precioP);
                     botones.appendChild(button_del);
                     botones.appendChild(input_cant);
@@ -164,7 +164,7 @@ fetch('/PlatillosP')
         productoImg.src = `../platillos.img/${platillo.img}`;
         productoImg.alt = platillo.nombre_producto;
 
-        const nombreP = document.createElement('div');
+        const nombreP = document.createElement('p');
         nombreP.classList.add('nombreP');
         nombreP.textContent = platillo.nombre_producto;
 
@@ -172,7 +172,7 @@ fetch('/PlatillosP')
         descripcionP.classList.add('descripcion');
         descripcionP.textContent = platillo.descripcion;
 
-        const precioP = document.createElement('div');
+        const precioP = document.createElement('p');
         precioP.classList.add('precio');
         precioP.textContent = `$${platillo.precio_producto}`;
 
@@ -209,16 +209,16 @@ fetch('/PlatillosP')
             }  
         });
 
-        productoDiv.appendChild(productoImg);
-        productoDiv.appendChild(nombreP);
-        nombreP.appendChild(descripcionP);
-        productoDiv.appendChild(precioP);
-        botones.appendChild(button_del);
-        botones.appendChild(input_cant);
-        botones.appendChild(button_sum);
-        botones.appendChild(button_agregar_carrito);
-        productoDiv.appendChild(botones);
-        menuContainer.appendChild(productoDiv);
+            productoDiv.appendChild(productoImg);
+            productoDiv.appendChild(nombreP);
+            productoDiv.appendChild(descripcionP);
+            productoDiv.appendChild(precioP);
+            botones.appendChild(button_del);
+            botones.appendChild(input_cant);
+            botones.appendChild(button_sum);
+            botones.appendChild(button_agregar_carrito);
+            productoDiv.appendChild(botones);
+            menuContainer.appendChild(productoDiv);
     });
 })
 .catch(error => {
@@ -246,7 +246,7 @@ fetch('/PostresP')
                 descripcionP.classList.add('descripcion');
                 descripcionP.textContent = postres.descripcion;
 
-                const precioP = document.createElement('div');
+                const precioP = document.createElement('p');
                 precioP.classList.add('precio');
                 precioP.textContent = `$${postres.precio_producto}`;
 
@@ -288,7 +288,7 @@ fetch('/PostresP')
 
                 productoDiv.appendChild(productoImg);
                 productoDiv.appendChild(nombreP);
-                nombreP.appendChild(descripcionP);
+                productoDiv.appendChild(descripcionP);
                 productoDiv.appendChild(precioP);
                 botones.appendChild(button_del);
                 botones.appendChild(input_cant);

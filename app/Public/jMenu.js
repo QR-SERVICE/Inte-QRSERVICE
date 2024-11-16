@@ -128,84 +128,119 @@ cerrar.addEventListener("click", () => {
     nav.classList.remove("visible");
 })
 
-// Boton de traduccion
-const langButtons = document.querySelectorAll("[data-language]");
-langButtons.forEach((button) =>{
-    button.addEventListener("click", () =>{
-        const texttochange = document.querySelectorAll("[data-seccion]");
-        console.log(texttochange);
-        fetch(`/languages/${button.dataset.language}.json`)
-        .then(res => res.json())
-        .then(data => {
-            texttochange.forEach((el) => {
-                const seccion = el.dataset.seccion;
-                const valor = el.dataset.valor;
+// // Boton de traduccion
+// const langButtons = document.querySelectorAll("[data-language]");
+// langButtons.forEach((button) =>{
+//     button.addEventListener("click", () =>{
+//         const texttochange = document.querySelectorAll("[data-seccion]");
+//         console.log(texttochange);
+//         fetch(`/languages/${button.dataset.language}.json`)
+//         .then(res => res.json())
+//         .then(data => {
+//             texttochange.forEach((el) => {
+//                 const seccion = el.dataset.seccion;
+//                 const valor = el.dataset.valor;
 
-                el.textContent = data[seccion][valor];
+//                 el.textContent = data[seccion][valor];
                 
-            })
-        })
-    })
-})
+//             })
+//         })
+//     })
+// })
 
 // Boton para cambiar de categoria de productos
-const opcionButtons = document.querySelectorAll("[data-categoria]");
-opcionButtons.forEach((button) =>{
-    button.addEventListener("click",()=>{
-        const texTochange = document.querySelectorAll("[data-section]");
-        console.log(texTochange);
-        fetch(`../Menu/Productos.js/${button.dataset.categoria}.json`)
-        .then(res => res.json())
-        .then(data =>{
-            texTochange.forEach((op) => {
-                const section = op.dataset.section;
-                const value = op.dataset.value;
+// const opcionButtons = document.querySelectorAll("[data-categoria]");
+// opcionButtons.forEach((button) =>{
+//     button.addEventListener("click",()=>{
+//         const texTochange = document.querySelectorAll("[data-section]");
+//         console.log(texTochange);
+//         fetch(`../Menu/Productos.js/${button.dataset.categoria}.json`)
+//         .then(res => res.json())
+//         .then(data =>{
+//             texTochange.forEach((op) => {
+//                 const section = op.dataset.section;
+//                 const value = op.dataset.value;
 
-                op.textContent= data[section][value];
-            })
-        })
-    })
-})
+//                 op.textContent= data[section][value];
+//             })
+//         })
+//     })
+// })
 
-const sumProducts = document.querySelectorAll(".S-boton");
+function obtenerPrecios(elementos) {
+    return Array.from(elementos).map(elemento => {
+        const texto = elemento.textContent.trim();
+        const precioNumerico = parseFloat(texto.replace('$', '')); 
+        return isNaN(precioNumerico) ? 0 : precioNumerico; 
+    });
+}
+
+const sumProducts = document.querySelectorAll(".button_agregar_carrito");
 const nombresP = document.querySelectorAll(".nombreP");
-const preciosP = document.querySelectorAll(".costo");
+const preciosP = document.querySelectorAll(".precio");
 const productOrde = document.getElementById("productos_orden");
+const cantidadP = document.querySelectorAll(".input_cant");
 const TOTAL = document.getElementById("TOTAL");
 let totalSum = 0;
 
+// Obtener los precios parseados usando la función previamente definida
+const precios = obtenerPrecios(preciosP);
+
 sumProducts.forEach((sumProduct, index) => {
     sumProduct.addEventListener("click", () => {
-        const name = nombresP[index].textContent;
-        const precio = parseFloat(preciosP[index].textContent);
-        const agregarOrden = document.createElement("td");
-        const parrafoName = document.createElement("p")
+        const name = nombresP[index].textContent; 
+        const precio = precios[index];
+        const cantidad = parseInt(cantidadP[index].value);
+
+        console.log(cantidad);
+
+        // Crear una fila para el producto en la tabla
+        const row = document.createElement("tr");
+        row.className = "producto-fila";
+
+        // Crear celdas para el nombre, precio y botón de eliminar
+        const cellName = document.createElement("td");
+        const cellPrice = document.createElement("td");
+        const cellRemove = document.createElement("td");
+
+        // Crear el nombre y agregarlo a la celda
+        const parrafoName = document.createElement("p");
         parrafoName.className = "name";
-        const parrafoprice = document.createElement("p")
-        parrafoprice.className = "price";
-        const nombre = document.createTextNode(name);
-        parrafoName.appendChild(nombre)
-        const price = document.createTextNode(" "+ precio.toFixed(2) + "$");
-        parrafoprice.appendChild(price)
-        const restProduct = document.createElement("button");
-        agregarOrden.className = ("datos-producto")
-        restProduct.className = "bi bi-trash";
-        restProduct.id =("bote-basura");
-        restProduct.addEventListener("click", () => {
-        agregarOrden.remove();
-        restProduct.remove();
-        totalSum -= precio;
-        TOTAL.textContent = totalSum.toFixed(2) + "$";
+        parrafoName.textContent = name;
+        cellName.appendChild(parrafoName);
 
+        // Crear el precio y agregarlo a la celda
+        const parrafoPrice = document.createElement("p");
+        parrafoPrice.className = "price";
+        parrafoPrice.textContent = ` $${precio.toFixed(2)} x ${cantidad}`;
+        cellPrice.appendChild(parrafoPrice);
+
+        // Crear el botón para eliminar el producto
+        const removeButton = document.createElement("button");
+        removeButton.className = "bi bi-trash";
+        removeButton.id = "bote-basura";
+        removeButton.textContent = " Eliminar";  // Opcional: texto para el botón
+
+        // Agregar la funcionalidad para eliminar el producto de la lista y actualizar el total
+        removeButton.addEventListener("click", () => {
+            row.remove();  // Eliminar la fila
+            totalSum -= precio * cantidad;  // Restar el precio del total
+            TOTAL.textContent = totalSum.toFixed(2) + "$";  // Actualizar el total
         });
-        agregarOrden.appendChild(parrafoName);
-        agregarOrden.appendChild(parrafoprice);
-        productOrde.appendChild(agregarOrden);
-        productOrde.appendChild(restProduct);
 
-        totalSum += precio;
+        // Agregar el botón de eliminar a la celda
+        cellRemove.appendChild(removeButton);
+
+        // Añadir las celdas a la fila
+        row.appendChild(cellName);
+        row.appendChild(cellPrice);
+        row.appendChild(cellRemove);
+
+        // Agregar la fila al cuerpo de la tabla
+        productOrde.appendChild(row);
+        // Sumar el precio al total y actualizar el total
+        totalSum += precio * cantidad;
         TOTAL.textContent = totalSum.toFixed(2) + "$";
-                
     });
 });
 
