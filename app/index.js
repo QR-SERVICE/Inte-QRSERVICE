@@ -115,7 +115,7 @@ server.use(cors());
 server.get("/productos", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'Productos_confi.html')))
 server.get("/configuracion", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'Configuraciones.html')))
 server.get("/Menu-prueba", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-Orden.HTML')))
-server.get("/Menu", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-copy.HTML')))
+server.get("/MenuP", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-copy.HTML')))
 server.get("/Comandas", (req, res) => res.sendFile(path.join(__dirname, 'PantallaComandas', 'index.HTML')))
 server.get("/Pedidos-completados", (req, res) => res.sendFile(path.join(__dirname, 'Pedidos', 'Historial_pedidos.HTML')))
 server.get("/", (req, res) => res.sendFile(path.join(__dirname, 'login_', 'login.html')))
@@ -123,7 +123,7 @@ server.get("/grafica", (req, res) => res.sendFile(path.join(__dirname, 'grafica'
 server.get("/login_copy", (req, res) => res.sendFile(path.join(__dirname, 'login_', 'login_copy.html')))
 
 
-server.get("/MenuP", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'MenuGood.HTML')))
+server.get("/Menu", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'MenuGood.HTML')))
 
 // ruta para la navbar
 server.get("/Navbar", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'navbar.html')));
