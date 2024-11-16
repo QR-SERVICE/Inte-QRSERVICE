@@ -351,6 +351,11 @@ function cambiarClasePorScroll() {
     }
 }
 
+carcerrarsidebar  = document.getElementById('carr');
+
+carcerrarsidebar.addEventListener('click', () => {
+    sidebar.classList.remove('menu-toggle');
+});
 
 // Función para cambiar el margen superior del sidebar según el scroll
 
@@ -391,4 +396,17 @@ document.querySelectorAll('.menu-boton').forEach(link => {
     });
   });
 
+  
+const carritoCerrar = document.querySelector('.carrito');
 
+// Cerrar el carrito al hacer clic fuera de él
+document.addEventListener('click', (event) => {
+    if (!carritoCerrar.contains(event.target) && !ver.contains(event.target)) {
+        carritoCerrar.classList.remove("visible"); 
+    }
+});
+
+// Evitar que el clic dentro del carrito cierre el carrito
+carritoCerrar.addEventListener('click', (event) => {
+    event.stopPropagation();  // Detiene la propagación del clic dentro del carrito
+});
