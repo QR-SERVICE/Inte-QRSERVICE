@@ -1,12 +1,16 @@
 {
-    "header":{
-        "Table":"TABLE #1",
-        "drinks":"Drinks",
-        "Appetizer":"Appetizer",
-        "Entrees":"Entrees",
-        "Desserts":"Desserts",
-        "Request waiter":"Request waiter",
-        "account":"Request Account",
-        "Add product":"Add product"
+    "Login": {
+        "create": "Create Account",
+        "hi":"Hi!",
+        "registration": "Register",
+        "start": "Start",
+        "password": "Forgot your password?",
+        "welcome": "Welcome!",
+        "data": "Enter your details to log in",
+        "income": "Log In",
+        "registration_data": "Register your details to access the system",
+        "name": "Name",
+        "pass": "Password",
+        "email": "Email"
     }
 }

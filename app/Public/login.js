@@ -108,6 +108,28 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+const langButtons = document.querySelectorAll("[data-language]");
+langButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const texttochange = document.querySelectorAll("[data-section]");
+        const traduction = document.querySelectorAll("[placeholder]");
+        fetch(`/languages/${button.dataset.language}.json`)
+            .then((res) => res.json())
+            .then((data) => {
+                texttochange.forEach((el) => {
+                    const section = el.dataset.section;
+                    const value = el.dataset.value;
+                    el.innerHTML = data[section][value];
+                });
+                traduction.forEach((element) => {
+                    const section = element.dataset.section;
+                    const value = element.dataset.value;
+                    
+                    element.placeholder = data[section][value]; 
+                });
+            });
+    });
+});
 
 
 

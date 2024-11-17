@@ -1,12 +1,17 @@
 {
-    "header":{
-        "Table":"MESA#1",
-        "drinks":"Bebidas",
-        "Appetizer":"Entradas",
-        "Entrees":"Platillos",
-        "Desserts":"Postres",
-        "Request waiter":"Solicitar mesero",
-        "account":"Pedir cuenta",
-        "Add product":"Añadir Producto"
+    "Login":{
+        "create":"Crear Cuenta",
+        "hi":"Hola!",
+        "registration":"Registrar",
+        "start":"Inicia",
+        "password":"Olvidaste tu contraseña?",
+        "welcome":"Bienvenido!",
+        "data":"Inserta tus datos para Iniciar",
+        "income":"Ingresar",
+        "registration_data":"Registra tus datos para accesar al sistema",
+        "name":"Nombre",
+        "pass":"Contraseña",
+        "email":"Correo"
+
     }
 }
