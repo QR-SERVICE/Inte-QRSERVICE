@@ -221,6 +221,7 @@ sumProducts.forEach((sumProducts, index) => {
             removeButton.textContent = " Eliminar";  
             removeButton.style.backgroundColor = '#ff4d4f'; 
             removeButton.style.color = 'white';
+            removeButton.style.margin = '4px';
             removeButton.style.border = 'none'; 
             removeButton.style.padding = '10px 15px';
             removeButton.style.fontSize = '14px'; 
@@ -420,4 +421,12 @@ document.addEventListener('click', (event) => {
 // Evitar que el clic dentro del carrito cierre el carrito
 carritoCerrar.addEventListener('click', (event) => {
     event.stopPropagation();  // Detiene la propagación del clic dentro del carrito
+});
+
+
+const ValueComent = document.getElementById('ComentEnviar')
+
+ValueComent.addEventListener('click', () => {
+    const inputText = document.getElementById('coment').value; 
+    console.log(inputText); 
 });
