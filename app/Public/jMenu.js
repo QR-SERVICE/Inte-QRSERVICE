@@ -183,64 +183,75 @@ const cantidadP = document.querySelectorAll(".input_cant");
 const TOTAL = document.getElementById("TOTAL");
 let totalSum = 0;
 
-// Obtener los precios parseados usando la función previamente definida
 const precios = obtenerPrecios(preciosP);
 
-sumProducts.forEach((sumProduct, index) => {
-    sumProduct.addEventListener("click", () => {
+sumProducts.forEach((sumProducts, index) => {
+    sumProducts.addEventListener("click", () => {
         const name = nombresP[index].textContent; 
         const precio = precios[index];
         const cantidad = parseInt(cantidadP[index].value);
 
         console.log(cantidad);
 
-        // Crear una fila para el producto en la tabla
-        const row = document.createElement("tr");
-        row.className = "producto-fila";
+        if(cantidad > 0) {
+            const row = document.createElement("tr");
+            row.className = "producto-fila";
 
-        // Crear celdas para el nombre, precio y botón de eliminar
-        const cellName = document.createElement("td");
-        const cellPrice = document.createElement("td");
-        const cellRemove = document.createElement("td");
+            
+            const cellName = document.createElement("td");
+            const cellPrice = document.createElement("td");
+            const cellRemove = document.createElement("td");
 
-        // Crear el nombre y agregarlo a la celda
-        const parrafoName = document.createElement("p");
-        parrafoName.className = "name";
-        parrafoName.textContent = name;
-        cellName.appendChild(parrafoName);
+            
+            const parrafoName = document.createElement("p");
+            parrafoName.className = "name";
+            parrafoName.textContent = name;
+            cellName.appendChild(parrafoName);
 
-        // Crear el precio y agregarlo a la celda
-        const parrafoPrice = document.createElement("p");
-        parrafoPrice.className = "price";
-        parrafoPrice.textContent = ` $${precio.toFixed(2)} x ${cantidad}`;
-        cellPrice.appendChild(parrafoPrice);
+            
+            const parrafoPrice = document.createElement("p");
+            parrafoPrice.className = "price";
+            parrafoPrice.textContent = ` $${precio.toFixed(2)} x ${cantidad}`;
+            cellPrice.appendChild(parrafoPrice);
 
-        // Crear el botón para eliminar el producto
-        const removeButton = document.createElement("button");
-        removeButton.className = "bi bi-trash";
-        removeButton.id = "bote-basura";
-        removeButton.textContent = " Eliminar";  // Opcional: texto para el botón
+            
+            const removeButton = document.createElement("button");
+            removeButton.className = "bi bi-trash";
+            removeButton.id = "bote-basura";
+            removeButton.textContent = " Eliminar";  
+            removeButton.style.backgroundColor = '#ff4d4f'; 
+            removeButton.style.color = 'white';
+            removeButton.style.border = 'none'; 
+            removeButton.style.padding = '10px 15px';
+            removeButton.style.fontSize = '14px'; 
+            removeButton.style.borderRadius = '5px'; 
+            removeButton.style.cursor = 'pointer';
+            removeButton.style.transition = 'background-color 0.3s ease';
 
-        // Agregar la funcionalidad para eliminar el producto de la lista y actualizar el total
-        removeButton.addEventListener("click", () => {
-            row.remove();  // Eliminar la fila
-            totalSum -= precio * cantidad;  // Restar el precio del total
-            TOTAL.textContent = totalSum.toFixed(2) + "$";  // Actualizar el total
-        });
+            
+            removeButton.addEventListener("click", () => {
+                row.remove();  
+                totalSum -= precio * cantidad;  
+                TOTAL.textContent = totalSum.toFixed(2) + "$";  
+            });
 
-        // Agregar el botón de eliminar a la celda
-        cellRemove.appendChild(removeButton);
+            
+            cellRemove.appendChild(removeButton);
 
-        // Añadir las celdas a la fila
-        row.appendChild(cellName);
-        row.appendChild(cellPrice);
-        row.appendChild(cellRemove);
+            
+            row.appendChild(cellName);
+            row.appendChild(cellPrice);
+            row.appendChild(cellRemove);
 
-        // Agregar la fila al cuerpo de la tabla
-        productOrde.appendChild(row);
-        // Sumar el precio al total y actualizar el total
-        totalSum += precio * cantidad;
-        TOTAL.textContent = totalSum.toFixed(2) + "$";
+            
+            productOrde.appendChild(row);
+            
+            totalSum += precio * cantidad;
+            TOTAL.textContent = totalSum.toFixed(2) + "$";
+
+        }  else {
+            alert('Añada una cantidad')
+        } 
     });
 });
 
