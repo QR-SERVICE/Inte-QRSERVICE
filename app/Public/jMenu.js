@@ -424,9 +424,9 @@ carritoCerrar.addEventListener('click', (event) => {
 });
 
 
-const ValueComent = document.getElementById('ComentEnviar')
 
-ValueComent.addEventListener('click', () => {
-    const inputText = document.getElementById('coment').value; 
-    console.log(inputText); 
-});
+    const botonEn = document.getElementById('enviar-t');
+
+        botonEn.addEventListener("click", () => {
+            console.log("el pto boton 'Enviar' fue clickeado.");
+})
