@@ -93,17 +93,27 @@ export const postProductos = async (req, res) => {
 
 // Función para agregar un nuevo pedido
 export const postOrder = async (req, res) => {
-  const {cantidad,comentario} = req.body;
-  const {id_producto,id_orden} = req.params;
-  const query = 'CALL agregar_pedido(?, ?, ?)';
-  const params = [id_producto,cantidad,id_orden,comentario];
+  const {nombre,comentario,total} = req.body;
+  const query = 'call new_orden(?, ?, ?);';
+  const params = [nombre,comentario,total];
 
   try {
     const [results] = await connectionPool.query(query, params);
-    res.status(200).send('pedido creado exitosamente');
+    res.status(200).send('orden creada exitosamente');
   } catch (err) {
     console.error('Error al ejecutar la consulta:', err);
-    res.status(500).send('Error al agregar el pedido');
+    res.status(500).send('Error al agregar la orden');
+  }
+};
+
+// Función para obtener los platillos
+export const getOrden = async (req, res) => {
+  try {
+    const [orden] = await connectionPool.query("SELECT * FROM orden WHERE estatus = 1");
+    res.json(orden);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Error al obtener los resultados" });
   }
 };
 

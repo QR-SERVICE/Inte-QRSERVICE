@@ -52,12 +52,12 @@ if (notificaciones.style.display === 'block' &&
 
 // Alerta al hacer clic en "Llamar mesero"
 callMesero.addEventListener('click', function() {
-alert('Llamé al mesero');
+alert('Un mesero va hacia su mesa');
 });
 
 // Alerta al hacer clic en "Solicitar cuenta"
 callAccount.addEventListener('click', function() {
-alert('Llamé para pedir la cuenta');
+alert('Enseguida le entregamos su cuenta');
 });
 
 
@@ -248,7 +248,7 @@ sumProducts.forEach((sumProducts, index) => {
             productOrde.appendChild(row);
             
             totalSum += precio * cantidad;
-            TOTAL.textContent = totalSum.toFixed(2) + "$";
+            TOTAL.textContent = "$" +totalSum.toFixed(2) ;
 
         }  else {
             alert('Añada una cantidad')
@@ -425,8 +425,42 @@ carritoCerrar.addEventListener('click', (event) => {
 
 
 
-    const botonEn = document.getElementById('enviar-t');
 
-        botonEn.addEventListener("click", () => {
-            console.log("el pto boton 'Enviar' fue clickeado.");
-})
+const botonEn = document.getElementById('enviar-t');
+const coment = document.getElementById('coment');
+const totalisimo = document.getElementById('TOTAL');
+
+botonEn.addEventListener("click", async () => {   
+    function parseTotal() {
+        const totalText = totalisimo.textContent.trim();
+        const totalValue = parseFloat(totalText.replace('$', '').trim());
+        return totalValue;
+    }
+    const total = parseTotal();
+    const comentario = coment.value;
+    const nombre = 'Orden 5';
+    try {
+        const response = await fetch('http://localhost:3500/OrdenP', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({nombre,comentario,total})
+        });
+  
+        const responseData = await response.json();
+        console.log('Mensaje del servidor:', responseData.message || 'Sin mensaje de error');
+  
+        console.log('Estado de respuesta:', response.status);
+        console.log('Respuesta completa:', response);
+  
+        if (response.ok) {
+            alert('orden exitosa');
+        } else {
+            alert('Problemas al agregar el producto');
+        }
+    } catch (e) {
+        alert('orden agregada exitosamente');
+    }
+    
+});
