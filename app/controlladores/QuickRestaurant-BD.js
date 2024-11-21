@@ -53,16 +53,7 @@ export const getPlatillos = async (req, res) => {
   }
 };
 
-// Función para obtener las ordenes que estan borradas
-export const getOrdenesBorradas = async (req, res) => {
-  try {
-    const [ordenesEND] = await connectionPool.query("SELECT * FROM orden WHERE estatus = 0");
-    res.json(ordenesEND);
-  } catch (e) {
-    console.log(e);
-    res.status(500).json({ message: "Error al obtener los resultados" });
-  }
-};
+
 
 export const getDetallesOrden = async (req,res) =>{
   const { id_orden } = req.params;
@@ -88,32 +79,6 @@ export const postProductos = async (req, res) => {
   } catch (err) {
     console.error('Error al ejecutar la consulta:', err);
     res.status(500).send('Error al agregar el producto');
-  }
-};
-
-// Función para agregar un nuevo pedido
-export const postOrder = async (req, res) => {
-  const {nombre,comentario,total} = req.body;
-  const query = 'call new_orden(?, ?, ?);';
-  const params = [nombre,comentario,total];
-
-  try {
-    const [results] = await connectionPool.query(query, params);
-    res.status(200).send('orden creada exitosamente');
-  } catch (err) {
-    console.error('Error al ejecutar la consulta:', err);
-    res.status(500).send('Error al agregar la orden');
-  }
-};
-
-// Función para obtener los platillos
-export const getOrden = async (req, res) => {
-  try {
-    const [orden] = await connectionPool.query("SELECT * FROM orden WHERE estatus = 1");
-    res.json(orden);
-  } catch (e) {
-    console.log(e);
-    res.status(500).json({ message: "Error al obtener los resultados" });
   }
 };
 
@@ -205,5 +170,89 @@ export const getComandas = async (req, res) => {
   } catch (err) {
     console.error('Error al obtener las comandas:', err);
     res.status(500).send('Error al obtener las comandas');
+  }
+};
+
+// Estos funcionamientos son todo el pedo
+
+export const postOrder = async (req,res) => {
+  const {NombreMesa,pedidos, comentario, total} = req.body;
+
+  if (Array.isArray(pedidos)) {
+    console.log('Pedidos recibidos:', pedidos);
+  } else {
+    return res.status(400).send('El parámetro "pedidos" debe ser un arreglo');
+  }
+
+  const pedidosJSON = JSON.stringify(pedidos);
+  const query = 'call new_orden(?,?,?,?)';
+  const params = [NombreMesa, pedidosJSON, comentario, total];
+  try {
+    const [results] = await connectionPool.query(query, params);
+    res.status(200).send('Orden creada exitosamente');
+  } catch (err) {
+    console.error('Error al ejecutar la consulta:', err);
+    res.status(500).send('Error al crear la orden');
+  }
+
+}
+
+// funcion para obtener las ordenes
+export const getOrder = async(req,res) => {
+  try {
+    const [orden] = await connectionPool.query("SELECT * FROM orden WHERE estatus = 1");
+    res.json(orden);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Error al obtener los resultados" });
+  }
+
+}
+
+// Función para obtener las ordenes que estan borradas
+export const getOrdenesBorradas = async (req, res) => {
+  try {
+    const [ordenesEND] = await connectionPool.query("SELECT * FROM orden WHERE estatus = 0");
+    res.json(ordenesEND);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Error al obtener los resultados" });
+  }
+};
+
+// Función para terminar una orden
+export const postDeleteOrder = async (req, res) => {
+  const { id_orden } = req.params;
+  const query = 'call terminar_orden (?);';
+  const params = [id_orden];
+
+  try {
+    const [results] = await connectionPool.query(query, params);
+    res.status(200).send('Orden terminada exitosamente');
+  } catch (err) {
+    console.error('Error al ejecutar la consulta:', err);
+    res.status(500).send('Error al terminar la orden');
+  }
+};
+
+export const getOrderName = async (req, res) => {
+  try {
+    const [orden] = await connectionPool.query('SELECT COUNT(id_orden) AS num_orden FROM orden;');
+    res.json(orden);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Error al obtener los resultados" });
+  }
+};
+
+// funcion para eliminar las ordenes
+export const deleteOrder = async (req, res) => {
+  const query = 'DELETE FROM orden;';
+  try {
+    const [results] = await connectionPool.query(query);
+    res.status(200).send('Orden eliminada exitosamente');
+  } catch (err) {
+    console.error('Error al ejecutar la consulta:', err);
+    res.status(500).send('Error al eliminar la orden');
   }
 };

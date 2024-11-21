@@ -14,12 +14,41 @@
         <div id="navbar-configuracion" class="navbar-configuracion"></div>
     </header>
 
-    <div id="finishedOrders"></div>
+    <button class="deleteButton" id="deleteButton">Eliminar las ordenes</button> 
+
+    <div id="finishedOrders"></div> 
 
     <div id="navbar-footer"></div>
 
 </body>
 <script>
+
+const eliminar = document.querySelector('.deleteButton'); 
+
+eliminar.addEventListener('click', async () => {
+
+  try {
+    const response = await fetch(`http://localhost:3500/EliminarOrdenes`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const responseData = await response.json();
+    console.log('Mensaje del servidor:', responseData.message || 'Sin mensaje de error');
+    
+    if (response.ok) { 
+      alert('Ordenes eliminadas correctamente');
+    } else {
+      alert('Problemas al eliminar la orden');
+    }
+  } catch (e) {
+    console.error('Error en el catch:', e);
+    alert('Problemas al eliminar la orden');
+  }
+})
+
     fetch('/header')
            .then(response => response.text())
            .then(data => {

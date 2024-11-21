@@ -49,8 +49,18 @@ server.delete("/EliminarPedido/:pedidoDelete",deletePedido);
 import {postOrder} from './controlladores/QuickRestaurant-BD.js'
 server.post("/OrdenP",postOrder);
 
-import {getOrden} from './controlladores/QuickRestaurant-BD.js'
-server.get("/Orden",getOrden);
+import {getOrder} from './controlladores/QuickRestaurant-BD.js'
+server.get("/Orden",getOrder);
+
+import {postDeleteOrder} from './controlladores/QuickRestaurant-BD.js'
+server.post("/TerminarOrden/:id_orden",postDeleteOrder);
+
+import {getOrderName } from './controlladores/QuickRestaurant-BD.js'
+server.get('/NombreOrden', getOrderName);
+
+import {deleteOrder} from './controlladores/QuickRestaurant-BD.js'
+server.delete("/EliminarOrdenes",deleteOrder);
+
 
 server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecutando 
 

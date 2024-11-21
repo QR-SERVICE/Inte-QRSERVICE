@@ -93,8 +93,8 @@ function ViewProduct(producto){
 
         table.appendChild(tbody);
         bebidas.appendChild(table);
-    })
-    .catch(error => {
+        
+    }).catch(error => {
         console.error('Error al cargar los productos:', error);
     });
 
