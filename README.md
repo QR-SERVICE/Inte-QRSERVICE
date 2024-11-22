@@ -70,8 +70,8 @@ La conexion se manejo con PoolConnection en lugar de connectionObjet por la como
 
 Para el manejo en general de Edpoins GET se hace un solicitud del query con la consulta que deseas realizar esperando una respuesta del servidor.
 
-// Función para obtener las bebidas
-* export const getBebidas = async (req, res) => {
+* // Función para obtener las bebidas
+ export const getBebidas = async (req, res) => {
   try {
     const [bebidas] = await connectionPool.query("SELECT * FROM producto WHERE categoria_producto = 'Bebidas'");
     res.json(bebidas);
@@ -149,9 +149,7 @@ export const getOrder = async(req,res) => {
   } catch (e) {
     console.log(e);
     res.status(500).json({ message: "Error al obtener los resultados" });
-  }
-
-}
+  }};
 
 * // Función para obtener las ordenes que estan borradas
 export const getOrdenesBorradas = async (req, res) => {
@@ -265,4 +263,4 @@ export const deleteProductos = async (req, res) => {
 
 # Estado actual del proyecto
 
-En el estado actual del proyecto ya se puede hacer manejo total de los productos al poder crear, gestionar y borrar, igualmente de los pedidos y ordenes los cuales ya se pueden manejar en sus respectivas pantallas (comandas e historial) y menu, la funcion de logiarse aun no sea implementado por la gestion de seguridad en la base de datos al ser procedimientos de encriptacion y desencriptacion al respectivamente pero se hara la implementacion a mas tardar el dia domingo.
+En el estado actual del proyecto ya se puede hacer manejo total de los productos al poder crear, gestionar y borrar, igualmente de los pedidos y ordenes los cuales ya se pueden manejar en sus respectivas pantallas (comandas e historial) y menu, la funcion de logiarse aun no sea implementado por la gestion de seguridad en la base de datos al ser procedimientos de encriptacion y desencriptacion respectivamente pero se hara la implementacion a mas tardar el dia domingo.
