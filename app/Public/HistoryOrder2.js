@@ -6,6 +6,10 @@ fetch('/Total')
     data.forEach(total => {
         const p = document.createElement('p');
         p.classList.add('totalP');
+
+        if (total.total === null)
+        p.textContent = `Total:$${0}`
+        else
         p.textContent = `Total:$${total.total}`;
 
         deposito.appendChild(p);

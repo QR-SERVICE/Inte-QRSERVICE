@@ -6,23 +6,6 @@ menu.addEventListener('click', () => {
     sidebar.classList.toggle('menu-toggle');
 })
 
-/*
-// Carrito
-document.getElementById('menu-btn').addEventListener('click', () => {
-    const modal = document.getElementById("cartModal");
-    modal.style.display = 'flex';
-});
-
-document.getElementById('close-modal').addEventListener('click', () => {
-    const modal = document.getElementById("cartModal");
-    modal.style.display = 'none';
-});
-
-document.getElementById('vaciar-carrito').addEventListener('click', () => {
-    carrito.length = 0;
-    mostrarCarrito();
-});
-*/
 
 // Seleccionamos los elementos necesarios
 const abrirNotis = document.getElementById('abrir-notis');
@@ -81,28 +64,6 @@ NoVer.addEventListener("click", () => {
     }, { once: true }); 
 });
 
-document.getElementById('enviar-carrito').addEventListener('click', () => {
-    fetch('/api/pedir', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            productos: carrito,
-            total: carrito.reduce((total, item) => total + (item.precio_producto * item.cantidad), 0)
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert("Pedido enviado exitosamente!");
-        carrito.length = 0;
-        mostrarCarrito();
-    })
-    .catch(error => {
-        alert("Hubo un problema al enviar el pedido.");
-    });
-});
-
     
 
 // cambiar estado de seleccionado en el menu
@@ -127,45 +88,6 @@ abrir.addEventListener("click", () => {
 cerrar.addEventListener("click", () => {
     nav.classList.remove("visible");
 })
-
-// // Boton de traduccion
-// const langButtons = document.querySelectorAll("[data-language]");
-// langButtons.forEach((button) =>{
-//     button.addEventListener("click", () =>{
-//         const texttochange = document.querySelectorAll("[data-seccion]");
-//         console.log(texttochange);
-//         fetch(`/languages/${button.dataset.language}.json`)
-//         .then(res => res.json())
-//         .then(data => {
-//             texttochange.forEach((el) => {
-//                 const seccion = el.dataset.seccion;
-//                 const valor = el.dataset.valor;
-
-//                 el.textContent = data[seccion][valor];
-                
-//             })
-//         })
-//     })
-// })
-
-// Boton para cambiar de categoria de productos
-// const opcionButtons = document.querySelectorAll("[data-categoria]");
-// opcionButtons.forEach((button) =>{
-//     button.addEventListener("click",()=>{
-//         const texTochange = document.querySelectorAll("[data-section]");
-//         console.log(texTochange);
-//         fetch(`../Menu/Productos.js/${button.dataset.categoria}.json`)
-//         .then(res => res.json())
-//         .then(data =>{
-//             texTochange.forEach((op) => {
-//                 const section = op.dataset.section;
-//                 const value = op.dataset.value;
-
-//                 op.textContent= data[section][value];
-//             })
-//         })
-//     })
-// })
 
 function obtenerPrecios(elementos) {
     return Array.from(elementos).map(elemento => {
@@ -263,56 +185,6 @@ sumProducts.forEach((sumProducts, index) => {
     });
 });
 
-/////////////////////////// Cambios boton enviar (Modificado por chris) ////////////////////////////////////////
-// document.addEventListener("DOMContentLoaded", () => {
-//     const botonEn = document.getElementById("enviar-t");
-//     if (botonEn) {
-//         botonEn.addEventListener("click", () => {
-//             const productosGuardador = []; 
-//             const productosName = document.querySelectorAll(".name");
-//             const productosPrice = document.querySelectorAll(".price");
-//             productosName.forEach((nameElement, index) => {
-//                 const name = nameElement.textContent;
-//                 const price = parseFloat(productosPrice[index].textContent.replace("$", "").trim()); 
-//                 productosGuardador.push({
-//                     name: name,
-//                     price: price
-//                 });
-//             });
-//             const mesa = 1; /* Mas adelante tenemos que crear aqui la funcion para que ese numero 1 cambie al numero de
-//          la mesa que realizo la orden */
-//          const comanda = {
-//             mesa: mesa,
-//             pedido: productosGuardador,
-//             total: totalSum
-//         };
-
-//         //ENVIAR LA COMANDA AL SERVIDOR
-//         fetch('http://localhost:3500/api/comandas', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(comanda)
-//         })
-//         .then(response => response.json())
-//         .then(data => {
-//             console.log("Comanda guardada:", data);
-//              // Limpiar el carrito y restablecer el total
-//              productOrde.innerHTML = ""; // Limpia el contenido del carrito
-//              totalSum = 0; // Restablece el total a cero
-//              TOTAL.textContent = totalSum.toFixed(2) + "$"; // Actualiza la visualización del total
-//              alert("¡Comanda enviada exitosamente! Puedes seguir agregando productos.");
-//         })
-//         .catch(error => {
-//             console.error("Error al guardar la comanda:", error);
-//         });
-//     });
-// }
-// });
-
-
-////////////////// Terminan cambios de christian /////////////////////////////
 
 
 const notificacionesM = document.querySelector('#notificaciones');
@@ -430,7 +302,34 @@ carritoCerrar.addEventListener('click', (event) => {
     event.stopPropagation();  // Detiene la propagación del clic dentro del carrito
 });
 
+function vaciarCarrito() {
+    const productRows = document.querySelectorAll('.producto-fila');
+    productRows.forEach(row => row.remove());
+    TOTAL.textContent = '$0.00'; 
+    coment.value = '';
+    botonEn.disabled = true;
+};
 
+function actualizarTablaRecord(pedidos, total) {
+    const recordTableBody = document.getElementById('productos_Record');
+    const recordTotal = document.getElementById('Record_total');
+    recordTableBody.innerHTML = '';
+    pedidos.forEach(pedido => {
+        const row = document.createElement('tr');
+        row.className = 'record-product-row';
+        const cellName = document.createElement('td');
+        cellName.textContent = pedido.nombre_producto;
+        const cellPrice = document.createElement('td');
+        cellPrice.textContent = `$${pedido.precio.toFixed(2)}`;
+        const cellAmount = document.createElement('td');
+        cellAmount.textContent = pedido.cantidad;
+        row.appendChild(cellName);
+        row.appendChild(cellPrice);
+        row.appendChild(cellAmount);
+        recordTableBody.appendChild(row);
+    });
+    recordTotal.textContent = `$${total.toFixed(2)}`;
+};
 
 
 const botonEn = document.getElementById('enviar-t');
@@ -483,13 +382,29 @@ botonEn.addEventListener("click", async () => {
   
         if (response.ok) {
             alert('orden exitosa');
+            vaciarCarrito();
+            actualizarTablaRecord(pedidos, total);
         } else {
             alert('Problemas al agregar el producto');
         }
     } catch (e) {
         alert('orden agregada exitosamente');
     }
+    vaciarCarrito();
+    actualizarTablaRecord(pedidos, total);    
+});
 
 
-    
+
+const orderButton = document.getElementById('Order'); 
+const closeButton = document.getElementById('cerrar_Record'); 
+const recordDiv = document.getElementById('Record'); 
+
+
+orderButton.addEventListener('click', () => {
+    recordDiv.classList.add('visible'); 
+});
+
+closeButton.addEventListener('click', () => {
+    recordDiv.classList.remove('visible');
 });

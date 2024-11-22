@@ -34,6 +34,11 @@
                             <span> <i class="fa-solid fa-cart-shopping"></i> Carrito</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="Order" id="Order">
+                            <span> <i class="fa-solid fa-square-check"></i> Ordenes</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -50,11 +55,7 @@
                 </div>
                 <div>
                     <div class="menu-container-navbar">
-                        <div class="menu-desplegable" id="menu-desplegable">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
+                        <div class="menu-desplegable" id="menu-desplegable"><i class="fa-solid fa-cart-shopping"></i></div>
                     </div>
                 </div> 
             </ul>
@@ -91,6 +92,29 @@
             </tfoot>
         </table>
     </div>
+
+    <div id="Record" class="Record">
+        <table class="RecordTable" id="RecordTable">
+            <thead>
+                <tr>
+                    <th class="datos-Record" id="datos-Record"> Producto / Precio / Cantidad </th>
+                    <th><button id="cerrar_Record" class="cerrar_Record"><i class="fa-solid fa-x"></i></button></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="productos_Record" id="productos_Record">
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>  
+                    <th>TOTAL:</th>
+                    <th id="Record_total" class="Record_total"></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
 </body>
 
 <script src="/NavBar.js" id="navbar-js"></script>
