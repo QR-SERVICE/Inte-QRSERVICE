@@ -14,6 +14,8 @@ server.use(morgan('dev'));
 const __filename = fileURLToPath(import.meta.url);
 // Obtiene el directorio actual
 const __dirname = path.dirname(__filename);
+//cors
+server.use(cors());
 
 // conexion a la base de datos
 import { getMesa } from './controlladores/QuickRestaurant-BD.js'
@@ -68,8 +70,8 @@ server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecut
 /////////////////////////////// CHRISTIAN  ///////////////////////////////
 
 
-import {getComandas} from './controlladores/QuickRestaurant-BD.js'
-server.get('/api/comandas', getComandas);
+// import {getComandas} from './controlladores/QuickRestaurant-BD.js'
+// server.get('/api/comandas', getComandas);
 
 ////////////////////////////////CHRISTIAN //////////////////////////////
 
@@ -79,7 +81,7 @@ server.get('/api/comandas', getComandas);
 // Configuración de directorios estáticos
 server.use(express.static(path.join(__dirname, 'Public')));
 server.use(express.static(path.join(__dirname, 'Img')));
-server.use(cors());
+
 
 // Rutas
 server.get("/", (req, res) => res.sendFile(path.join(__dirname, 'login_', 'login.html')))

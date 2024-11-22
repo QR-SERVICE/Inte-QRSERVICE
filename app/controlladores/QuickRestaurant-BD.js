@@ -7,7 +7,7 @@ const connectionPool = mysql2.createPool({
     password: "Bufetero21",
     port: 3307,
     database: "QuickRestaurant"
-}).promise(); // Agrega .promise() para usar async/await
+}).promise();
 
 // Función para obtener las bebidas
 export const getBebidas = async (req, res) => {
@@ -17,7 +17,7 @@ export const getBebidas = async (req, res) => {
   } catch (e) {
     console.log(e);
     res.status(500).json({ message: "Error al obtener los resultados" });
-  }connectionPool.releaseConnection();
+  };
 };
 
 // Función para obtener los postres
@@ -82,7 +82,7 @@ export const postProductos = async (req, res) => {
   }
 };
 
-// Función para eliminar un producto
+// Función para eliminar un pedido
 export const deletePedido = async (req, res) => {
   const { pedidoDelete } = req.params;
   const query = 'DELETE FROM pedido WHERE id_pedido = ?;';
@@ -127,51 +127,51 @@ export const getMesa = async (req, res) => {
 
 /////////////////  CHRISTIAN  ////////////////////////////
 
-//Obtener las comandas desde la base de datos
-export const getComandas = async (req, res) => {
-  try {
-    const query = 'SELECT * FROM VistaComandas';
-    const result = await connectionPool.query(query);
+// //Obtener las comandas desde la base de datos
+// export const getComandas = async (req, res) => {
+//   try {
+//     const query = 'SELECT * FROM VistaComandas';
+//     const result = await connectionPool.query(query);
 
-    const comandas = result[0]; // Estuve teniendo un problema para traer los datos
-    // de la base de datos a la pantalla, ya que me los mandaba por columnas y se supone que
-    //con esto se quita jaja
+//     const comandas = result[0]; // Estuve teniendo un problema para traer los datos
+//     // de la base de datos a la pantalla, ya que me los mandaba por columnas y se supone que
+//     //con esto se quita jaja
 
-    // Asegurarse de que 'comandas' sea un array
-    console.log("Datos obtenidos de la base de datos:", comandas);
+//     // Asegurarse de que 'comandas' sea un array
+//     console.log("Datos obtenidos de la base de datos:", comandas);
 
-    // Agrupar comandas por id_pedido
-    const comandasAgrupadas = {};
+//     // Agrupar comandas por id_pedido
+//     const comandasAgrupadas = {};
 
-    comandas.forEach(comanda => {
-      if (!comandasAgrupadas[comanda.id_pedido]) {
-        comandasAgrupadas[comanda.id_pedido] = {
-          id_pedido: comanda.id_pedido,
-          nombre_mesa: comanda.nombre_mesa,
-          comentario: comanda.comentario_pedido || "Sin comentarios",
-          fecha_pedido: comanda.fecha_pedido,
-          total_pedido: comanda.total_pedido,
-          productos: []
-        };
-      }
+//     comandas.forEach(comanda => {
+//       if (!comandasAgrupadas[comanda.id_pedido]) {
+//         comandasAgrupadas[comanda.id_pedido] = {
+//           id_pedido: comanda.id_pedido,
+//           nombre_mesa: comanda.nombre_mesa,
+//           comentario: comanda.comentario_pedido || "Sin comentarios",
+//           fecha_pedido: comanda.fecha_pedido,
+//           total_pedido: comanda.total_pedido,
+//           productos: []
+//         };
+//       }
 
-      // Agregar el producto a la lista de productos de ese pedido
-      comandasAgrupadas[comanda.id_pedido].productos.push({
-        nombre_producto: comanda.nombre_producto,
-        cantidad: comanda.cantidad,
-      });
-    });
+//       // Agregar el producto a la lista de productos de ese pedido
+//       comandasAgrupadas[comanda.id_pedido].productos.push({
+//         nombre_producto: comanda.nombre_producto,
+//         cantidad: comanda.cantidad,
+//       });
+//     });
 
-    const resultado = Object.values(comandasAgrupadas);
-    console.log("Comandas agrupadas:", resultado);
+//     const resultado = Object.values(comandasAgrupadas);
+//     console.log("Comandas agrupadas:", resultado);
 
-    // Enviar las comandas agrupadas
-    res.status(200).json(resultado);
-  } catch (err) {
-    console.error('Error al obtener las comandas:', err);
-    res.status(500).send('Error al obtener las comandas');
-  }
-};
+//     // Enviar las comandas agrupadas
+//     res.status(200).json(resultado);
+//   } catch (err) {
+//     console.error('Error al obtener las comandas:', err);
+//     res.status(500).send('Error al obtener las comandas');
+//   }
+// };
 
 // Estos funcionamientos son todo el pedo
 
@@ -193,9 +193,8 @@ export const postOrder = async (req,res) => {
   } catch (err) {
     console.error('Error al ejecutar la consulta:', err);
     res.status(500).send('Error al crear la orden');
-  }
-
-}
+  };
+};
 
 // funcion para obtener las ordenes
 export const getOrder = async(req,res) => {
