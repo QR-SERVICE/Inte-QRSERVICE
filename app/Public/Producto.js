@@ -31,7 +31,7 @@ function ViewProduct(producto){
         const thead = document.createElement('thead');
         const headerRow = document.createElement('tr');
         
-        const headers = [`${producto}`, 'Precio', 'Stock'];
+        const headers = [`${producto}`, 'Precio', 'Borrar'];
         headers.forEach(headerText => {
             const th = document.createElement('th');
             th.textContent = headerText;
@@ -56,7 +56,6 @@ function ViewProduct(producto){
             row.appendChild(precioCell);
 
             const stockCell = document.createElement('td');
-            stockCell.textContent = producto.stock;
             stockCell.appendChild(deleteButton)
             stockCell.classList.add('productStock');
 
@@ -106,7 +105,6 @@ document.getElementById("agreg_pro").addEventListener('click', async () => {
   const categoria = document.getElementById("categoria_producto").value;
   const descripcion = document.getElementById("descripcion_producto").value;
   const precio = parseFloat(document.getElementById("precio_producto").value);
-  const stock = parseInt(document.getElementById("cantidad_producto").value);
   const imgFile = document.getElementById("img-agreg").value;
 
   try {
@@ -115,7 +113,7 @@ document.getElementById("agreg_pro").addEventListener('click', async () => {
           headers: {
               'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ nombre, categoria, precio, stock, descripcion, imgFile })
+          body: JSON.stringify({ nombre, categoria, precio, descripcion, imgFile })
       });
 
       const responseData = await response.json();

@@ -17,7 +17,7 @@ export const getBebidas = async (req, res) => {
   } catch (e) {
     console.log(e);
     res.status(500).json({ message: "Error al obtener los resultados" });
-  }
+  }connectionPool.releaseConnection();
 };
 
 // Función para obtener los postres
@@ -69,9 +69,9 @@ export const getDetallesOrden = async (req,res) =>{
  
 // Función para agregar un nuevo producto
 export const postProductos = async (req, res) => {
-  const { nombre, categoria, precio, stock, descripcion, imgFile } = req.body;
-  const query = 'CALL new_producto(?, ?, ?, ?, ?, ?)';
-  const params = [nombre, categoria, precio, stock, descripcion, imgFile];
+  const { nombre, categoria, precio, descripcion, imgFile } = req.body;
+  const query = 'CALL new_producto(?, ?, ?, ?, ?)';
+  const params = [nombre, categoria, precio, descripcion, imgFile];
 
   try {
     const [results] = await connectionPool.query(query, params);
