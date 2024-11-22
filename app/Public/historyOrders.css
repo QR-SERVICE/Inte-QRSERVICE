@@ -81,3 +81,34 @@
 .deleteButton:active {
     transform: translateY(1px); 
 }
+
+#total {
+  position: absolute;
+  top: 160px;
+  right: 10px; 
+  background-color: #ffffff; 
+  padding: 8px 15px; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column; 
+  gap: 4px; 
+  z-index: 1000; 
+}
+
+.totalP {
+  font-size: 14px; 
+  color: #444; 
+  font-weight: normal; 
+  text-align: center; 
+  margin: 0;
+  background-color: #f4f4f4; 
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease; 
+}
+
+
+.totalP:hover {
+  background-color: #e5e5e5; 
+}

@@ -39,6 +39,9 @@ server.get('/Historial_ordenes', getOrdenesBorradas);
 import {getDetallesOrden } from './controlladores/QuickRestaurant-BD.js'
 server.get('/Detalles/:id_orden', getDetallesOrden);
 
+import {getTotal } from './controlladores/QuickRestaurant-BD.js'
+server.get('/Total', getTotal);
+
 import {postProductos} from './controlladores/QuickRestaurant-BD.js'
 server.post("/AgregarProductos",postProductos);
 

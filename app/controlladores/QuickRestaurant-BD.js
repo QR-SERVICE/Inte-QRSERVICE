@@ -246,7 +246,7 @@ export const getOrderName = async (req, res) => {
 
 // funcion para eliminar las ordenes
 export const deleteOrder = async (req, res) => {
-  const query = 'DELETE FROM orden;';
+  const query = 'DELETE FROM orden where estatus = 0;';
   try {
     const [results] = await connectionPool.query(query);
     res.status(200).send('Orden eliminada exitosamente');
@@ -254,4 +254,15 @@ export const deleteOrder = async (req, res) => {
     console.error('Error al ejecutar la consulta:', err);
     res.status(500).send('Error al eliminar la orden');
   }
+};
+
+// Función para obtener el total de las ordenes del dia
+export const getTotal = async (req, res) => {
+  try {
+    const [total] = await connectionPool.query("SELECT sum(total) as total from orden where estatus = 0");
+    res.json(total);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Error al obtener los resultados" });
+  };
 };
