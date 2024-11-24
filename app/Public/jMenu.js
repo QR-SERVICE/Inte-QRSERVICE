@@ -281,16 +281,33 @@ carcerrarsidebar.addEventListener('click', () => {
 function cambiarClaseSidebarScroll() {
     const scrollY = window.scrollY;
     let newMarginTop;
+    const screenWidth = window.innerWidth; // Ancho actual de la pantalla
 
-    // Solo ajustar el margin-top si scrollY es menor a 90
-    if (scrollY < 90) {
-        newMarginTop = 30 - (scrollY / 4); // Ajustar este factor de división para controlar la velocidad
-    } else {
-        newMarginTop = 15; // Fijar el margin-top en 48% cuando scrollY es mayor a 90
+    if(screenWidth >= 620 && screenWidth < 720) {
+        if (scrollY < 90) {
+            newMarginTop = 20 - (scrollY / 4); 
+        } else {
+            newMarginTop = 5; 
+        }
     }
 
-    // Aplicar el nuevo margen superior al sidebar
-    sidebar.style.marginTop = newMarginTop + '%';
+    if(screenWidth <= 416) {
+        if (scrollY < 90) {
+            newMarginTop = 20 - (scrollY / 4); // Ajustar este factor de división para controlar la velocidad
+        } else {
+            newMarginTop = 12; // Fijar el margin-top en 48% cuando scrollY es mayor a 90
+        }
+    }
+}
+
+// Función para cambiar la clase según el scroll
+function cambiarClasePorScroll() {
+    // Si el scroll ha pasado (X)px desde la parte superior
+    if (window.scrollY > 90) {
+        navbar.classList.add('navbar-scroll'); 
+    } else {
+        navbar.classList.remove('navbar-scroll'); 
+    }
 }
 
 // Llamar a ambas funciones cuando se haga scroll
