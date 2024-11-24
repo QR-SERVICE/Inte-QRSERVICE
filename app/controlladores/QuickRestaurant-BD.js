@@ -9,6 +9,8 @@ const connectionPool = mysql2.createPool({
     database: "QuickRestaurant"
 }).promise();
 
+//GET
+
 // Función para obtener las bebidas
 export const getBebidas = async (req, res) => {
   try {
@@ -66,6 +68,66 @@ export const getDetallesOrden = async (req,res) =>{
     res.status(500).json({ message: "Error al obtener los resultados" });
   }
 }
+
+//Funcion para obtener la informacion de la mesa
+export const getMesa = async (req, res) => {
+  const {id_mesa} = req.params;
+  const query = 'SELECT nombre_mesa FROM mesa WHERE id_mesa = ?;';
+  const params = [id_mesa];
+  try {
+    const [mesa] =  await connectionPool.query(query, params);
+    res.status(200).send(mesa[0]);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Error al obtener los resultados" });
+  }
+};
+
+// funcion para obtener las ordenes
+export const getOrder = async(req,res) => {
+  try {
+    const [orden] = await connectionPool.query("SELECT * FROM orden WHERE estatus = 1");
+    res.json(orden);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Error al obtener los resultados" });
+  };
+};
+
+// Función para obtener las ordenes que estan borradas
+export const getOrdenesBorradas = async (req, res) => {
+  try {
+    const [ordenesEND] = await connectionPool.query("SELECT * FROM orden WHERE estatus = 0");
+    res.json(ordenesEND);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ error: 'Error al terminar la orden', details: err.message });
+  }
+};
+
+// Funcion para obtener el nombre de la mesa
+export const getOrderName = async (req, res) => {
+  try {
+    const [orden] = await connectionPool.query('SELECT COUNT(id_orden) AS num_orden FROM orden;');
+    res.json(orden);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Error al obtener los resultados" });
+  }
+};
+
+// Función para obtener el total de las ordenes del dia
+export const getTotal = async (req, res) => {
+  try {
+    const [total] = await connectionPool.query("SELECT sum(total) as total from orden where estatus = 0");
+    res.json(total);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Error al obtener los resultados" });
+  };
+};
+
+//POST
  
 // Función para agregar un nuevo producto
 export const postProductos = async (req, res) => {
@@ -82,34 +144,7 @@ export const postProductos = async (req, res) => {
   }
 };
 
-// Función para eliminar un producto
-export const deleteProductos = async (req, res) => {
-  const { producDelete } = req.params;
-  const query = 'DELETE FROM producto WHERE id_producto = ?;';
-  const params = [producDelete];
-
-  try {
-    const [results] = await connectionPool.query(query, params);
-    res.status(200).json({ message: 'Producto eliminado exitosamente' });
-  } catch (err) {
-    console.error('Error al ejecutar la consulta:', err);
-    res.status(500).json({ message: "Error al eliminar el producto" });
-  }
-};
-
-export const getMesa = async (req, res) => {
-  const {id_mesa} = req.params;
-  const query = 'SELECT nombre_mesa FROM mesa WHERE id_mesa = ?;';
-  const params = [id_mesa];
-  try {
-    const [mesa] =  await connectionPool.query(query, params);
-    res.status(200).send(mesa[0]);
-  } catch (e) {
-    console.log(e);
-    res.status(500).json({ message: "Error al obtener los resultados" });
-  }
-};
-
+//Funcion para crear la orden
 
 export const postOrder = async (req, res) => {
   const { NombreMesa, pedidos, comentario, total } = req.body;
@@ -133,29 +168,6 @@ export const postOrder = async (req, res) => {
   }
 };
 
-// funcion para obtener las ordenes
-export const getOrder = async(req,res) => {
-  try {
-    const [orden] = await connectionPool.query("SELECT * FROM orden WHERE estatus = 1");
-    res.json(orden);
-  } catch (e) {
-    console.log(e);
-    res.status(500).json({ message: "Error al obtener los resultados" });
-  }
-
-}
-
-// Función para obtener las ordenes que estan borradas
-export const getOrdenesBorradas = async (req, res) => {
-  try {
-    const [ordenesEND] = await connectionPool.query("SELECT * FROM orden WHERE estatus = 0");
-    res.json(ordenesEND);
-  } catch (e) {
-    console.log(e);
-    res.status(500).json({ error: 'Error al terminar la orden', details: err.message });
-  }
-};
-
 // Función para terminar una orden
 export const postDeleteOrder = async (req, res) => {
   const { id_orden } = req.params;
@@ -171,15 +183,27 @@ export const postDeleteOrder = async (req, res) => {
   }
 };
 
-export const getOrderName = async (req, res) => {
+
+
+
+//DELETE
+
+// Función para eliminar un producto
+export const deleteProductos = async (req, res) => {
+  const { producDelete } = req.params;
+  const query = 'DELETE FROM producto WHERE id_producto = ?;';
+  const params = [producDelete];
+
   try {
-    const [orden] = await connectionPool.query('SELECT COUNT(id_orden) AS num_orden FROM orden;');
-    res.json(orden);
-  } catch (e) {
-    console.log(e);
-    res.status(500).json({ message: "Error al obtener los resultados" });
+    const [results] = await connectionPool.query(query, params);
+    res.status(200).json({ message: 'Producto eliminado exitosamente' });
+  } catch (err) {
+    console.error('Error al ejecutar la consulta:', err);
+    res.status(500).json({ message: "Error al eliminar el producto" });
   }
 };
+
+
 
 // funcion para eliminar las ordenes
 export const deleteOrder = async (req, res) => {
@@ -191,15 +215,4 @@ export const deleteOrder = async (req, res) => {
     console.error('Error al ejecutar la consulta:', err);
     res.status(500).json({message:'Error al eliminar la orden'});
   }
-};
-
-// Función para obtener el total de las ordenes del dia
-export const getTotal = async (req, res) => {
-  try {
-    const [total] = await connectionPool.query("SELECT sum(total) as total from orden where estatus = 0");
-    res.json(total);
-  } catch (e) {
-    console.log(e);
-    res.status(500).json({ message: "Error al obtener los resultados" });
-  };
 };

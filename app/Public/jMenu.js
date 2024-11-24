@@ -355,15 +355,14 @@ function vaciarCarrito() {
 };
 
 function actualizarTablaRecord(pedidos, total) {
-    const historial = document.getElementById('RecordTable'); // La tabla donde vamos a guardar el historial
+    const historial = document.getElementById('RecordTable');
     const tbodyHistorial = historial.querySelector('tbody');
 
-    // Iterar sobre los pedidos y agregar las filas al historial
     pedidos.forEach(pedido => {
         const filaHistorial = document.createElement('tr');
         filaHistorial.classList.add('productos_Record');
         
-        // Crear celdas y asignar los datos del pedido
+        
         const celdaProducto = document.createElement('td');
         celdaProducto.textContent = pedido.nombre_producto;
         filaHistorial.appendChild(celdaProducto);
@@ -375,12 +374,8 @@ function actualizarTablaRecord(pedidos, total) {
         const celdaCantidad = document.createElement('td');
         celdaCantidad.textContent = pedido.cantidad;
         filaHistorial.appendChild(celdaCantidad);
-
-        // Agregar la fila a la tabla de historial
         tbodyHistorial.appendChild(filaHistorial);
     });
-
-    // Actualizar el total en la tabla de historial
     document.getElementById('Record_total').textContent = `$${total.toFixed(2)}`;
 }
 
