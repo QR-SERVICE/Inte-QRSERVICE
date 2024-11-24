@@ -49,9 +49,6 @@ server.post("/AgregarProductos",postProductos);
 import {deleteProductos} from './controlladores/QuickRestaurant-BD.js'
 server.delete("/EliminarProducto/:producDelete",deleteProductos);
 
-import {deletePedido} from './controlladores/QuickRestaurant-BD.js'
-server.delete("/EliminarPedido/:pedidoDelete",deletePedido);
-
 import {postOrder} from './controlladores/QuickRestaurant-BD.js'
 server.post("/OrdenP",postOrder);
 

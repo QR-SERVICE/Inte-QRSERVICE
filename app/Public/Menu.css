@@ -801,7 +801,7 @@ li{
     }
   }
 
-  .Record {
+.Record {
     position: fixed;
     top: 30%;
     left: 50%;

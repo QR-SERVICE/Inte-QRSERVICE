@@ -35,10 +35,10 @@ eliminar.addEventListener('click', async () => {
     if (response.ok) { 
       alert('Ordenes eliminadas correctamente');
     } else {
-      alert('Problemas al eliminar la orden');
+      alert('Problemas al eliminar las ordenes');
     }
   } catch (e) {
     console.error('Error en el catch:', e);
-    alert('Problemas al eliminar la orden');
+    alert('Problemas al eliminar las ordenes');
   }
 })

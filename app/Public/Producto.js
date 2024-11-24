@@ -1,19 +1,3 @@
-    // Boton para abrir la sidebar
-    // const menu = document.getElementById('menu-btn');
-    // const sidebar = document.getElementById('sidebar');
-
-    // menu.addEventListener('click', () => {
-    //     sidebar.classList.toggle('menu-toggle');
-    // })
-
-
-// create.addEventListener("click", () => {
-//   carrito.classList.remove("visible"); 
-//   carrito.addEventListener('transitionend', () => {
-//       carrito.style.display = 'none'; 
-//   }, { once: true }); 
-// });
-
     ViewProduct('Bebidas')
     ViewProduct('Platillos')
     ViewProduct('Postres')
@@ -128,6 +112,6 @@ document.getElementById("agreg_pro").addEventListener('click', async () => {
           alert('Problemas al agregar el producto');
       }
   } catch (e) {
-      alert('Se agrego el producto correctamente');
+      alert('Problemas al agregar el producto');
   }
 });
