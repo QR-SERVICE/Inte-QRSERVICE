@@ -281,16 +281,33 @@ carcerrarsidebar.addEventListener('click', () => {
 function cambiarClaseSidebarScroll() {
     const scrollY = window.scrollY;
     let newMarginTop;
+    const screenWidth = window.innerWidth; // Ancho actual de la pantalla
 
-    // Solo ajustar el margin-top si scrollY es menor a 90
-    if (scrollY < 90) {
-        newMarginTop = 30 - (scrollY / 4); // Ajustar este factor de división para controlar la velocidad
-    } else {
-        newMarginTop = 15; // Fijar el margin-top en 48% cuando scrollY es mayor a 90
+    if(screenWidth >= 620 && screenWidth < 720) {
+        if (scrollY < 90) {
+            newMarginTop = 20 - (scrollY / 4); 
+        } else {
+            newMarginTop = 5; 
+        }
     }
 
-    // Aplicar el nuevo margen superior al sidebar
-    sidebar.style.marginTop = newMarginTop + '%';
+    if(screenWidth <= 416) {
+        if (scrollY < 90) {
+            newMarginTop = 20 - (scrollY / 4); // Ajustar este factor de división para controlar la velocidad
+        } else {
+            newMarginTop = 12; // Fijar el margin-top en 48% cuando scrollY es mayor a 90
+        }
+    }
+}
+
+// Función para cambiar la clase según el scroll
+function cambiarClasePorScroll() {
+    // Si el scroll ha pasado (X)px desde la parte superior
+    if (window.scrollY > 90) {
+        navbar.classList.add('navbar-scroll'); 
+    } else {
+        navbar.classList.remove('navbar-scroll'); 
+    }
 }
 
 // Llamar a ambas funciones cuando se haga scroll
@@ -335,29 +352,37 @@ function vaciarCarrito() {
     productRows.forEach(row => row.remove());
     TOTAL.textContent = '$0.00'; 
     coment.value = '';
-    botonEn.disabled = true;
 };
 
 function actualizarTablaRecord(pedidos, total) {
-    const recordTableBody = document.getElementById('productos_Record');
-    const recordTotal = document.getElementById('Record_total');
-    recordTableBody.innerHTML = '';
+    const historial = document.getElementById('RecordTable'); // La tabla donde vamos a guardar el historial
+    const tbodyHistorial = historial.querySelector('tbody');
+
+    // Iterar sobre los pedidos y agregar las filas al historial
     pedidos.forEach(pedido => {
-        const row = document.createElement('tr');
-        row.className = 'record-product-row';
-        const cellName = document.createElement('td');
-        cellName.textContent = pedido.nombre_producto;
-        const cellPrice = document.createElement('td');
-        cellPrice.textContent = `$${pedido.precio.toFixed(2)}`;
-        const cellAmount = document.createElement('td');
-        cellAmount.textContent = pedido.cantidad;
-        row.appendChild(cellName);
-        row.appendChild(cellPrice);
-        row.appendChild(cellAmount);
-        recordTableBody.appendChild(row);
+        const filaHistorial = document.createElement('tr');
+        filaHistorial.classList.add('productos_Record');
+        
+        // Crear celdas y asignar los datos del pedido
+        const celdaProducto = document.createElement('td');
+        celdaProducto.textContent = pedido.nombre_producto;
+        filaHistorial.appendChild(celdaProducto);
+
+        const celdaPrecio = document.createElement('td');
+        celdaPrecio.textContent = `$${pedido.precio.toFixed(2)}`;
+        filaHistorial.appendChild(celdaPrecio);
+
+        const celdaCantidad = document.createElement('td');
+        celdaCantidad.textContent = pedido.cantidad;
+        filaHistorial.appendChild(celdaCantidad);
+
+        // Agregar la fila a la tabla de historial
+        tbodyHistorial.appendChild(filaHistorial);
     });
-    recordTotal.textContent = `$${total.toFixed(2)}`;
-};
+
+    // Actualizar el total en la tabla de historial
+    document.getElementById('Record_total').textContent = `$${total.toFixed(2)}`;
+}
 
 
 const botonEn = document.getElementById('enviar-t');
@@ -365,33 +390,34 @@ const coment = document.getElementById('coment');
 const totalisimo = document.getElementById('TOTAL');
 const Nm = document.getElementById('Mesa');
 
-botonEn.addEventListener("click", async () => {   
+const enviarOrden = async () => {
     function parseTotal() {
         const totalText = totalisimo.textContent.trim();
         const totalValue = parseFloat(totalText.replace('$', '').trim());
         return totalValue;
     }
+
     const total = parseTotal();
     const comentario = coment.value;
     const NombreMesa = Nm.textContent;
 
-    console.log(NombreMesa);
-    
+    console.log("Mesa:", NombreMesa);
 
-    const pedidos = []; 
-    const productName = document.querySelectorAll('.name')
-    const productAmount = document.querySelectorAll('.amount')
-    const productPrice = document.querySelectorAll('.price')
+    const pedidos = [];
+    const productName = document.querySelectorAll('.name');
+    const productAmount = document.querySelectorAll('.amount');
+    const productPrice = document.querySelectorAll('.price');
+
     productName.forEach((nameElement, index) => {
-            const name = nameElement.textContent;
-            const amount = parseInt(productAmount[index].textContent)
-            const price = parseFloat(productPrice[index].textContent.replace("$", "").trim()); 
-            pedidos.push({
-                    nombre_producto: name,
-                    cantidad: amount,
-                    precio: price
-            });
+        const name = nameElement.textContent;
+        const amount = parseInt(productAmount[index].textContent);
+        const price = parseFloat(productPrice[index].textContent.replace("$", "").trim());
+        pedidos.push({
+            nombre_producto: name,
+            cantidad: amount,
+            precio: price
         });
+    });
 
     try {
         const response = await fetch('http://localhost:3500/OrdenP', {
@@ -399,28 +425,28 @@ botonEn.addEventListener("click", async () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({NombreMesa,pedidos,comentario,total})
+            body: JSON.stringify({ NombreMesa, pedidos, comentario, total })
         });
-  
+
         const responseData = await response.json();
         console.log('Mensaje del servidor:', responseData.message || 'Sin mensaje de error');
-  
         console.log('Estado de respuesta:', response.status);
-        console.log('Respuesta completa:', response);
-  
+
         if (response.ok) {
-            alert('orden exitosa');
+            alert('Orden exitosa');
             vaciarCarrito();
             actualizarTablaRecord(pedidos, total);
         } else {
             alert('Problemas al agregar el producto');
         }
     } catch (e) {
-        alert('orden agregada exitosamente');
+        console.error('Error al enviar la orden:', e);
+        alert('No se pudo enviar la orden. Intenta nuevamente.');
     }
-    vaciarCarrito();
-    actualizarTablaRecord(pedidos, total);    
-});
+};
+
+botonEn.removeEventListener("click", enviarOrden);
+botonEn.addEventListener("click", enviarOrden);
 
 
 

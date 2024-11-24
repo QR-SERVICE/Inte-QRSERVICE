@@ -4,8 +4,8 @@ import mysql2 from 'mysql2';
 const connectionPool = mysql2.createPool({
     host: "localhost",
     user: "root",
-    password: "root",
-    port: 3306,
+    password: "Bufetero21",
+    port: 3307,
     database: "QuickRestaurant"
 }).promise();
 
@@ -75,25 +75,10 @@ export const postProductos = async (req, res) => {
 
   try {
     const [results] = await connectionPool.query(query, params);
-    res.status(200).send('Producto agregado exitosamente');
+    res.status(200).json({ message: 'Producto agregado exitosamente' });
   } catch (err) {
     console.error('Error al ejecutar la consulta:', err);
-    res.status(500).send('Error al agregar el producto');
-  }
-};
-
-// Función para eliminar un pedido
-export const deletePedido = async (req, res) => {
-  const { pedidoDelete } = req.params;
-  const query = 'DELETE FROM pedido WHERE id_pedido = ?;';
-  const params = [pedidoDelete];
-
-  try {
-    const [results] = await connectionPool.query(query, params);
-    res.status(200).send('pedido eliminado exitosamente');
-  } catch (err) {
-    console.error('Error al ejecutar la consulta:', err);
-    res.status(500).send('Error al eliminar el pedido');
+    res.status(500).json({ message: "Error al cargar el producto" });
   }
 };
 
@@ -105,10 +90,10 @@ export const deleteProductos = async (req, res) => {
 
   try {
     const [results] = await connectionPool.query(query, params);
-    res.status(200).send('Producto eliminado exitosamente');
+    res.status(200).json({ message: 'Producto eliminado exitosamente' });
   } catch (err) {
     console.error('Error al ejecutar la consulta:', err);
-    res.status(500).send('Error al eliminar el producto');
+    res.status(500).json({ message: "Error al eliminar el producto" });
   }
 };
 
@@ -125,75 +110,27 @@ export const getMesa = async (req, res) => {
   }
 };
 
-/////////////////  CHRISTIAN  ////////////////////////////
 
-// //Obtener las comandas desde la base de datos
-// export const getComandas = async (req, res) => {
-//   try {
-//     const query = 'SELECT * FROM VistaComandas';
-//     const result = await connectionPool.query(query);
-
-//     const comandas = result[0]; // Estuve teniendo un problema para traer los datos
-//     // de la base de datos a la pantalla, ya que me los mandaba por columnas y se supone que
-//     //con esto se quita jaja
-
-//     // Asegurarse de que 'comandas' sea un array
-//     console.log("Datos obtenidos de la base de datos:", comandas);
-
-//     // Agrupar comandas por id_pedido
-//     const comandasAgrupadas = {};
-
-//     comandas.forEach(comanda => {
-//       if (!comandasAgrupadas[comanda.id_pedido]) {
-//         comandasAgrupadas[comanda.id_pedido] = {
-//           id_pedido: comanda.id_pedido,
-//           nombre_mesa: comanda.nombre_mesa,
-//           comentario: comanda.comentario_pedido || "Sin comentarios",
-//           fecha_pedido: comanda.fecha_pedido,
-//           total_pedido: comanda.total_pedido,
-//           productos: []
-//         };
-//       }
-
-//       // Agregar el producto a la lista de productos de ese pedido
-//       comandasAgrupadas[comanda.id_pedido].productos.push({
-//         nombre_producto: comanda.nombre_producto,
-//         cantidad: comanda.cantidad,
-//       });
-//     });
-
-//     const resultado = Object.values(comandasAgrupadas);
-//     console.log("Comandas agrupadas:", resultado);
-
-//     // Enviar las comandas agrupadas
-//     res.status(200).json(resultado);
-//   } catch (err) {
-//     console.error('Error al obtener las comandas:', err);
-//     res.status(500).send('Error al obtener las comandas');
-//   }
-// };
-
-// Estos funcionamientos son todo el pedo
-
-export const postOrder = async (req,res) => {
-  const {NombreMesa,pedidos, comentario, total} = req.body;
+export const postOrder = async (req, res) => {
+  const { NombreMesa, pedidos, comentario, total } = req.body;
 
   if (Array.isArray(pedidos)) {
     console.log('Pedidos recibidos:', pedidos);
   } else {
-    return res.status(400).send('El parámetro "pedidos" debe ser un arreglo');
+    return res.status(400).json({ error: 'El parámetro "pedidos" debe ser un arreglo' });
   }
 
   const pedidosJSON = JSON.stringify(pedidos);
   const query = 'call new_orden(?,?,?,?)';
   const params = [NombreMesa, pedidosJSON, comentario, total];
+
   try {
     const [results] = await connectionPool.query(query, params);
-    res.status(200).send('Orden creada exitosamente');
+    res.status(200).json({ message: 'Orden creada exitosamente' }); 
   } catch (err) {
     console.error('Error al ejecutar la consulta:', err);
-    res.status(500).send('Error al crear la orden');
-  };
+    res.status(500).json({ error: 'Error al crear la orden' }); 
+  }
 };
 
 // funcion para obtener las ordenes
@@ -215,7 +152,7 @@ export const getOrdenesBorradas = async (req, res) => {
     res.json(ordenesEND);
   } catch (e) {
     console.log(e);
-    res.status(500).json({ message: "Error al obtener los resultados" });
+    res.status(500).json({ error: 'Error al terminar la orden', details: err.message });
   }
 };
 
@@ -227,10 +164,10 @@ export const postDeleteOrder = async (req, res) => {
 
   try {
     const [results] = await connectionPool.query(query, params);
-    res.status(200).send('Orden terminada exitosamente');
+    res.status(200).json({ message: "Orden terminada exitosamente" });
   } catch (err) {
     console.error('Error al ejecutar la consulta:', err);
-    res.status(500).send('Error al terminar la orden');
+    res.status(500).json({ message: "Error al terminar la orden" });
   }
 };
 
@@ -249,10 +186,10 @@ export const deleteOrder = async (req, res) => {
   const query = 'DELETE FROM orden where estatus = 0;';
   try {
     const [results] = await connectionPool.query(query);
-    res.status(200).send('Orden eliminada exitosamente');
+    res.status(200).json({message:'Orden eliminada correctamente'});
   } catch (err) {
     console.error('Error al ejecutar la consulta:', err);
-    res.status(500).send('Error al eliminar la orden');
+    res.status(500).json({message:'Error al eliminar la orden'});
   }
 };
 

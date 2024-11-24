@@ -63,9 +63,11 @@ fetch('/Orden' )
             });
 
             deleteButton.addEventListener('click', async () => {
+
+                const id_orden = orden.id_orden;
               
                 try {
-                  const response = await fetch(`http://localhost:3500/TerminarOrden/${orden.id_orden}`, {
+                  const response = await fetch(`http://localhost:3500/TerminarOrden/${id_orden}`, {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json'
@@ -82,7 +84,7 @@ fetch('/Orden' )
                   }
                 } catch (e) {
                   console.error('Error en el catch:', e);
-                  alert('Orden eliminada correctamente');
+                  alert('orden eliminada correctamente');
                 }
               });
 
