@@ -4,9 +4,9 @@ import mysql2 from 'mysql2';
 const connectionPool = mysql2.createPool({
     host: "localhost",
     user: "root",
-    password: "root",
+    password: "QuickRestaurant",
     port: 3306,
-    database: "QuickRestaurant"
+    database: "quickrestaurant"
 }).promise();
 
 // Función para obtener las bebidas
