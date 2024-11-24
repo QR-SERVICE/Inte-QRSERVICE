@@ -4,10 +4,10 @@ Repositoria en el cual vamos a estar trabajando en el proyecto QuickRestaurant.
 # EQUIPO
 
 Alonso Molina - Lider de proyecto y DBA. 
-Jose Reyes - Desarollador Frontend.
-Hans Alvarez - Desarollaror Backend y apoyo Frontend.
-Christian Arguello - Desarollador Backend.
-Alonso Vasquez - Desarollador Frontend
+Jose Reyes - Desarrollador Frontend.
+Hans Alvarez - Desarrollador Backend y apoyo Frontend.
+Christian Arguello - Desarrollador Backend.
+Alonso Vasquez - Desarrollador Frontend
 
 # Avanze de integradora: Conexion a base de datos
 
