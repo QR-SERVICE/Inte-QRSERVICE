@@ -50,6 +50,47 @@
             document.getElementById('navbar-footer').innerHTML = data;
             })
             .catch(error => console.error('Error al cargar el navbar:', error));
+                // Establecer la conexión con el servidor WebSocket
+    const socket = new WebSocket('ws://localhost:3500');
+
+// Manejo de la conexión
+socket.onopen = () => {
+    console.log('Conectado al WebSocket.');
+};
+
+socket.onerror = (error) => {
+    console.error('Error en la conexión WebSocket:', error);
+};
+
+// Manejo de mensajes entrantes desde el WebSocket
+socket.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+
+    if (data.type === 'call_waiter' || data.type === 'request_account') {
+        agregarComanda(data.message, data.mesa);
+    }
+};
+
+// Función para agregar una nueva comanda a la pantalla
+function agregarComanda(mensaje, mesa) {
+    const seccionComandas = document.getElementById('notificaciones');
+
+    // Crear un elemento para la nueva comanda
+    const nuevaComanda = document.createElement('div');
+    nuevaComanda.classList.add('notificacion'); // Clase para estilos
+    nuevaComanda.innerHTML = `
+        <p><strong>Mesa:</strong> ${mesa}</p>
+        <p><strong>Notificación:</strong> ${mensaje}</p>
+    `;
+
+    // Agregar la nueva comanda al inicio de la lista
+    seccionComandas.prepend(nuevaComanda);
+
+    // Opcional: remover la notificación después de un tiempo
+    setTimeout(() => {
+        nuevaComanda.remove();
+    }, 5000); // 5
+}
     </script>
     <script src="Comandas.js"></script>
     <script src="https://kit.fontawesome.com/dc58fd35be.js" crossorigin="anonymous"></script>

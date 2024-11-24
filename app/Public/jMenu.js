@@ -14,6 +14,18 @@ const notificaciones = document.getElementById('notificaciones');
 const callMesero = document.querySelector('.call-mesero');
 const callAccount = document.querySelector('.call-account');
 
+// Establecer conexión con el WebSocket
+const socket = new WebSocket('ws://localhost:3500');
+
+// Manejo de la conexión
+socket.onopen = () => {
+    console.log('Conectado al WebSocket.');
+};
+
+socket.onerror = (error) => {
+    console.error('Error en la conexión WebSocket:', error);
+};
+
 // Función para mostrar el menú de notificaciones
 abrirNotis.addEventListener('click', function() {
 notificaciones.style.display = 'block';
@@ -33,14 +45,30 @@ if (notificaciones.style.display === 'block' &&
 }
 });
 
-// Alerta al hacer clic en "Llamar mesero"
-callMesero.addEventListener('click', function() {
-alert('Un mesero va hacia su mesa');
+// Manejo del clic en "Llamar mesero"
+callMesero.addEventListener('click', function () {
+    const mesa = 3; // Puedes reemplazar con la lógica para obtener la mesa actual
+    const mensaje = {
+        action: 'call_waiter',
+        mesa: mesa,
+        message: `Mesa ${mesa} solicitó un mesero`,
+    };
+
+    socket.send(JSON.stringify(mensaje));
+    alert('Llamaste al mesero');
 });
 
-// Alerta al hacer clic en "Solicitar cuenta"
-callAccount.addEventListener('click', function() {
-alert('Enseguida le entregamos su cuenta');
+// Manejo del clic en "Solicitar cuenta"
+callAccount.addEventListener('click', function () {
+    const mesa = 3; // Puedes reemplazar con la lógica para obtener la mesa actual
+    const mensaje = {
+        action: 'request_account',
+        mesa: mesa,
+        message: `Mesa ${mesa} solicitó la cuenta`,
+    };
+
+    socket.send(JSON.stringify(mensaje));
+    alert('Solicitaste la cuenta');
 });
 
 

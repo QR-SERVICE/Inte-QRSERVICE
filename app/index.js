@@ -3,6 +3,7 @@ import path from 'path';
 import cors from 'cors';
 import morgan from 'morgan';
 import { fileURLToPath } from 'url';
+import { WebSocketServer } from 'ws'; // Importar WebSocketServer
 const server = express();
 
 
@@ -111,6 +112,43 @@ server.get("/Footer", (req, res) => res.sendFile(path.join(__dirname, 'estaticos
 server.get("/Nosotros", (req, res) => res.sendFile(path.join(__dirname, 'estaticos', 'AboutUs.html')));
 
 // Inicia el servidor
-server.listen(server.get('PORT'), () => {
+// Inicia el servidor HTTP y guárdalo en una variable
+const httpServer = server.listen(server.get('PORT'), () => {
     console.log(`Servidor corriendo en http://localhost:${server.get('PORT')}`);
+});
+
+// Configuración de WebSocket reutilizando el servidor HTTP
+const wss = new WebSocketServer({ server: httpServer }); 
+
+wss.on('connection', (ws) => {
+    console.log('Un cliente se ha conectado al WebSocket.');
+
+    ws.on('message', (message) => {
+        try {
+            const data = JSON.parse(message);
+
+            if (data.action === 'call_waiter' || data.action === 'request_account') {
+                console.log(data.message);
+
+                // Enviar notificación a todos los clientes conectados
+                wss.clients.forEach((client) => {
+                    if (client.readyState === ws.OPEN) {
+                        client.send(
+                            JSON.stringify({
+                                type: data.action,
+                                mesa: data.mesa,
+                                message: data.message,
+                            })
+                        );
+                    }
+                });
+            }
+        } catch (error) {
+            console.error('Error procesando el mensaje:', error);
+        }
+    });
+
+    ws.on('close', () => {
+        console.log('Un cliente se ha desconectado del WebSocket.');
+    });
 });

@@ -117,3 +117,52 @@ p {
 .deleteButton i{
     font-size: 19px;
 }
+
+/* Estilos generales para las notificaciones */
+.notificacion {
+    background-color: #f8d7da; /* Color de fondo (rojo suave) */
+    color: #721c24;            /* Color del texto (rojo oscuro) */
+    border: 1px solid #f5c6cb; /* Borde suave */
+    border-radius: 5px;        /* Bordes redondeados */
+    padding: 10px;             /* Espaciado interno */
+    margin: 10px 0;            /* Espaciado entre notificaciones */
+    font-family: Arial, sans-serif; /* Fuente */
+    font-size: 14px;           /* Tamaño de fuente */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    transition: opacity 0.3s ease-in-out; /* Transición para desaparecer */
+}
+
+/* Estilo para la notificación cuando está siendo eliminada */
+.notificacion.eliminada {
+    opacity: 0;
+    pointer-events: none; /* Evita que la notificación sea interactuable */
+}
+
+/* Estilo para las notificaciones específicas de "Mesa" */
+.notificacion p {
+    margin: 0;
+    padding: 5px 0;
+}
+
+/* Estilos para el título y los mensajes */
+.notificacion strong {
+    font-weight: bold;
+}
+
+/* Agregar algunos estilos a la sección donde aparecerán las notificaciones */
+#comandas, #notificaciones {
+    margin: 20px;
+    padding: 10px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f9f9f9; /* Fondo suave para el contenedor */
+    border-radius: 10px;       /* Bordes redondeados */
+}
+
+/* Añadir un estilo para las notificaciones de alerta */
+.notificacion.alerta {
+    background-color: #fff3cd; /* Fondo amarillo para alertas */
+    color: #856404;            /* Texto amarillo oscuro */
+    border: 1px solid #ffeeba; /* Borde amarillo claro */
+}
