@@ -47,7 +47,7 @@ if (notificaciones.style.display === 'block' &&
 
 // Manejo del clic en "Llamar mesero"
 callMesero.addEventListener('click', function () {
-    const mesa = 3; // Puedes reemplazar con la lógica para obtener la mesa actual
+    const mesa = 1; // Puedes reemplazar con la lógica para obtener la mesa actual
     const mensaje = {
         action: 'call_waiter',
         mesa: mesa,
@@ -60,7 +60,7 @@ callMesero.addEventListener('click', function () {
 
 // Manejo del clic en "Solicitar cuenta"
 callAccount.addEventListener('click', function () {
-    const mesa = 3; // Puedes reemplazar con la lógica para obtener la mesa actual
+    const mesa = 1; // Puedes reemplazar con la lógica para obtener la mesa actual
     const mensaje = {
         action: 'request_account',
         mesa: mesa,

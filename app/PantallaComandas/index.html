@@ -81,15 +81,17 @@ function agregarComanda(mensaje, mesa) {
     nuevaComanda.innerHTML = `
         <p><strong>Mesa:</strong> ${mesa}</p>
         <p><strong>Notificación:</strong> ${mensaje}</p>
+        <button class="eliminar-btn">Eliminar</button>
     `;
+
+    // Agregar evento al botón de eliminar
+    const eliminarBtn = nuevaComanda.querySelector('.eliminar-btn');
+    eliminarBtn.addEventListener('click', () => {
+        nuevaComanda.remove(); // Elimina la notificación
+    });
 
     // Agregar la nueva comanda al inicio de la lista
     seccionComandas.prepend(nuevaComanda);
-
-    // Opcional: remover la notificación después de un tiempo
-    setTimeout(() => {
-        nuevaComanda.remove();
-    }, 5000); // 5
 }
     </script>
     <script src="Comandas.js"></script>

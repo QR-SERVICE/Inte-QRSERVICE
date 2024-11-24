@@ -166,3 +166,26 @@ p {
     color: #856404;            /* Texto amarillo oscuro */
     border: 1px solid #ffeeba; /* Borde amarillo claro */
 }
+
+.eliminar-btn {
+    background-color: #ff4d4d; /* Rojo suave */
+    color: white;             /* Texto blanco */
+    border: none;             /* Sin bordes */
+    border-radius: 5px;       /* Bordes redondeados */
+    padding: 5px 10px;        /* Espaciado interno */
+    font-size: 14px;          /* Tamaño de fuente */
+    font-weight: bold;        /* Texto en negrita */
+    cursor: pointer;          /* Cursor de mano al pasar */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+    transition: background-color 0.3s, transform 0.2s; /* Transiciones */
+}
+
+.eliminar-btn:hover {
+    background-color: #e60000; /* Rojo más intenso al pasar */
+    transform: scale(1.05);    /* Pequeño aumento al pasar */
+}
+
+.eliminar-btn:active {
+    background-color: #cc0000; /* Rojo oscuro al hacer clic */
+    transform: scale(0.95);    /* Pequeña reducción al hacer clic */
+}
