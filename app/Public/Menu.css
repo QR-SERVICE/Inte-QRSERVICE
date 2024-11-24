@@ -746,31 +746,43 @@ li{
     padding: 10px;
     margin: 10px 0;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px; /* Bordes suaves para un toque moderno */
     font-size: 16px;
+    font-weight: bold; /* Letras en negrita */
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     z-index: 3;
 }
 
+/* Botón "Llamar mesero" con fondo negro */
 .call-mesero {
-    background-color: #28a745;
-    color: white;
+    background-color: #000000; /* Negro puro */
+    color: #ffffff; /* Blanco puro para el texto */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra sutil */
     z-index: 11;
 }
 
+/* Botón "Solicitar cuenta" con fondo gris oscuro */
 .call-account {
-    background-color: #ffc107;
-    color: #333;
+    background-color: #4b4b4b; /* Gris oscuro */
+    color: #eaeaea; /* Gris claro para contraste */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra sutil */
 }
 
+/* Efecto hover para ambos botones */
 .notificaciones button:hover {
     transform: translateY(-2px);
-    
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4); /* Sombra más intensa */
 }
 
+/* Hover del botón "Llamar mesero" */
+.call-mesero:hover {
+    background-color: #1a1a1a; /* Negro más suave */
+}
+
+/* Hover del botón "Solicitar cuenta" */
 .call-account:hover {
-    background-color: #e0a800;
+    background-color: #6b6b6b; /* Gris más claro */
 }
 
 @media (max-width: 768px) {

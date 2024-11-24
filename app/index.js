@@ -68,17 +68,6 @@ server.delete("/EliminarOrdenes",deleteOrder);
 server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecutando 
 
 
-/////////////////////////////// CHRISTIAN  ///////////////////////////////
-
-
-// import {getComandas} from './controlladores/QuickRestaurant-BD.js'
-// server.get('/api/comandas', getComandas);
-
-////////////////////////////////CHRISTIAN //////////////////////////////
-
-
-
-
 // Configuración de directorios estáticos
 server.use(express.static(path.join(__dirname, 'Public')));
 server.use(express.static(path.join(__dirname, 'Img')));
@@ -88,18 +77,17 @@ server.use(express.static(path.join(__dirname, 'Img')));
 server.get("/", (req, res) => res.sendFile(path.join(__dirname, 'login_', 'login.html')))
 server.get("/productos", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'Productos_confi.html')))
 server.get("/configuracion", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'Confi.html')))
-server.get("/Menu-prueba", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-Orden.HTML')))
-server.get("/MenuP", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-copy.HTML')))
-server.get("/Comandas", (req, res) => res.sendFile(path.join(__dirname, 'PantallaComandas', 'index.HTML')))
-server.get("/Pedidos-completados", (req, res) => res.sendFile(path.join(__dirname, 'Pedidos', 'Historial_pedidos.HTML')))
-server.get("/grafica", (req, res) => res.sendFile(path.join(__dirname, 'configuracion', 'grafica_ventas.html')))
+server.get("/MenuP", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-copy.html')))
+server.get("/Comandas", (req, res) => res.sendFile(path.join(__dirname, 'PantallaComandas', 'index.html')))
+server.get("/Pedidos-completados", (req, res) => res.sendFile(path.join(__dirname, 'Pedidos', 'Historial_Pedidos.html')))
+server.get("/grafica", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'grafica_ventas.html')))
 
 server.get("/example", (req, res) => res.sendFile(path.join(__dirname, 'bo', 'index.html')))
 
 
-server.get("/Menu", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'MenuGood.HTML')))
-server.get("/vistaMenu", (req, res) => res.sendFile(path.join(__dirname, 'configuracion', 'ViewMenu.HTML')))
-server.get("/menuFAKE", (req, res) => res.sendFile(path.join(__dirname, 'configuracion', 'menufake.HTML')))
+server.get("/Menu", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'MenuGood.html')))
+server.get("/vistaMenu", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'ViewMenu.html')))
+server.get("/menuFAKE", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'menufake.html')))
 
 // ruta para la navbar
 server.get("/Navbar", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'navbar.html')));
