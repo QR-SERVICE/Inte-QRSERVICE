@@ -15,84 +15,114 @@
         <div id="navbar-configuracion" class="navbar-configuracion"></div>
     </header>
     
-    <body>
-        <main>
-            <div id="contenedor">
-                <div id="comandas"></div>
-                <div id="notificaciones"></div>
-            </div>
-        </main>
-    </body>
+    <main>
+        <div id="contenedor">
+            <div id="comandas"></div>
+            <div id="notificaciones"></div>
+        </div>
+    </main>
 
-    <div id="navbar-footer"></div>;
+    <div id="navbar-footer"></div>
 
     <script>
         fetch('/header')
            .then(response => response.text())
            .then(data => {
-               // Insertar el HTML en el contenedor
                document.getElementById('navbar-configuracion').innerHTML = data;
-               
                const scripts = document.getElementById('navbar-configuracion').querySelectorAll('script');
-
-                scripts.forEach(script => {
-                const newScript = document.createElement('script');
-                newScript.textContent = script.textContent; 
-                document.body.appendChild(newScript); 
-                script.remove(); 
-             });
+               scripts.forEach(script => {
+                   const newScript = document.createElement('script');
+                   newScript.textContent = script.textContent; 
+                   document.body.appendChild(newScript); 
+                   script.remove(); 
+               });
            })
            .catch(error => console.error('Error al cargar el navbar:', error));
 
-           fetch('/Footer')
+        fetch('/Footer')
             .then(response => response.text())
             .then(data => {
-            document.getElementById('navbar-footer').innerHTML = data;
+                document.getElementById('navbar-footer').innerHTML = data;
             })
-            .catch(error => console.error('Error al cargar el navbar:', error));
-                // Establecer la conexión con el servidor WebSocket
-    const socket = new WebSocket('ws://localhost:3500');
+            .catch(error => console.error('Error al cargar el footer:', error));
 
-// Manejo de la conexión
-socket.onopen = () => {
-    console.log('Conectado al WebSocket.');
-};
+        const socket = new WebSocket('ws://localhost:3500');
 
-socket.onerror = (error) => {
-    console.error('Error en la conexión WebSocket:', error);
-};
+        socket.onopen = () => {
+            console.log('Conectado al WebSocket.');
+            cargarComandas(); // Cargar comandas almacenadas
+        };
 
-// Manejo de mensajes entrantes desde el WebSocket
-socket.onmessage = (event) => {
-    const data = JSON.parse(event.data);
+        socket.onerror = (error) => {
+            console.error('Error en la conexión WebSocket:', error);
+        };
 
-    if (data.type === 'call_waiter' || data.type === 'request_account') {
-        agregarComanda(data.message, data.mesa);
-    }
-};
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
 
-// Función para agregar una nueva comanda a la pantalla
-function agregarComanda(mensaje, mesa) {
-    const seccionComandas = document.getElementById('notificaciones');
+            if (data.type === 'call_waiter' || data.type === 'request_account') {
+                agregarComanda(data.message, data.mesa, false);
+            }
+        };
 
-    // Crear un elemento para la nueva comanda
-    const nuevaComanda = document.createElement('div');
-    nuevaComanda.classList.add('notificacion'); // Clase para estilos
-    nuevaComanda.innerHTML = `
-        <p><strong>Mesa:</strong> ${mesa}</p>
-        <p><strong>Notificación:</strong> ${mensaje}</p>
-        <button class="eliminar-btn">Eliminar</button>
-    `;
+        // Función para agregar una nueva comanda a la pantalla
+        function agregarComanda(mensaje, mesa, cargarDeStorage = false) {
+            const seccionComandas = document.getElementById('notificaciones');
 
-    // Agregar evento al botón de eliminar
-    const eliminarBtn = nuevaComanda.querySelector('.eliminar-btn');
-    eliminarBtn.addEventListener('click', () => {
-        nuevaComanda.remove(); // Elimina la notificación
-    });
+            // Verificar si ya existe la notificación
+            const existente = Array.from(seccionComandas.children).some(comanda => 
+                comanda.querySelector('p:first-child')?.textContent.includes(mesa) &&
+                comanda.querySelector('p:nth-child(2)')?.textContent.includes(mensaje)
+            );
 
-    // Agregar la nueva comanda al inicio de la lista
-    seccionComandas.prepend(nuevaComanda);  // Prepend, nos ayuda a que las notificaciones mas nuevas se agreguen desde el principio, ejemplo 3,2,1 en ves de 1,2,3
-}
+            if (existente) return; // Si ya existe, no agregarla
+
+            // Crear un elemento para la nueva comanda
+            const nuevaComanda = document.createElement('div');
+            nuevaComanda.classList.add('notificacion');
+            nuevaComanda.innerHTML = `
+                <p><strong>Mesa:</strong> ${mesa}</p>
+                <p><strong>Notificación:</strong> ${mensaje}</p>
+                <button class="eliminar-btn">Eliminar</button>
+            `;
+
+            // Agregar evento al botón de eliminar
+            const eliminarBtn = nuevaComanda.querySelector('.eliminar-btn');
+            eliminarBtn.addEventListener('click', () => {
+                nuevaComanda.remove();
+                eliminarComanda(mesa, mensaje); // Eliminar de localStorage
+            });
+
+            // Agregar la nueva comanda al inicio de la lista
+            seccionComandas.prepend(nuevaComanda);
+
+            // Guardar en localStorage si no viene del almacenamiento
+            if (!cargarDeStorage) {
+                guardarComanda(mensaje, mesa);
+            }
+        }
+
+        // Guardar comanda en localStorage
+        function guardarComanda(mensaje, mesa) {
+            let comandas = JSON.parse(localStorage.getItem('comandas')) || [];
+            comandas.push({ mensaje, mesa });
+            localStorage.setItem('comandas', JSON.stringify(comandas));
+        }
+
+        // Cargar comandas de localStorage
+        function cargarComandas() {
+            const comandas = JSON.parse(localStorage.getItem('comandas')) || [];
+            comandas.forEach(comanda => {
+                agregarComanda(comanda.mensaje, comanda.mesa, true);
+            });
+        }
+
+        // Eliminar comanda de localStorage
+        function eliminarComanda(mesa, mensaje) {
+            let comandas = JSON.parse(localStorage.getItem('comandas')) || [];
+            comandas = comandas.filter(comanda => !(comanda.mesa === mesa && comanda.mensaje === mensaje));
+            localStorage.setItem('comandas', JSON.stringify(comandas));
+        }
     </script>
     <script src="Comandas.js"></script>
     <script src="https://kit.fontawesome.com/dc58fd35be.js" crossorigin="anonymous"></script>
