@@ -52,13 +52,11 @@ fetch(`/${producto}P`)
 
         button_sum.addEventListener('click', () => {
             input_cant.value = parseInt(input_cant.value) + 1;
-           //  agregarAlCarrito(bebidas);
         });
 
         button_del.addEventListener('click', () => {
             if(input_cant.value > 0){
                 input_cant.value = parseInt(input_cant.value) - 1;
-               //  eliminarCantCarrito(bebidas);
             }  
         });
 

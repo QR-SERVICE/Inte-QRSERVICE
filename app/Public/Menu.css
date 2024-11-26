@@ -3,19 +3,19 @@ body {
     font-optical-sizing: auto;
     font-weight: 300;
     font-style: normal;
-    background-color: #0D0D0D; /* Fondo negro */
-    color: #f2f2f2; /* Texto claro */
+    background-color: #101010;
+    color: #ffffff; 
     margin: 0;
     padding: 0;
 }
 
 .menu-titulo{
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     font-family: inherit;
 }
 
 header {
-    background-color: #222; /* Color oscuro del header */
+    background-color: rgba(0, 0, 0, .1); 
     padding: 15px;
     text-align: center;
     position: relative;
@@ -26,7 +26,7 @@ h1 {
     font-size: 1.3rem;
     font-family: inherit;
     margin: 0;
-    color: #ddbc00; /* Color dorado */
+    color: #ddbc00; 
 }
 
 .menu-container {
@@ -242,7 +242,7 @@ li{
 }
 
 .sidebar {
-    margin-top: 4.5rem;
+    margin-top: 4.6rem;
     padding-top: 4.5rem;
     width: 0;
     height: 100%;
@@ -267,9 +267,8 @@ li{
 .sidebar.menu-toggle {
     width: 10rem;
     z-index: 2; 
-    margin-top: 4rem;
+    margin-top: 4.2rem;
     padding-top: 4.5rem;
-    
 }
 
 .sidebar a {
@@ -344,13 +343,14 @@ li{
     display: block;
     flex-direction: column; 
     align-items: center; 
-    max-width: 300px; 
-    padding: 1rem;
+    justify-content: center;
 	width: 100%;
-	margin: 20px;
 	background: #fff;
 	transition: all .6s ease;
-	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.productos_orden td {
+    column-span: all;
 }
 
 #bote-basura{
@@ -399,7 +399,7 @@ li{
     color: rgb(0, 0, 0);
     font-size: 1rem;
     position: fixed;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 1rem;
@@ -475,7 +475,6 @@ li{
 }
 
 .cuenta tbody {
-    flex-grow: 1; 
     height: 100%
 }
 
@@ -490,6 +489,17 @@ li{
     position: sticky;
     bottom: 0; 
     height: 100%
+}
+
+.productos_orden {
+    height: 100%;
+    display: block;
+    width: 100%;
+}
+
+.productos_orden td{
+    width: 25%; 
+    font-size: 1rem;
 }
 
 .datos-tabla{
@@ -795,7 +805,7 @@ li{
     }
 
     .sidebar {
-        margin-top: 3rem;
+        margin-top: 3.2rem;
         padding-top: 6rem;
     }
 }
@@ -811,7 +821,7 @@ li{
 
     .carrito.visible {
         max-height: 70vh;
-        max-width: 60vh;
+        max-width: 55vh;
         min-width: 40vh;
         min-height: 20vh;
     }
@@ -824,8 +834,13 @@ li{
 
 @media (max-width: 400px) {
     .sidebar {
-        margin-top: 5.5rem;
+        margin-top: 5rem;
         padding-top: 5rem;
+    }
+
+    .sidebar.menu-toggle {
+        margin-top: 4.2rem;
+        padding-top: 4.5rem;
     }
 }
   @keyframes fadeIn {

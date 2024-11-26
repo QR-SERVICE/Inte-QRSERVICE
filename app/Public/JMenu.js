@@ -72,25 +72,7 @@ callAccount.addEventListener('click', function () {
 });
 
 
-// Boton para mostrar lo que llevan de orden 
-const carrito = document.getElementById("carrito");
-const ver = document.getElementById("carr")
-const NoVer = document.getElementById("cerrar_carr")
 
-ver.addEventListener("click", () => {
-    carrito.style.display = 'block'; 
-    carrito.style.zIndex = 1; 
-    setTimeout(() => {
-        carrito.classList.add("visible"); 
-    }, 10); 
-});
-
-NoVer.addEventListener("click", () => {
-    carrito.classList.remove("visible"); 
-    carrito.addEventListener('transitionend', () => {
-        carrito.style.display = 'none'; 
-    }, { once: true }); 
-});
 
     
 
@@ -146,6 +128,7 @@ sumProducts.forEach((sumProducts, index) => {
         if(cantidad > 0) {
             const row = document.createElement("tr");
             row.className = "producto-fila";
+            row.classList.add("producto-fila");
 
             
             const cellName = document.createElement("td");
@@ -345,6 +328,23 @@ document.addEventListener('click', (event) => {
 // Evitar que el clic dentro del carrito cierre el carrito
 carritoCerrar.addEventListener('click', (event) => {
     event.stopPropagation();  // Detiene la propagación del clic dentro del carrito
+});
+
+// Boton para mostrar lo que llevan de orden 
+const carrito = document.getElementById("carrito");
+const ver = document.getElementById("carr")
+const NoVer = document.getElementById("cerrar_carr")
+
+ver.addEventListener("click", () => {
+    carrito.style.display = 'block'; 
+    carrito.style.zIndex = 1; 
+    setTimeout(() => {
+        carrito.classList.add("visible"); 
+    }, 10); 
+});
+
+NoVer.addEventListener("click", () => {
+    carrito.classList.remove("visible"); 
 });
 
 function vaciarCarrito() {
