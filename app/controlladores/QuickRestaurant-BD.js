@@ -127,6 +127,17 @@ export const getTotal = async (req, res) => {
   };
 };
 
+// Función para obtener las bebidas
+export const getAdministradores = async (req, res) => {
+  try {
+    const [Administrador] = await connectionPool.query("SELECT * FROM administrador;");
+    res.json(Administrador);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Error al obtener los resultados" });
+  };
+};
+
 //POST
  
 // Función para agregar un nuevo producto

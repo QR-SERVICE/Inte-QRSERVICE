@@ -1,3 +1,4 @@
+
 const container = document.getElementById('container');
 const registerBtn = document.getElementById('register');
 const loginBtn = document.getElementById('login');
@@ -65,66 +66,39 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Función para registrar un nuevo usuario
-    async function registerUser(nombre_admin, contraseña_admin,correo_admin) {
+    async function registerUser(nombre_admin, contraseña_admin, correo_admin) {
         try {
-            const response = await fetch('http://localhost:3500/Registrarse', {
+            const response = await fetch('/Administradores');
+            const data = await response.json();
+    
+            const usuarioExistente = data.some(admin => admin.correo_admin === correo_admin);
+    
+            if (usuarioExistente) {
+                alert('Usuario ya registrado');
+                return; 
+            }
+    
+            const registroResponse = await fetch('http://localhost:3500/Registrarse', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({nombre_admin,contraseña_admin,correo_admin })
+                body: JSON.stringify({ nombre_admin, contraseña_admin, correo_admin }),
             });
-      
-            const responseData = await response.json();
-            console.log('Mensaje del servidor:', responseData.message || 'Sin mensaje de error');
-      
-            console.log('Estado de respuesta:', response.status);
-            console.log('Respuesta completa:', response);
-      
-            if (response.ok) {
-                alert(`Registro de usuario correcto`);
+    
+            const responseData = await registroResponse.json();
+    
+            if (registroResponse.ok) {
+                alert('Registro de usuario correcto');
             } else {
-                alert('Problemas al registrar al usuario');
+                console.error('Problemas al registrar el usuario:', responseData);
+                alert('Problemas al registrar el usuario');
             }
-        } catch (e) {
-            console.error('Error en el catch:', e);
-            alert('Problemas al registrar el usuario');
+        } catch (error) {
+            console.error('Error en el proceso:', error);
+            alert('Hubo un problema al registrar el usuario');
         }
-
-        // Obtener los usuarios registrados desde localStorage
-        // let users = JSON.parse(localStorage.getItem("users")) || [];
-
-        // // Verificar si el usuario ya existe
-        // const userExists = users.some(user => user.email === email);
-
-        // if (userExists) {
-        //     alert("El usuario con este correo ya está registrado.");
-        // } else {
-        //     // Agregar el nuevo usuario a la lista
-        //     users.push({ email, password });
-
-        //     // Guardar la lista actualizada en localStorage
-        //     localStorage.setItem("users", JSON.stringify(users));
-
-        //     alert(`Usuario registrado con éxito.\nCorreo: ${email}\nContraseña: ${password}`);
-        // }
     }
-
-    // Función para recordar contraseña
-    // function rememberPassword(email) {
-    //     // Obtener los usuarios registrados desde localStorage
-    //     const users = JSON.parse(localStorage.getItem("users")) || [];
-
-    //     // Buscar al usuario por su email
-    //     const user = users.find(user => user.email === email);
-
-    //     if (user) {
-    //         alert(`Tu contraseña es: ${user.password}`);
-    //     } else {
-    //         alert("El correo no está registrado.");
-    //     }
-    // }
-
     // Al hacer clic en el botón de registrar
     registerButton.addEventListener('click', function (e) {
         e.preventDefault(); // Previene que se recargue la página
@@ -142,17 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Por favor completa todos los campos.");
         }
     });
-
-    // Al hacer clic en el enlace de "Olvidaste tu contraseña?"
-    // forgotPasswordLink.addEventListener('click', function (e) {
-    //     e.preventDefault(); // Previene que se recargue la página
-
-    //     const email = prompt("Ingresa tu correo electrónico para recordar tu contraseña:");
-        
-    //     if (email) {
-    //         rememberPassword(email); // Llama a la función para recordar la contraseña
-    //     }
-    // });
 });
 
 

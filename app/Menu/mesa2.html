@@ -16,7 +16,7 @@
 <body>
 
 <header >
-    <a href="/MenuP"><h1>Menu</h1></a>
+    <a href="/MenuQ"><h1>Menu</h1></a>
 </header>
 
 <div class="notis">
@@ -48,9 +48,8 @@
 
 <script src="menuProduct.js"></script>
 <script>
-
 document.addEventListener('DOMContentLoaded', () => {
- fetch('/Navbar')
+ fetch('/Navbar2')
      .then(response => response.text())
      .then(data => {
          // Insertar el HTML en el contenedor
@@ -67,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
      })
      .catch(error => console.error('Error al cargar el navbar:', error));
     });
-
 
 </script>
 </body>

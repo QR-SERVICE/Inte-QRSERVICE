@@ -70,6 +70,9 @@ server.post("/Registrarse",postAdmin);
 import {postLogin} from './controlladores/QuickRestaurant-BD.js'
 server.post("/Entre",postLogin);
 
+import {getAdministradores } from './controlladores/QuickRestaurant-BD.js'
+server.get('/Administradores', getAdministradores);
+
 
 server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecutando 
 
@@ -84,6 +87,7 @@ server.get("/", (req, res) => res.sendFile(path.join(__dirname, 'login_', 'login
 server.get("/productos", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'Productos_confi.html')))
 server.get("/configuracion", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'Confi.html')))
 server.get("/MenuP", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu-copy.html')))
+server.get("/MenuQ", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'Menu.copy2.html')))
 server.get("/Comandas", (req, res) => res.sendFile(path.join(__dirname, 'PantallaComandas', 'index.html')))
 server.get("/Pedidos-completados", (req, res) => res.sendFile(path.join(__dirname, 'Pedidos', 'Historial_Pedidos.html')))
 server.get("/grafica", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'grafica_ventas.html')))
@@ -91,12 +95,14 @@ server.get("/grafica", (req, res) => res.sendFile(path.join(__dirname, 'Configur
 server.get("/example", (req, res) => res.sendFile(path.join(__dirname, 'bo', 'index.html')))
 
 
-server.get("/Menu", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'MenuGood.html')))
+server.get("/Mesa1", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'MenuGood.html')))
+server.get("/Mesa2", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'mesa2.html')))
 server.get("/vistaMenu", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'ViewMenu.html')))
 server.get("/menuFAKE", (req, res) => res.sendFile(path.join(__dirname, 'Configuracion', 'menufake.html')))
 
 // ruta para la navbar
 server.get("/Navbar", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'navbar.html')));
+server.get("/Navbar2", (req, res) => res.sendFile(path.join(__dirname, 'Menu', 'navbar2.html')));
 // Navbar configuracion
 server.get("/Header", (req, res) => res.sendFile(path.join(__dirname, 'estaticos', 'header.html')));
 server.get("/Footer", (req, res) => res.sendFile(path.join(__dirname, 'estaticos', 'footer.html')));

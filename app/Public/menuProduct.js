@@ -78,22 +78,3 @@ fetch(`/${producto}P`)
     console.error('Error al cargar los productos:', error);
 })};
 
-document.addEventListener('DOMContentLoaded', () => {
- fetch('/Navbar')
-     .then(response => response.text())
-     .then(data => {
-         // Insertar el HTML en el contenedor
-         document.getElementById('navbar-container').innerHTML = data;
-
-         // Crear un script para ejecutar el contenido JS de JMenu.js
-         const script = document.createElement('script');
-         script.src = '/JMenu.js';  // Ruta del script
-         script.onload = () => {
-             console.log('El script se cargó y ejecutó correctamente');
-         };
-         document.body.appendChild(script);
-
-     })
-     .catch(error => console.error('Error al cargar el navbar:', error));
-    });
-
