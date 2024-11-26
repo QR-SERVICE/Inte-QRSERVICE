@@ -4,8 +4,8 @@ import mysql2 from 'mysql2';
 const connectionPool = mysql2.createPool({
     host: "localhost",
     user: "root",
-    password: "QuickRestaurant",
-    port: 3306,
+    password: "Bufetero21",
+    port: 3307,
     database: "quickrestaurant"
 }).promise();
 
@@ -184,6 +184,41 @@ export const postDeleteOrder = async (req, res) => {
 };
 
 
+export const postAdmin = async (req,res) =>{
+  const {nombre_admin,contraseña_admin,correo_admin} = req.body;
+  const query = 'call new_admin(?,?,?);';
+  const params = [nombre_admin,contraseña_admin,correo_admin];
+  try{
+    const [results] = await connectionPool.query(query,params);
+    console.log(results)
+    res.status(200).json({message:'Se registro al usuario'});
+  }catch (err){
+    console.error('Error al ejecutar la consulta:',err);
+    res.status(500).json({message:'Error al ejecutar el registro del usuario'});
+
+  }
+};
+
+
+export const postLogin = async (req, res) => {
+  const { contraseña_admin, correo_admin } = req.body;
+  const query = 'CALL validar_admin(?, ?, @validacion);';
+  try {
+    await connectionPool.query(query, [contraseña_admin, correo_admin]);
+    const [rows] = await connectionPool.query('SELECT @validacion AS validacion;');
+    const validacion = rows[0].validacion;
+
+    if (validacion === 1) {
+      
+      res.status(200).json({ message: 'Inicio de sesión exitoso' });
+    } else {
+      res.status(401).json({ message: 'Credenciales incorrectas' });
+    }
+  } catch (err) {
+    console.error('Error al ejecutar la consulta:', err);
+    res.status(500).json({ message: 'Error al iniciar sesión' });
+  }
+};
 
 
 //DELETE

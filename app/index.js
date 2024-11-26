@@ -64,6 +64,12 @@ server.get('/NombreOrden', getOrderName);
 import {deleteOrder} from './controlladores/QuickRestaurant-BD.js'
 server.delete("/EliminarOrdenes",deleteOrder);
 
+import {postAdmin} from './controlladores/QuickRestaurant-BD.js'
+server.post("/Registrarse",postAdmin);
+
+import {postLogin} from './controlladores/QuickRestaurant-BD.js'
+server.post("/Entre",postLogin);
+
 
 server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecutando 
 

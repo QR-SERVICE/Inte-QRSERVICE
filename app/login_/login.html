@@ -34,8 +34,11 @@
                 <h1 data-section="Login" data-value="create">Crear Cuenta</h1>
                 <!-- Nombre requerido y mínimo de 3 caracteres -->
                 <input type="text" data-section="Login" data-value="name" placeholder="Nombre" required minlength="3">
+                <!-- Correo requerido y con mínimo de 6 caracteres -->
+                <input type="email" data-section="Login" data-value="email" placeholder="Correo" required minlength="4">
                 <!-- Contraseña requerida y con mínimo de 6 caracteres -->
                 <input type="password" data-section="Login" data-value="pass" placeholder="Contraseña" required minlength="4">
+
                 <button type="submit" data-section="Login" data-value="registration" >Registrar</button>
             </form>
         </div>
@@ -68,7 +71,7 @@
     </div>
 
     <script src="login.js"></script>
-    <script src="cookies.js"></script>
+    <!-- <script src="cookies.js"></script> -->
 </body>
 
 </html>

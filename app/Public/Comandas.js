@@ -62,6 +62,14 @@ fetch('/Orden' )
               console.error(`Error al cargar los detalles de la orden ${orden.id_orden}:`, error);
             });
 
+            div.appendChild(deleteButton);
+            div.appendChild(nameM);
+            div.appendChild(name);
+            div.appendChild(fecha);
+            div.appendChild(comentario);
+            div.appendChild(total);
+            seccionComandas.appendChild(div);
+
             deleteButton.addEventListener('click', async () => {
 
                 const id_orden = orden.id_orden;
@@ -79,6 +87,7 @@ fetch('/Orden' )
                   
                   if (response.ok) {
                     alert('Orden eliminada correctamente');
+                    div.remove();
                   } else {
                     alert('Problemas al eliminar la orden');
                   }
@@ -87,15 +96,6 @@ fetch('/Orden' )
                   alert('orden eliminada correctamente');
                 }
               });
-
-        div.appendChild(deleteButton);
-        div.appendChild(nameM);
-        div.appendChild(name);
-        div.appendChild(fecha);
-        div.appendChild(comentario);
-        div.appendChild(total);
-        seccionComandas.appendChild(div);
-
     })
 
 })
