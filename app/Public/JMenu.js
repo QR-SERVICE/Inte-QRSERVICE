@@ -114,6 +114,7 @@ const productOrde = document.getElementById("productos_orden");
 const cantidadP = document.querySelectorAll(".input_cant");
 const TOTAL = document.getElementById("TOTAL");
 let totalSum = 0;
+let totalSumCont = 0;
 
 const precios = obtenerPrecios(preciosP);
 
@@ -171,7 +172,8 @@ sumProducts.forEach((sumProducts, index) => {
             
             removeButton.addEventListener("click", () => {
                 row.remove();  
-                totalSum -= precio * cantidad;  
+                totalSum -= precio * cantidad; 
+                totalSumCont -= precio * cantidad;
                 TOTAL.textContent = totalSum.toFixed(2) + "$";  
             });
 
@@ -188,6 +190,7 @@ sumProducts.forEach((sumProducts, index) => {
             productOrde.appendChild(row);
             
             totalSum += precio * cantidad;
+            totalSumCont += precio * cantidad;
             TOTAL.textContent = "$" + totalSum.toFixed(2) ;
 
         }  else {
@@ -354,7 +357,7 @@ function vaciarCarrito() {
     coment.value = '';
 };
 
-function actualizarTablaRecord(pedidos, total) {
+function actualizarTablaRecord(pedidos) {
     const historial = document.getElementById('RecordTable');
     const tbodyHistorial = historial.querySelector('tbody');
 
@@ -376,7 +379,7 @@ function actualizarTablaRecord(pedidos, total) {
         filaHistorial.appendChild(celdaCantidad);
         tbodyHistorial.appendChild(filaHistorial);
     });
-    document.getElementById('Record_total').textContent = `$${total.toFixed(2)}`;
+    document.getElementById('Record_total').textContent = `$${totalSumCont.toFixed(2)}`;
 }
 
 
