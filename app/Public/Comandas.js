@@ -2,6 +2,8 @@ fetch('/Orden' )
 .then(response => response.json())
 .then(data => {
 
+  
+
     const seccionComandas = document.getElementById(`comandas`);
     data.forEach(orden => {
         const div = document.createElement('div');
@@ -17,9 +19,32 @@ fetch('/Orden' )
         nameM.textContent = orden.MesaName;
         nameM.style.fontSize = '30px';
 
-        const fecha = document.createElement('p');
-        fecha.classList.add('ordenDate');
-        fecha.textContent = orden.fecha_orden;
+                const fecha = document.createElement('p');
+        fecha.classList.add('ordenDate'); // Agregar clase para estilos
+
+        // Obtener la fecha original de la orden
+        const rawFecha = orden.fecha_orden;
+
+        // Función para formatear la fecha
+        function formatearFecha(fechaRaw) {
+            const opciones = {
+                weekday: "long",   // Día de la semana
+                year: "numeric",   // Año completo
+                month: "long",     // Nombre completo del mes
+                day: "numeric",    // Día del mes
+                hour: "numeric",   // Hora (12 horas con AM/PM)
+                minute: "2-digit", // Minutos con 2 dígitos
+            };
+
+            // Crear un objeto Date usando el timestamp de MySQL
+            const fecha = new Date(fechaRaw);
+
+            // Retornar la fecha formateada en español
+            return fecha.toLocaleDateString("es-ES", opciones);
+        }
+
+        // Formatear la fecha y asignarla al elemento
+        fecha.textContent = formatearFecha(rawFecha);
 
         const comentario = document.createElement('p');
         comentario.classList.add('ordenComent');

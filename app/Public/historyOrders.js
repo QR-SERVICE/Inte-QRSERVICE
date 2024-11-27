@@ -16,8 +16,21 @@ fetch('/Historial_ordenes')
       nameM.classList.add('nameOrder');
 
       const fecha = document.createElement('p');
-      fecha.textContent = OrdersEnd.fecha_orden;
-      fecha.classList.add('dateOrderFinished');
+      fecha.classList.add('dateOrderFinished'); 
+      const rawFecha = OrdersEnd.fecha_orden;
+      function formatearFecha(fechaRaw) {
+          const opciones = {
+              weekday: "long",   
+              year: "numeric",   
+              month: "long",     
+              day: "numeric",    
+              hour: "numeric",   
+              minute: "2-digit", 
+          };
+          const fecha = new Date(fechaRaw);
+          return fecha.toLocaleDateString("es-ES", opciones);
+      }
+      fecha.textContent = formatearFecha(rawFecha);
 
       const total = document.createElement('p');
       total.textContent = OrdersEnd.total;
