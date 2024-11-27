@@ -188,7 +188,7 @@ sumProducts.forEach((sumProducts, index) => {
             productOrde.appendChild(row);
             
             totalSum += precio * cantidad;
-            TOTAL.textContent = "$" +totalSum.toFixed(2) ;
+            TOTAL.textContent = "$" + totalSum.toFixed(2) ;
 
         }  else {
             alert('Añada una cantidad')
@@ -431,6 +431,7 @@ const enviarOrden = async () => {
             alert('Orden exitosa');
             vaciarCarrito();
             actualizarTablaRecord(pedidos, total);
+            totalSum = 0;
         } else {
             alert('Problemas al agregar el producto');
         }
