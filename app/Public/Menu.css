@@ -15,7 +15,7 @@ body {
 }
 
 header {
-    background-color: rgba(0, 0, 0, .1); 
+    background-color: rgb(12, 12, 12); 
     padding: 15px;
     text-align: center;
     position: relative;
@@ -144,6 +144,7 @@ li{
     text-align: center;
     align-items: center;
     width: 100%;
+    height: 3.5rem;
     justify-content: space-around;
     padding: 0.2rem;
     background-color: rgb(0, 0, 0);
@@ -188,7 +189,7 @@ li{
     z-index: 3; 
     margin-top: 0;
     opacity: 1;
-    padding: 0.3rem;
+    padding: 0.4rem;
     animation: slideUpDown 0.5s ease;
 }        
 
@@ -224,14 +225,15 @@ li{
     display: flex;
     align-items: center;
     cursor: pointer;
+    justify-content: center;
 }
 
 .menu-desplegable {
     width: 1.5rem;
     height: 70%;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
 }
 
 .menu-desplegable div {
@@ -260,15 +262,15 @@ li{
 }
 
 .sidebar-scroll {
-    margin-top: 10%;
+    margin-top: 4rem;
     z-index: 2; 
 }
 
 .sidebar.menu-toggle {
     width: 10rem;
     z-index: 2; 
-    margin-top: 4.2rem;
-    padding-top: 4.5rem;
+    margin-top: 3rem;
+    padding-top: 5rem;
 }
 
 .sidebar a {
@@ -840,8 +842,11 @@ li{
 
     .sidebar.menu-toggle {
         margin-top: 4.2rem;
-        padding-top: 4.5rem;
+        padding-top: 4rem;
+        z-index: 1;
     }
+
+    
 }
   @keyframes fadeIn {
     from {
