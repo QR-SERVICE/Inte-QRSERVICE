@@ -124,9 +124,7 @@ sumProducts.forEach((sumProducts, index) => {
         const precio = precios[index];
         const cantidad = parseInt(cantidadP[index].value);
 
-        console.log(cantidad);
-
-        if(cantidad > 0) {
+        if(cantidad > 0 && cantidad < 10) {
             const row = document.createElement("tr");
             row.className = "producto-fila";
             row.classList.add("producto-fila");
@@ -194,7 +192,7 @@ sumProducts.forEach((sumProducts, index) => {
             TOTAL.textContent = "$" + totalSum.toFixed(2) ;
 
         }  else {
-            alert('Añada una cantidad')
+            alert("Añada una cantidad mínima de 1 y máxima de 10.")
         } 
     });
 });
@@ -357,9 +355,12 @@ function vaciarCarrito() {
     coment.value = '';
 };
 
-function actualizarTablaRecord(pedidos) {
+function cargarDatosDeLocalStorage() {
     const historial = document.getElementById('RecordTable');
     const tbodyHistorial = historial.querySelector('tbody');
+
+    const pedidosGuardados = localStorage.getItem('pedidos');
+    const pedidos = JSON.parse(pedidosGuardados);
 
     pedidos.forEach(pedido => {
         const filaHistorial = document.createElement('tr');
@@ -380,8 +381,7 @@ function actualizarTablaRecord(pedidos) {
         tbodyHistorial.appendChild(filaHistorial);
     });
     document.getElementById('Record_total').textContent = `$${totalSumCont.toFixed(2)}`;
-}
-
+};
 
 const botonEn = document.getElementById('enviar-t');
 const coment = document.getElementById('coment');
@@ -394,54 +394,58 @@ const enviarOrden = async () => {
         const totalValue = parseFloat(totalText.replace('$', '').trim());
         return totalValue;
     }
-
     const total = parseTotal();
     const comentario = coment.value;
     const NombreMesa = Nm.textContent;
-
-    console.log("Mesa:", NombreMesa);
-
-    const pedidos = [];
-    const productName = document.querySelectorAll('.name');
-    const productAmount = document.querySelectorAll('.amount');
-    const productPrice = document.querySelectorAll('.price');
-
-    productName.forEach((nameElement, index) => {
-        const name = nameElement.textContent;
-        const amount = parseInt(productAmount[index].textContent);
-        const price = parseFloat(productPrice[index].textContent.replace("$", "").trim());
-        pedidos.push({
-            nombre_producto: name,
-            cantidad: amount,
-            precio: price
+    if( total > 0){
+        console.log("Mesa:", NombreMesa);
+    
+        const pedidos = [];
+        const productName = document.querySelectorAll('.name');
+        const productAmount = document.querySelectorAll('.amount');
+        const productPrice = document.querySelectorAll('.price');
+    
+        productName.forEach((nameElement, index) => {
+            const name = nameElement.textContent;
+            const amount = parseInt(productAmount[index].textContent);
+            const price = parseFloat(productPrice[index].textContent.replace("$", "").trim());
+            pedidos.push({
+                nombre_producto: name,
+                cantidad: amount,
+                precio: price
+            });
         });
-    });
-
-    try {
-        const response = await fetch('http://localhost:3500/OrdenP', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ NombreMesa, pedidos, comentario, total })
-        });
-
-        const responseData = await response.json();
-        console.log('Mensaje del servidor:', responseData.message || 'Sin mensaje de error');
-        console.log('Estado de respuesta:', response.status);
-
-        if (response.ok) {
-            alert('Orden exitosa');
-            vaciarCarrito();
-            actualizarTablaRecord(pedidos, total);
-            totalSum = 0;
-        } else {
-            alert('Problemas al agregar el producto');
-        }
-    } catch (e) {
-        console.error('Error al enviar la orden:', e);
-        alert('No se pudo enviar la orden. Intenta nuevamente.');
-    }
+        localStorage.setItem('pedidos', JSON.stringify(pedidos));
+        localStorage.setItem('total', JSON.stringify(total));
+        try {
+            const response = await fetch('http://localhost:3500/OrdenP', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ NombreMesa, pedidos, comentario, total })
+            });
+    
+            const responseData = await response.json();
+            console.log('Mensaje del servidor:', responseData.message || 'Sin mensaje de error');
+            console.log('Estado de respuesta:', response.status);
+    
+            if (response.ok) {
+                alert('Orden exitosa.');
+                vaciarCarrito();
+                cargarDatosDeLocalStorage();
+                totalSum = 0;
+            } else {
+                alert('Problemas al agregar el producto');
+            }
+        } catch (e) {
+            console.error('Error al enviar la orden:', e);
+            alert('No se pudo enviar la orden. Intenta nuevamente.');
+        };
+    }else{
+        alert('Añada productos para realizar la orden.')
+        return
+    };
 };
 
 botonEn.removeEventListener("click", enviarOrden);
