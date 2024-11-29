@@ -191,6 +191,8 @@ sumProducts.forEach((sumProducts, index) => {
             totalSumCont += precio * cantidad;
             TOTAL.textContent = "$" + totalSum.toFixed(2) ;
 
+            alert(`Se añadieron ${cantidad} ${name} a la orden.`)
+
         }  else {
             alert("Añada una cantidad mínima de 1 y máxima de 10.")
         } 
