@@ -124,7 +124,7 @@ sumProducts.forEach((sumProducts, index) => {
         const precio = precios[index];
         const cantidad = parseInt(cantidadP[index].value);
 
-        if(cantidad > 0 && cantidad < 10) {
+        if(cantidad > 0 && cantidad < 11) {
             const row = document.createElement("tr");
             row.className = "producto-fila";
             row.classList.add("producto-fila");
