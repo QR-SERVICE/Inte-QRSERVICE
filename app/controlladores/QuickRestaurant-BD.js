@@ -1,12 +1,14 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import mysql2 from 'mysql2';
 
 // Crear un pool de conexiones
 const connectionPool = mysql2.createPool({
-    host: "localhost",
-    user: "root",
-    password: "QuickRestaurant",
-    port: 3306,
-    database: "quickrestaurant"
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
 }).promise();
 
 //GET

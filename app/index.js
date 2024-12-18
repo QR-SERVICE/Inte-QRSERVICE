@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import path from 'path';
 import cors from 'cors';
@@ -6,6 +7,10 @@ import { fileURLToPath } from 'url';
 import { WebSocketServer } from 'ws'; // Importar WebSocketServer
 const server = express();
 
+//usamos dotenv para guardar parametros de desarollo
+dotenv.config();
+
+server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecutando 
 
 server.use(express.json());
 
@@ -73,8 +78,6 @@ server.post("/Entre",postLogin);
 import {getAdministradores } from './controlladores/QuickRestaurant-BD.js'
 server.get('/Administradores', getAdministradores);
 
-
-server.set('PORT',process.env.PORT || 3500)//El puerto en el cual se esta ejecutando 
 
 
 // Configuración de directorios estáticos
