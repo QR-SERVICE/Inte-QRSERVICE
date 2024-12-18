@@ -1,7 +1,7 @@
     ViewProduct('Bebidas')
+    ViewProduct('Entradas')
     ViewProduct('Platillos')
     ViewProduct('Postres')
-    ViewProduct('Entradas')
 
 function ViewProduct(producto){
   fetch(`/${producto}P`)
