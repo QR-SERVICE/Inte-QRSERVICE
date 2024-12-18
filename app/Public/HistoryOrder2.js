@@ -22,7 +22,7 @@ const eliminar = document.querySelector('.deleteButton');
 eliminar.addEventListener('click', async () => {
 
   try {
-    const response = await fetch(`http://localhost:3500/EliminarOrdenes`, {
+    const response = await fetch(`/EliminarOrdenes`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'

@@ -46,7 +46,7 @@ fetch('/Historial_ordenes')
       div.appendChild(orderComent);
 
       // Realizar la segunda llamada para obtener los detalles de cada orden específica
-      fetch(`http://localhost:3500/Detalles/${OrdersEnd.id_orden}`, {
+      fetch(`/Detalles/${OrdersEnd.id_orden}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

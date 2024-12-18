@@ -60,7 +60,7 @@ fetch('/Orden' )
         i.className = 'bi bi-trash';
         deleteButton.appendChild(i);
 
-        fetch(`http://localhost:3500/Detalles/${orden.id_orden}`, {
+        fetch(`/Detalles/${orden.id_orden}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
@@ -100,7 +100,7 @@ fetch('/Orden' )
                 const id_orden = orden.id_orden;
               
                 try {
-                  const response = await fetch(`http://localhost:3500/TerminarOrden/${id_orden}`, {
+                  const response = await fetch(`/TerminarOrden/${id_orden}`, {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json'

@@ -1,6 +1,6 @@
 const title = document.getElementById('Mesa');
 document.addEventListener('DOMContentLoaded', () => {
-    fetch(`http://localhost:3500/Mesa/4`, {
+    fetch(`/Mesa/4`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

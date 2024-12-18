@@ -420,7 +420,7 @@ const enviarOrden = async () => {
         localStorage.setItem('pedidos', JSON.stringify(pedidos));
         localStorage.setItem('total', JSON.stringify(total));
         try {
-            const response = await fetch('http://localhost:3500/OrdenP', {
+            const response = await fetch('/OrdenP', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

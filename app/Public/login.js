@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Función de validación de credenciales
     async function validateLogin(contraseña_admin,correo_admin) {
         try {
-            const response = await fetch('http://localhost:3500/Entre', {
+            const response = await fetch('/Entre', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return; 
             }
     
-            const registroResponse = await fetch('http://localhost:3500/Registrarse', {
+            const registroResponse = await fetch('/Registrarse', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

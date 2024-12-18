@@ -47,7 +47,7 @@ function ViewProduct(producto){
                 const producDelete = producto.id_producto;
               
                 try {
-                  const response = await fetch(`http://localhost:3500/EliminarProducto/${producDelete}`, {
+                  const response = await fetch(`/EliminarProducto/${producDelete}`, {
                     method: 'DELETE',
                     headers: {
                       'Content-Type': 'application/json'
@@ -92,7 +92,7 @@ document.getElementById("agreg_pro").addEventListener('click', async () => {
   const imgFile = document.getElementById("img-agreg").value;
 
   try {
-      const response = await fetch('http://localhost:3500/AgregarProductos', {
+      const response = await fetch('/AgregarProductos', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
